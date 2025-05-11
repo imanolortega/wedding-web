@@ -9,7 +9,6 @@ import {
   Button,
   Card,
   Column,
-  DateRangePicker,
   Dialog,
   Fade,
   Feedback,
@@ -257,28 +256,32 @@ export default function Home() {
                 Est qui dolorem ipsum quia dolor sit amet
               </Text>
             </InlineCode>
-            <Heading
-              wrap="balance"
-              variant="display-strong-xl"
-              align="center"
-              marginBottom="16"
-            >
-              The Boda
-            </Heading>
-            <Button
+
+            <Column maxWidth={32}>
+              <SmartImage
+                alt="ML The Boda"
+                aspectRatio="16/9"
+                isLoading={false}
+                objectFit="cover"
+                radius="l"
+                src="/images/ml-the-boda.png"
+                maxWidth={300}
+              />
+            </Column>
+            {/* <Button
               id="readDocs"
               target="_blank"
-              label="Open docs"
+              label="Nuestra Historia"
               href="https://once-ui.com/docs"
               variant="secondary"
               arrowIcon
-            />
-            <Column
+            /> */}
+            {/* <Column
               horizontal="center"
               paddingTop="64"
               fillWidth
               gap="24"
-            ></Column>
+            ></Column> */}
           </Column>
           <Column
             fillWidth
@@ -324,7 +327,6 @@ export default function Home() {
                     height: "1rem",
                   }}
                 />
-                <Logo wordmark={false} size="l" />
                 <Heading as="h3" variant="display-default-s" align="center">
                   Confirmá tu presencia
                 </Heading>
@@ -423,321 +425,6 @@ export default function Home() {
               height: "1.25%",
             }}
           />
-        </Row>
-
-        {/* BOOKING */}
-        <Row
-          padding="32"
-          fillWidth
-          gap="64"
-          position="relative"
-          mobileDirection="column"
-          vertical="center"
-        >
-          <Background
-            fill
-            position="absolute"
-            gradient={{
-              display: true,
-              opacity: 60,
-              tilt: 0,
-              height: 100,
-              width: 100,
-              x: 50,
-              y: 0,
-              colorStart: "brand-solid-strong",
-              colorEnd: "static-transparent",
-            }}
-          />
-          <Column
-            fillWidth
-            background="surface"
-            radius="xl"
-            border="neutral-medium"
-            overflow="hidden"
-            padding="32"
-            gap="40"
-            position="relative"
-          >
-            <Row fillWidth horizontal="center" gap="-1">
-              <Column
-                maxWidth={12}
-                gap="4"
-                leftRadius="l"
-                paddingX="16"
-                paddingY="12"
-                background="surface"
-                border="neutral-medium"
-              >
-                <Text variant="label-default-s" onBackground="neutral-weak">
-                  Check in
-                </Text>
-                {selectedRange?.startDate ? (
-                  <>
-                    {selectedRange?.startDate.toLocaleDateString("default", {
-                      day: "numeric",
-                      month: "long",
-                    })}
-                  </>
-                ) : (
-                  "Add dates"
-                )}
-              </Column>
-              <Column
-                maxWidth={12}
-                gap="4"
-                rightRadius="l"
-                paddingX="16"
-                paddingY="12"
-                background="surface"
-                border="neutral-medium"
-              >
-                <Text variant="label-default-s" onBackground="neutral-weak">
-                  Check out
-                </Text>
-                {selectedRange?.endDate ? (
-                  <>
-                    {selectedRange?.endDate?.toLocaleDateString("default", {
-                      day: "numeric",
-                      month: "long",
-                    })}
-                  </>
-                ) : (
-                  "Add dates"
-                )}
-              </Column>
-            </Row>
-            <Row fillWidth horizontal="center">
-              <DateRangePicker
-                data-scaling="110"
-                size="l"
-                fitWidth
-                gap="40"
-                mobileDirection="column"
-                onChange={(range) => setSelectedRange(range)}
-                value={selectedRange}
-              />
-            </Row>
-          </Column>
-        </Row>
-
-        {/* PROFILE */}
-        <Row
-          horizontal="center"
-          paddingX="32"
-          paddingY="64"
-          fillWidth
-          gap="32"
-          position="relative"
-        >
-          <Background
-            mask={{
-              cursor: true,
-            }}
-            dots={{
-              display: true,
-              opacity: 50,
-              color: "neutral-solid-strong",
-              size: "48",
-            }}
-            fill
-            position="absolute"
-            gradient={{
-              display: true,
-              opacity: 100,
-              tilt: 0,
-              height: 100,
-              width: 200,
-              x: 50,
-              y: 0,
-              colorStart: "neutral-background-medium",
-              colorEnd: "static-transparent",
-            }}
-          />
-          <Column maxWidth={32} gap="-1">
-            <Feedback
-              icon
-              variant="success"
-              vertical="center"
-              radius={undefined}
-              topRadius="l"
-              zIndex={1}
-            >
-              Your profile is public.
-            </Feedback>
-            <Column
-              background="page"
-              radius={undefined}
-              bottomRadius="l"
-              overflow="hidden"
-              position="relative"
-              fillWidth
-              horizontal="center"
-              border="neutral-medium"
-            >
-              <MediaUpload
-                border={undefined}
-                emptyState={
-                  <Row paddingBottom="80">Drag and drop or click to browse</Row>
-                }
-                position="absolute"
-                aspectRatio="16 / 9"
-                sizes="560px"
-                radius={undefined}
-                initialPreviewImage="/images/profile.jpg"
-              />
-              <Column
-                paddingTop="160"
-                paddingX="32"
-                paddingBottom="32"
-                fillWidth
-                position="relative"
-                horizontal="center"
-                gap="8"
-              >
-                <Avatar
-                  zIndex={1}
-                  style={{
-                    border: "8px solid var(--page-background)",
-                  }}
-                  size="xl"
-                  src="/images/l.jpg"
-                />
-                <Heading marginTop="24" as="h3" variant="display-default-m">
-                  Lorant One
-                </Heading>
-                <Text
-                  align="center"
-                  onBackground="neutral-weak"
-                  marginBottom="24"
-                >
-                  165 connections
-                </Text>
-                <SegmentedControl
-                  onToggle={(value) =>
-                    console.log("SegmentedControl changed", value)
-                  }
-                  buttons={[
-                    {
-                      size: "l",
-                      value: "profile",
-                      label: "Profile",
-                    },
-                    {
-                      size: "l",
-                      value: "settings",
-                      label: "Settings",
-                    },
-                    {
-                      size: "l",
-                      value: "notifications",
-                      label: (
-                        <Row gap="8">
-                          Notifications
-                          <StatusIndicator size="s" color="cyan" />
-                        </Row>
-                      ),
-                    },
-                    {
-                      size: "l",
-                      value: "integrations",
-                      label: "Integrations",
-                    },
-                    {
-                      size: "l",
-                      value: "inbox",
-                      label: "Inbox",
-                    },
-                    {
-                      size: "l",
-                      value: "requests",
-                      label: "Requests",
-                    },
-                  ]}
-                />
-                <Column paddingY="32" fillWidth gap="-1">
-                  <Input
-                    radius="top"
-                    label="Name"
-                    labelAsPlaceholder
-                    defaultValue="Lorant One"
-                    id="name"
-                  />
-                  <Input
-                    radius="bottom"
-                    label="Email"
-                    labelAsPlaceholder
-                    defaultValue="lorant@once-ui.com"
-                    id="profileEmail"
-                  />
-                </Column>
-                <Textarea
-                  id="intro"
-                  label="Intro"
-                  lines="auto"
-                  value={intro}
-                  onChange={(e) => setIntro(e.target.value)}
-                  validate={validateIntro}
-                />
-                <TagInput
-                  id="interests"
-                  value={tags}
-                  onChange={(newTags: string[]) => {
-                    setTags(newTags);
-                  }}
-                  label="Interests"
-                />
-                <Select
-                  searchable
-                  labelAsPlaceholder
-                  id="select"
-                  label="Country"
-                  value={selectedValue}
-                  options={[
-                    {
-                      value: "Austria",
-                      label: "Austria",
-                      onClick: (value) => console.log("Visiblity set: ", value),
-                    },
-                    {
-                      value: "Finland",
-                      label: "Finland",
-                      onClick: (value) => console.log("Visiblity set: ", value),
-                    },
-                    {
-                      value: "New Zeland",
-                      label: "New Zeland",
-                      onClick: (value) => console.log("Visiblity set: ", value),
-                    },
-                    {
-                      value: "Norway",
-                      label: "Norway",
-                      onClick: (value) => console.log("Visiblity set: ", value),
-                    },
-                    {
-                      value: "United Kingdom",
-                      label: "United Kingdom",
-                      onClick: (value) => console.log("Visiblity set: ", value),
-                    },
-                    {
-                      value: "United States",
-                      label: "United States",
-                      onClick: (value) => console.log("Visiblity set: ", value),
-                    },
-                  ]}
-                  onSelect={handleSelect}
-                />
-                <Button
-                  className="mt-32"
-                  prefixIcon="security"
-                  variant="secondary"
-                  onClick={() => setIsFirstDialogOpen(true)}
-                >
-                  Password and security
-                </Button>
-              </Column>
-            </Column>
-          </Column>
         </Row>
 
         {/* CODE PREVIEW */}
