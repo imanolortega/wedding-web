@@ -58,6 +58,42 @@ export default function Home() {
     },
   ];
 
+  const event = [
+    {
+      id: "1",
+      title: "Salón",
+      description: "Abba Huasi",
+    },
+    {
+      id: "2",
+      title: "Fecha",
+      description: "6/9/2025",
+    },
+    {
+      id: "3",
+      title: "Ubicación",
+      description: "Dirección",
+    },
+  ];
+
+  const wedding = [
+    {
+      id: "1",
+      title: "Salón",
+      description: "Abba Huasi",
+    },
+    {
+      id: "2",
+      title: "Fecha",
+      description: "6/9/2025",
+    },
+    {
+      id: "3",
+      title: "Ubicación",
+      description: "Dirección",
+    },
+  ];
+
   const validateLogin = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regex.test(email)) {
@@ -112,14 +148,14 @@ export default function Home() {
               weight="default"
               variant="tertiary"
             />
-            <Row position="fixed" top="20" right="20">
+            {/* <Row position="fixed" top="20" right="20">
               <StyleOverlay
                 position="fixed"
                 top="8"
                 right="8"
                 style={{ height: "calc(100vh - var(--static-space-16))" }}
               />
-            </Row>
+            </Row> */}
           </Row>
           <Row gap="16" show="s" horizontal="center" paddingRight="24">
             <IconButton
@@ -132,14 +168,14 @@ export default function Home() {
               icon="email"
               variant="tertiary"
             />
-            <Row position="fixed" top="20" right="20">
+            {/* <Row position="fixed" top="20" right="20">
               <StyleOverlay
                 position="fixed"
                 top="8"
                 right="8"
                 style={{ height: "calc(100vh - var(--static-space-16))" }}
               />
-            </Row>
+            </Row> */}
           </Row>
         </Row>
       </Row>
@@ -365,8 +401,6 @@ export default function Home() {
           </Column>
         </Column>
 
-
-
         {/* CODE PREVIEW */}
         <TiltFx fillWidth paddingX="32" paddingTop="64">
           <Column
@@ -413,24 +447,63 @@ export default function Home() {
                 x: 0,
                 y: 100,
                 colorStart: "accent-solid-medium",
-              colorEnd: "static-transparent",
+                colorEnd: "static-transparent",
               }}
             />
             <Column horizontal="center" gap="48" fillWidth position="relative">
               <Heading align="center" as="h2" variant="display-default-l">
-                Quick start
+                Evento
               </Heading>
-              <CodeBlock
-                compact
-                maxWidth={40}
-                codeInstances={[
-                  {
-                    code: "git clone https://github.com/once-ui-system/nextjs-starter.git",
-                    language: "tsx",
-                    label: "tsx",
-                  },
-                ]}
-              />
+              <Row fillWidth overflow="hidden">
+                <Row
+                  maxWidth="32"
+                  borderTop="neutral-alpha-weak"
+                  borderBottom="neutral-medium"
+                />
+                <Row
+                  fillWidth
+                  border="neutral-alpha-weak"
+                  mobileDirection="column"
+                >
+                  {event.map((link, index) => (
+                    <Card
+                      key={link.id}
+                      fillWidth
+                      padding="40"
+                      gap="8"
+                      background="page"
+                      direction="column"
+                      borderRight={
+                        index < links.length - 1
+                          ? "neutral-alpha-weak"
+                          : undefined
+                      }
+                      border={undefined}
+                    >
+                      <Row fillWidth center gap="12">
+                        <Text
+                          variant="body-strong-m"
+                          onBackground="neutral-strong"
+                        >
+                          {link.title}
+                        </Text>
+                      </Row>
+                      <Text
+                        align="center"
+                        variant="body-default-s"
+                        onBackground="neutral-weak"
+                      >
+                        {link.description}
+                      </Text>
+                    </Card>
+                  ))}
+                </Row>
+                <Row
+                  maxWidth="32"
+                  borderTop="neutral-alpha-weak"
+                  borderBottom="neutral-medium"
+                />
+              </Row>
             </Column>
           </Column>
         </TiltFx>
@@ -440,7 +513,6 @@ export default function Home() {
           fillWidth
           paddingX="32"
           paddingTop="160"
-          minHeight={28}
           paddingBottom="80"
           horizontal="center"
           vertical="end"
@@ -463,7 +535,7 @@ export default function Home() {
             textVariant="display-default-m"
             align="center"
           >
-            Learn more
+            Misa
           </Row>
         </Row>
         <Row fillWidth overflow="hidden">
@@ -473,11 +545,10 @@ export default function Home() {
             borderBottom="neutral-medium"
           />
           <Row fillWidth border="neutral-alpha-weak" mobileDirection="column">
-            {links.map((link, index) => (
+            {wedding.map((link, index) => (
               <Card
-                key={link.href}
+                key={link.id}
                 fillWidth
-                href={link.href}
                 padding="40"
                 gap="8"
                 background="page"
@@ -491,7 +562,6 @@ export default function Home() {
                   <Text variant="body-strong-m" onBackground="neutral-strong">
                     {link.title}
                   </Text>
-                  <Icon size="s" name="arrowUpRight" />
                 </Row>
                 <Text
                   align="center"
@@ -540,13 +610,6 @@ export default function Home() {
             fillWidth
             gap="16"
           >
-            <Logo wordmark={false} size="s" />
-            <Text size="m">
-              <Text onBackground="neutral-weak">2025 /</Text> Once UI
-            </Text>
-            <SmartLink href="https://github.com/once-ui-system/nextjs-starter?tab=MIT-1-ov-file">
-              MIT License
-            </SmartLink>
             <ThemeSwitcher marginTop="24" />
           </Column>
         </Row>
