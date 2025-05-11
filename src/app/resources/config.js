@@ -83,7 +83,7 @@ const effects = {
 const meta = {
   home: {
     path: "/",
-    title: "The Boda | Martín y Luján",
+    title: "The Boda | Somos Martín y Luján",
     description: "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
     image: "/og/home.jpg",
     canonical: "https://once-ui.com",

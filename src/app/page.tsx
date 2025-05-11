@@ -4,14 +4,12 @@ import type React from "react";
 import { useState } from "react";
 
 import {
-  Avatar,
   Background,
   Button,
   Card,
   Column,
   Dialog,
   Fade,
-  Feedback,
   Heading,
   Icon,
   IconButton,
@@ -21,45 +19,26 @@ import {
   Logo,
   PasswordInput,
   Row,
-  SegmentedControl,
-  Select,
   SmartImage,
   SmartLink,
-  StatusIndicator,
   StyleOverlay,
   Switch,
-  TagInput,
   Text,
-  Textarea,
   ThemeSwitcher,
   TiltFx,
-  type DateRange,
   useToast,
 } from "@/once-ui/components";
-import { CodeBlock, MediaUpload } from "@/once-ui/modules";
+import { CodeBlock } from "@/once-ui/modules";
 import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
 
 export default function Home() {
-  const [selectedValue, setSelectedValue] = useState("");
-  const [selectedRange, setSelectedRange] = useState<DateRange>();
   const [isFirstDialogOpen, setIsFirstDialogOpen] = useState(false);
   const [isSecondDialogOpen, setIsSecondDialogOpen] = useState(false);
   const [firstDialogHeight, setFirstDialogHeight] = useState<number>();
   const { addToast } = useToast();
-  const [intro, setIntro] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [tags, setTags] = useState<string[]>([
-    "UX / UI",
-    "Design systems",
-    "AI / ML",
-  ]);
   const [twoFA, setTwoFA] = useState(false);
-
-  const handleSelect = (value: string) => {
-    console.log("Selected option:", value);
-    setSelectedValue(value);
-  };
 
   const links = [
     {
@@ -78,18 +57,6 @@ export default function Home() {
       description: "Scale text automatically",
     },
   ];
-
-  const validateIntro = (value: React.ReactNode) => {
-    if (typeof value === "string" && value.length < 10) {
-      return (
-        <Row horizontal="center" marginBottom="12" gap="8">
-          <Icon name="errorCircle" />
-          Intro must be at least 10 characters long.
-        </Row>
-      );
-    }
-    return null;
-  };
 
   const validateLogin = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -130,18 +97,18 @@ export default function Home() {
           <Logo size="s" icon={false} href="https://once-ui.com" />
           <Row gap="12" hide="s">
             <Button
-              href="https://discord.com/invite/5EyAQ4eNdS"
-              prefixIcon="discord"
+              href="https://wa.me/5493853122118"
+              suffixIcon="HiOutlineEnvelope"
               size="s"
-              label="Discord"
+              label="Martín"
               weight="default"
               variant="tertiary"
             />
             <Button
-              href="https://github.com/once-ui-system"
-              prefixIcon="github"
+              href="https://wa.me/5493853122118"
+              prefixIcon="HiOutlineEnvelope"
               size="s"
-              label="GitHub"
+              label="Luján"
               weight="default"
               variant="tertiary"
             />
@@ -157,12 +124,12 @@ export default function Home() {
           <Row gap="16" show="s" horizontal="center" paddingRight="24">
             <IconButton
               href="https://discord.com/invite/5EyAQ4eNdS"
-              icon="discord"
+              icon="email"
               variant="tertiary"
             />
             <IconButton
               href="https://github.com/once-ui-system/nextjs-starter"
-              icon="github"
+              icon="email"
               variant="tertiary"
             />
             <Row position="fixed" top="20" right="20">
@@ -232,17 +199,17 @@ export default function Home() {
               radius: 100,
             }}
             position="absolute"
-            gradient={{
-              display: true,
-              opacity: 100,
-              tilt: -35,
-              height: 20,
-              width: 120,
-              x: 120,
-              y: 35,
-              colorStart: "brand-solid-strong",
-              colorEnd: "static-transparent",
-            }}
+            // gradient={{
+            //   display: true,
+            //   opacity: 100,
+            //   tilt: -35,
+            //   height: 20,
+            //   width: 120,
+            //   x: 120,
+            //   y: 35,
+            //   colorStart: "brand-solid-strong",
+            //   colorEnd: "static-transparent",
+            // }}
           />
           <Column
             fillWidth
@@ -253,7 +220,7 @@ export default function Home() {
           >
             <InlineCode radius="xl" shadow="m" fit paddingX="16" paddingY="8">
               <Text onBackground="brand-medium">
-                Est qui dolorem ipsum quia dolor sit amet
+                Somos Martín y Luján, acompañanos en este proceso
               </Text>
             </InlineCode>
 
@@ -300,7 +267,7 @@ export default function Home() {
             >
               <Row fill hide="m">
                 <SmartImage
-                  src="/images/login.png"
+                  src="/images/martin-lujan-theboda.jpg"
                   alt="Preview image"
                   sizes="560px"
                 />
@@ -398,34 +365,7 @@ export default function Home() {
           </Column>
         </Column>
 
-        {/* PAYMENT */}
-        <Row
-          paddingX="32"
-          fillWidth
-          paddingY="160"
-          gap="64"
-          position="relative"
-          mobileDirection="column"
-          vertical="center"
-        >
-          <Background
-            style={{ left: "-1px" }}
-            borderTop="neutral-alpha-medium"
-            mask={{
-              x: 0,
-              y: 50,
-              radius: 100,
-            }}
-            position="absolute"
-            grid={{
-              display: true,
-              opacity: 100,
-              width: "10%",
-              color: "neutral-alpha-medium",
-              height: "1.25%",
-            }}
-          />
-        </Row>
+
 
         {/* CODE PREVIEW */}
         <TiltFx fillWidth paddingX="32" paddingTop="64">
@@ -472,8 +412,8 @@ export default function Home() {
                 tilt: 0,
                 x: 0,
                 y: 100,
-                colorStart: "brand-solid-strong",
-                colorEnd: "brand-background-medium",
+                colorStart: "accent-solid-medium",
+              colorEnd: "static-transparent",
               }}
             />
             <Column horizontal="center" gap="48" fillWidth position="relative">
