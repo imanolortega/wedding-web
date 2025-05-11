@@ -1,46 +1,41 @@
-// Example page: delete the content or rework the blocks
 "use client";
 
 import type React from "react";
 import { useState } from "react";
 
 import {
-  Heading,
-  Text,
-  Button,
-  Icon,
-  InlineCode,
-  Logo,
-  Input,
   Avatar,
-  AvatarGroup,
-  Textarea,
-  PasswordInput,
-  SegmentedControl,
-  SmartLink,
-  Dialog,
-  Feedback,
-  SmartImage,
-  Line,
-  LogoCloud,
   Background,
-  Select,
-  useToast,
+  Button,
   Card,
-  Fade,
-  StatusIndicator,
-  DateRangePicker,
-  type DateRange,
-  TiltFx,
-  HoloFx,
-  IconButton,
-  TagInput,
-  Switch,
   Column,
+  DateRangePicker,
+  Dialog,
+  Fade,
+  Feedback,
+  Heading,
+  Icon,
+  IconButton,
+  InlineCode,
+  Input,
+  Line,
+  Logo,
+  PasswordInput,
   Row,
+  SegmentedControl,
+  Select,
+  SmartImage,
+  SmartLink,
+  StatusIndicator,
   StyleOverlay,
-  CompareImage,
+  Switch,
+  TagInput,
+  Text,
+  Textarea,
   ThemeSwitcher,
+  TiltFx,
+  type DateRange,
+  useToast,
 } from "@/once-ui/components";
 import { CodeBlock, MediaUpload } from "@/once-ui/modules";
 import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
@@ -55,7 +50,11 @@ export default function Home() {
   const [intro, setIntro] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [tags, setTags] = useState<string[]>(["UX / UI", "Design systems", "AI / ML"]);
+  const [tags, setTags] = useState<string[]>([
+    "UX / UI",
+    "Design systems",
+    "AI / ML",
+  ]);
   const [twoFA, setTwoFA] = useState(false);
 
   const handleSelect = (value: string) => {
@@ -103,7 +102,9 @@ export default function Home() {
 
   return (
     <Column fillWidth paddingY="80" paddingX="s" horizontal="center" flex={1}>
-      <ScrollToTop><IconButton variant="secondary" icon="chevronUp"/></ScrollToTop>
+      <ScrollToTop>
+        <IconButton variant="secondary" icon="chevronUp" />
+      </ScrollToTop>
       <Fade
         zIndex={3}
         pattern={{
@@ -244,15 +245,25 @@ export default function Home() {
               colorEnd: "static-transparent",
             }}
           />
-          <Column fillWidth horizontal="center" gap="32" padding="32" position="relative">
+          <Column
+            fillWidth
+            horizontal="center"
+            gap="32"
+            padding="32"
+            position="relative"
+          >
             <InlineCode radius="xl" shadow="m" fit paddingX="16" paddingY="8">
-              Start by editing
-              <Text onBackground="brand-medium" marginLeft="8">
-                app/page.tsx
+              <Text onBackground="brand-medium">
+                Est qui dolorem ipsum quia dolor sit amet
               </Text>
             </InlineCode>
-            <Heading wrap="balance" variant="display-strong-xl" align="center" marginBottom="16">
-              Code faster than AI
+            <Heading
+              wrap="balance"
+              variant="display-strong-xl"
+              align="center"
+              marginBottom="16"
+            >
+              The Boda
             </Heading>
             <Button
               id="readDocs"
@@ -262,78 +273,20 @@ export default function Home() {
               variant="secondary"
               arrowIcon
             />
-            <Column horizontal="center" paddingTop="64" fillWidth gap="24">
-              <Line maxWidth={4} marginBottom="16" background="neutral-alpha-medium" />
-              <AvatarGroup
-                marginBottom="8"
-                reverse
-                size="s"
-                avatars={[
-                  {
-                    src: "/images/l.jpg",
-                  },
-                  {
-                    src: "/images/z.jpg",
-                  },
-                ]}
-              />
-              <Heading marginBottom="12" as="h2" align="center" variant="heading-default-l">
-                Brought to you by indie creators
-                <br /> behind stellar projects:
-              </Heading>
-              <LogoCloud
-                paddingBottom="104"
-                columns="3"
-                mobileColumns="1"
-                limit={3}
-                fillWidth
-                logos={[
-                  {
-                    icon: false,
-                    wordmarkSrc: "/trademark/dopler-wordmark.svg",
-                    href: "https://dopler.app",
-                    size: "m",
-                  },
-                  {
-                    icon: false,
-                    wordmarkSrc: "/trademark/design-engineers-wordmark.svg",
-                    href: "https://club.dropler.io",
-                    size: "m",
-                  },
-                  {
-                    icon: false,
-                    wordmarkSrc: "/trademark/enroll-wordmark.svg",
-                    href: "https://enroll.dopler.app",
-                    size: "m",
-                  },
-                  {
-                    icon: false,
-                    wordmarkSrc: "/trademark/magic-portfolio-wordmark.svg",
-                    href: "https://magic-portfolio.com",
-                    size: "m",
-                  },
-                ]}
-              />
-            </Column>
+            <Column
+              horizontal="center"
+              paddingTop="64"
+              fillWidth
+              gap="24"
+            ></Column>
           </Column>
-          <Column fillWidth paddingX="32" gap="12" horizontal="center" position="relative">
-            <Heading as="h2" variant="display-default-m">
-              Showcase
-            </Heading>
-            <Text marginBottom="32" align="center" onBackground="neutral-weak">
-              Tiny snippets to inspire your next project
-            </Text>
-
-            {/* COMPARE IMAGE */}
-            <CompareImage
-              radius="xl"
-              overflow="hidden"
-              border="neutral-alpha-weak"
-              leftContent={{ src: "/images/1.jpg", alt: "alt" }}
-              rightContent={{ src: "/images/2.jpg", alt: "alt" }}
-            />
-
-            {/* LOGIN */}
+          <Column
+            fillWidth
+            paddingX="12"
+            gap="12"
+            horizontal="center"
+            position="relative"
+          >
             <Row
               marginY="32"
               background="overlay"
@@ -343,9 +296,19 @@ export default function Home() {
               overflow="hidden"
             >
               <Row fill hide="m">
-                <SmartImage src="/images/login.png" alt="Preview image" sizes="560px" />
+                <SmartImage
+                  src="/images/login.png"
+                  alt="Preview image"
+                  sizes="560px"
+                />
               </Row>
-              <Column fillWidth horizontal="center" gap="20" padding="32" position="relative">
+              <Column
+                fillWidth
+                horizontal="center"
+                gap="20"
+                padding="32"
+                position="relative"
+              >
                 <Background
                   mask={{
                     x: 100,
@@ -363,36 +326,38 @@ export default function Home() {
                 />
                 <Logo wordmark={false} size="l" />
                 <Heading as="h3" variant="display-default-s" align="center">
-                  Welcome to Once UI
+                  Confirmá tu presencia
                 </Heading>
                 <Text onBackground="neutral-medium" marginBottom="24">
-                  Log in or
-                  <SmartLink href="/">sign up</SmartLink>
+                  Agregá tus datos para confirmar tu asistencia.
                 </Text>
-                <Column fillWidth gap="8">
-                  <Button
-                    label="Continue with Google"
-                    fillWidth
-                    variant="secondary"
-                    weight="default"
-                    prefixIcon="google"
-                    size="l"
-                  />
-                  <Button
-                    label="Continue with GitHub"
-                    fillWidth
-                    variant="secondary"
-                    weight="default"
-                    prefixIcon="github"
-                    size="l"
-                  />
-                </Column>
                 <Row fillWidth paddingY="24">
-                  <Row onBackground="neutral-weak" fillWidth gap="24" vertical="center">
+                  <Row
+                    onBackground="neutral-weak"
+                    fillWidth
+                    gap="24"
+                    vertical="center"
+                  >
                     <Line />/<Line />
                   </Row>
                 </Row>
                 <Column gap="-1" fillWidth>
+                  <Row fillWidth gap="-1">
+                    <Input
+                      id="expiry"
+                      label="Expiry date"
+                      labelAsPlaceholder
+                      radius="top-left"
+                      //defaultValue="08 / 27"
+                    />
+                    <Input
+                      id="cvv"
+                      label="CVV"
+                      labelAsPlaceholder
+                      radius="top-right"
+                      //defaultValue="123"
+                    />
+                  </Row>
                   <Input
                     id="email"
                     label="Email"
@@ -401,7 +366,7 @@ export default function Home() {
                     value={email}
                     validate={validateLogin}
                     errorMessage={false}
-                    radius="top"
+                    radius="none"
                   />
                   <PasswordInput
                     autoComplete="new-password"
@@ -458,95 +423,6 @@ export default function Home() {
               height: "1.25%",
             }}
           />
-          <Row
-            position="relative"
-            shadow="xl"
-            fillWidth
-            border="neutral-alpha-medium"
-            borderStyle="dashed"
-            background="page"
-            radius="xl"
-          >
-            <TiltFx
-              aspectRatio="16 / 9"
-              fillWidth
-              radius="xl"
-              border="accent-alpha-weak"
-              overflow="hidden"
-            >
-              <HoloFx fill>
-                <Background
-                  fill
-                  position="absolute"
-                  gradient={{
-                    display: true,
-                    tilt: -45,
-                    height: 150,
-                    width: 100,
-                    x: 75,
-                    y: -50,
-                    colorStart: "brand-solid-strong",
-                    colorEnd: "accent-solid-weak",
-                  }}
-                >
-                  <Column
-                    fill
-                    position="absolute"
-                    padding="24"
-                    vertical="end"
-                    gap="12"
-                    onSolid="neutral-strong"
-                  >
-                    <Text variant="body-default-xl">Lorant One</Text>
-                    <Row fillWidth horizontal="space-between" vertical="end" paddingRight="16">
-                      <Column gap="4">
-                        <Text variant="body-default-m">08 / 27</Text>
-                        <Text variant="body-default-m">1234 5678 1234 5678</Text>
-                      </Column>
-                      <Icon name="visa" size="xl" />
-                    </Row>
-                  </Column>
-                </Background>
-              </HoloFx>
-            </TiltFx>
-          </Row>
-          <Column position="relative" fillWidth gap="-1">
-            <Row fillWidth vertical="center" horizontal="space-between" marginBottom="32">
-              <Heading as="h3" variant="display-default-xs">
-                Fill in your card details
-              </Heading>
-              <IconButton
-                data-border="rounded"
-                variant="tertiary"
-                icon="chevronRight"
-                tooltip="Next"
-                tooltipPosition="left"
-              />
-            </Row>
-            <Input
-              id="cardnumber"
-              label="Card number"
-              labelAsPlaceholder
-              radius="top"
-              defaultValue="1234 5678 1234 5678"
-            />
-            <Row fillWidth gap="-1">
-              <Input
-                id="expiry"
-                label="Expiry date"
-                labelAsPlaceholder
-                radius="bottom-left"
-                defaultValue="08 / 27"
-              />
-              <Input
-                id="cvv"
-                label="CVV"
-                labelAsPlaceholder
-                radius="bottom-right"
-                defaultValue="123"
-              />
-            </Row>
-          </Column>
         </Row>
 
         {/* BOOKING */}
@@ -646,7 +522,14 @@ export default function Home() {
         </Row>
 
         {/* PROFILE */}
-        <Row horizontal="center" paddingX="32" paddingY="64" fillWidth gap="32" position="relative">
+        <Row
+          horizontal="center"
+          paddingX="32"
+          paddingY="64"
+          fillWidth
+          gap="32"
+          position="relative"
+        >
           <Background
             mask={{
               cursor: true,
@@ -694,7 +577,9 @@ export default function Home() {
             >
               <MediaUpload
                 border={undefined}
-                emptyState={<Row paddingBottom="80">Drag and drop or click to browse</Row>}
+                emptyState={
+                  <Row paddingBottom="80">Drag and drop or click to browse</Row>
+                }
                 position="absolute"
                 aspectRatio="16 / 9"
                 sizes="560px"
@@ -721,11 +606,17 @@ export default function Home() {
                 <Heading marginTop="24" as="h3" variant="display-default-m">
                   Lorant One
                 </Heading>
-                <Text align="center" onBackground="neutral-weak" marginBottom="24">
+                <Text
+                  align="center"
+                  onBackground="neutral-weak"
+                  marginBottom="24"
+                >
                   165 connections
                 </Text>
                 <SegmentedControl
-                  onToggle={(value) => console.log("SegmentedControl changed", value)}
+                  onToggle={(value) =>
+                    console.log("SegmentedControl changed", value)
+                  }
                   buttons={[
                     {
                       size: "l",
@@ -940,12 +831,20 @@ export default function Home() {
               height: "0.25rem",
             }}
           />
-          <Row position="relative" textVariant="display-default-m" align="center">
+          <Row
+            position="relative"
+            textVariant="display-default-m"
+            align="center"
+          >
             Learn more
           </Row>
         </Row>
         <Row fillWidth overflow="hidden">
-          <Row maxWidth="32" borderTop="neutral-alpha-weak" borderBottom="neutral-medium" />
+          <Row
+            maxWidth="32"
+            borderTop="neutral-alpha-weak"
+            borderBottom="neutral-medium"
+          />
           <Row fillWidth border="neutral-alpha-weak" mobileDirection="column">
             {links.map((link, index) => (
               <Card
@@ -956,7 +855,9 @@ export default function Home() {
                 gap="8"
                 background="page"
                 direction="column"
-                borderRight={index < links.length - 1 ? "neutral-alpha-weak" : undefined}
+                borderRight={
+                  index < links.length - 1 ? "neutral-alpha-weak" : undefined
+                }
                 border={undefined}
               >
                 <Row fillWidth center gap="12">
@@ -965,13 +866,21 @@ export default function Home() {
                   </Text>
                   <Icon size="s" name="arrowUpRight" />
                 </Row>
-                <Text align="center" variant="body-default-s" onBackground="neutral-weak">
+                <Text
+                  align="center"
+                  variant="body-default-s"
+                  onBackground="neutral-weak"
+                >
                   {link.description}
                 </Text>
               </Card>
             ))}
           </Row>
-          <Row maxWidth="32" borderTop="neutral-alpha-weak" borderBottom="neutral-medium" />
+          <Row
+            maxWidth="32"
+            borderTop="neutral-alpha-weak"
+            borderBottom="neutral-medium"
+          />
         </Row>
         <Row
           position="relative"
@@ -1011,7 +920,7 @@ export default function Home() {
             <SmartLink href="https://github.com/once-ui-system/nextjs-starter?tab=MIT-1-ov-file">
               MIT License
             </SmartLink>
-            <ThemeSwitcher marginTop="24"/>
+            <ThemeSwitcher marginTop="24" />
           </Column>
         </Row>
       </Column>
@@ -1024,7 +933,10 @@ export default function Home() {
         base={isSecondDialogOpen}
         onHeightChange={(height) => setFirstDialogHeight(height)}
         footer={
-          <Button variant="secondary" onClick={() => setIsFirstDialogOpen(false)}>
+          <Button
+            variant="secondary"
+            onClick={() => setIsFirstDialogOpen(false)}
+          >
             Close
           </Button>
         }
@@ -1037,7 +949,9 @@ export default function Home() {
             label="2FA"
             description="Enable two factor authentication"
           />
-          <Button onClick={() => setIsSecondDialogOpen(true)}>Change password</Button>
+          <Button onClick={() => setIsSecondDialogOpen(true)}>
+            Change password
+          </Button>
         </Column>
       </Dialog>
       <Dialog
@@ -1049,7 +963,10 @@ export default function Home() {
         minHeight={firstDialogHeight}
         footer={
           <>
-            <Button variant="secondary" onClick={() => setIsSecondDialogOpen(false)}>
+            <Button
+              variant="secondary"
+              onClick={() => setIsSecondDialogOpen(false)}
+            >
               Close
             </Button>
             <Button onClick={() => setIsSecondDialogOpen(false)}>Save</Button>
