@@ -51,6 +51,11 @@ export default function Home() {
       title: "Typography",
       description: "Scale text automatically",
     },
+    {
+      href: "https://once-ui.com/docs/",
+      title: "Typography",
+      description: "Scale text automatically",
+    },
   ];
 
   const event = [
@@ -67,25 +72,30 @@ export default function Home() {
     {
       id: 3,
       title: "Ubicación",
-      description: "Dirección",
+      description: "Yanda, Santiago del Estero",
     },
   ];
 
   const wedding = [
     {
       id: "1",
-      title: "Salón",
-      description: "Abba Huasi",
+      title: "Lugar",
+      description: "Parroquia San Juan Diego",
     },
     {
       id: "2",
+      title: "Hora",
+      description: "18:30",
+    },
+    {
+      id: "3",
       title: "Fecha",
       description: "6/9/2025",
     },
     {
-      id: "3",
+      id: "4",
       title: "Ubicación",
-      description: "Dirección",
+      description: "Av. San Patricio",
     },
   ];
 
@@ -119,7 +129,7 @@ export default function Home() {
         >
           <Logo
             icon={false}
-            href="https://once-ui.com"
+            href="/"
             size="m"
             wordmarkSrc={'/images/ml-logo.png'}
           />
