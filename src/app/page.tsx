@@ -96,7 +96,7 @@ export default function Home() {
     {
       id: "4",
       title: "Ubicación",
-      description: "Av. San Patricio",
+      description: "Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.",
     },
   ];
 
