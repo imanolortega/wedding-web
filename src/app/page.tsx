@@ -8,37 +8,30 @@ import {
   Button,
   Card,
   Column,
-  Dialog,
   Fade,
   Heading,
-  Icon,
   IconButton,
   InlineCode,
   Input,
   Line,
   Logo,
-  PasswordInput,
   Row,
+  Select,
   SmartImage,
-  SmartLink,
-  StyleOverlay,
-  Switch,
   Text,
   ThemeSwitcher,
   TiltFx,
   useToast,
 } from "@/once-ui/components";
-import { CodeBlock } from "@/once-ui/modules";
 import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
 
 export default function Home() {
-  const [isFirstDialogOpen, setIsFirstDialogOpen] = useState(false);
-  const [isSecondDialogOpen, setIsSecondDialogOpen] = useState(false);
-  const [firstDialogHeight, setFirstDialogHeight] = useState<number>();
   const { addToast } = useToast();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [twoFA, setTwoFA] = useState(false);
+  const [asistQuantity, setAsistQuantity] = useState(0);
+
+  const onSelect = (value: string) => {
+    setAsistQuantity(parseInt(value));
+  };
 
   const links = [
     {
@@ -60,17 +53,17 @@ export default function Home() {
 
   const event = [
     {
-      id: "1",
+      id: 1,
       title: "Salón",
       description: "Abba Huasi",
     },
     {
-      id: "2",
+      id: 2,
       title: "Fecha",
       description: "6/9/2025",
     },
     {
-      id: "3",
+      id: 3,
       title: "Ubicación",
       description: "Dirección",
     },
@@ -93,14 +86,6 @@ export default function Home() {
       description: "Dirección",
     },
   ];
-
-  const validateLogin = () => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!regex.test(email)) {
-      return "Email and / or password is invalid.";
-    }
-    return null;
-  };
 
   return (
     <Column fillWidth paddingY="80" paddingX="s" horizontal="center" flex={1}>
@@ -148,14 +133,6 @@ export default function Home() {
               weight="default"
               variant="tertiary"
             />
-            {/* <Row position="fixed" top="20" right="20">
-              <StyleOverlay
-                position="fixed"
-                top="8"
-                right="8"
-                style={{ height: "calc(100vh - var(--static-space-16))" }}
-              />
-            </Row> */}
           </Row>
           <Row gap="16" show="s" horizontal="center" paddingRight="24">
             <IconButton
@@ -168,14 +145,6 @@ export default function Home() {
               icon="email"
               variant="tertiary"
             />
-            {/* <Row position="fixed" top="20" right="20">
-              <StyleOverlay
-                position="fixed"
-                top="8"
-                right="8"
-                style={{ height: "calc(100vh - var(--static-space-16))" }}
-              />
-            </Row> */}
           </Row>
         </Row>
       </Row>
@@ -235,17 +204,6 @@ export default function Home() {
               radius: 100,
             }}
             position="absolute"
-            // gradient={{
-            //   display: true,
-            //   opacity: 100,
-            //   tilt: -35,
-            //   height: 20,
-            //   width: 120,
-            //   x: 120,
-            //   y: 35,
-            //   colorStart: "brand-solid-strong",
-            //   colorEnd: "static-transparent",
-            // }}
           />
           <Column
             fillWidth
@@ -255,7 +213,7 @@ export default function Home() {
             position="relative"
           >
             <InlineCode radius="xl" shadow="m" fit paddingX="16" paddingY="8">
-              <Text onBackground="brand-medium">
+              <Text onSolid="brand-medium">
                 Somos Martín y Luján, acompañanos en este proceso
               </Text>
             </InlineCode>
@@ -271,20 +229,6 @@ export default function Home() {
                 maxWidth={300}
               />
             </Column>
-            {/* <Button
-              id="readDocs"
-              target="_blank"
-              label="Nuestra Historia"
-              href="https://once-ui.com/docs"
-              variant="secondary"
-              arrowIcon
-            /> */}
-            {/* <Column
-              horizontal="center"
-              paddingTop="64"
-              fillWidth
-              gap="24"
-            ></Column> */}
           </Column>
           <Column
             fillWidth
@@ -349,50 +293,53 @@ export default function Home() {
                 <Column gap="-1" fillWidth>
                   <Row fillWidth gap="-1">
                     <Input
-                      id="expiry"
-                      label="Expiry date"
+                      id="nombre"
+                      label="Nombre"
                       labelAsPlaceholder
                       radius="top-left"
-                      //defaultValue="08 / 27"
                     />
                     <Input
-                      id="cvv"
-                      label="CVV"
+                      id="apellido"
+                      label="Apellido"
                       labelAsPlaceholder
                       radius="top-right"
-                      //defaultValue="123"
                     />
                   </Row>
-                  <Input
-                    id="email"
-                    label="Email"
-                    labelAsPlaceholder
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    validate={validateLogin}
-                    errorMessage={false}
-                    radius="none"
-                  />
-                  <PasswordInput
-                    autoComplete="new-password"
-                    id="password"
-                    label="Password"
-                    labelAsPlaceholder
+                  <Select
                     radius="bottom"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    validate={validateLogin}
+                    id="select"
+                    label="Asistes con alguien?"
+                    options={[
+                      {
+                        description: "Asisto solo",
+                        label: "Solo",
+                        value: "0",
+                      },
+                      {
+                        description: "Asisto con una persona",
+                        label: "Una persona",
+                        value: "1",
+                      },
+                      {
+                        description: "Asisto con dos personas",
+                        label: "Dos personas",
+                        value: "2",
+                      },
+                    ]}
+                    value={asistQuantity.toString()}
+                    onSelect={onSelect}
                   />
                 </Column>
                 <Button
-                  id="login"
-                  label="Log in"
+                  id="send"
+                  label="Enviar"
                   arrowIcon
                   fillWidth
                   onClick={() => {
                     addToast({
                       variant: "success",
-                      message: "Wohoo! It's a toast!",
+                      message:
+                        "¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.",
                     });
                   }}
                 />
@@ -465,9 +412,9 @@ export default function Home() {
                   border="neutral-alpha-weak"
                   mobileDirection="column"
                 >
-                  {event.map((link, index) => (
+                  {event.map((event, index) => (
                     <Card
-                      key={link.id}
+                      key={event.id}
                       fillWidth
                       padding="40"
                       gap="8"
@@ -485,7 +432,7 @@ export default function Home() {
                           variant="body-strong-m"
                           onBackground="neutral-strong"
                         >
-                          {link.title}
+                          {event.title}
                         </Text>
                       </Row>
                       <Text
@@ -493,7 +440,7 @@ export default function Home() {
                         variant="body-default-s"
                         onBackground="neutral-weak"
                       >
-                        {link.description}
+                        {event.description}
                       </Text>
                     </Card>
                   ))}
@@ -614,57 +561,6 @@ export default function Home() {
           </Column>
         </Row>
       </Column>
-
-      <Dialog
-        isOpen={isFirstDialogOpen}
-        onClose={() => setIsFirstDialogOpen(false)}
-        title="Account details"
-        description="Manage your security settings and password."
-        base={isSecondDialogOpen}
-        onHeightChange={(height) => setFirstDialogHeight(height)}
-        footer={
-          <Button
-            variant="secondary"
-            onClick={() => setIsFirstDialogOpen(false)}
-          >
-            Close
-          </Button>
-        }
-      >
-        <Column paddingTop="24" fillWidth gap="24">
-          <Switch
-            reverse
-            isChecked={twoFA}
-            onToggle={() => setTwoFA(!twoFA)}
-            label="2FA"
-            description="Enable two factor authentication"
-          />
-          <Button onClick={() => setIsSecondDialogOpen(true)}>
-            Change password
-          </Button>
-        </Column>
-      </Dialog>
-      <Dialog
-        isOpen={isSecondDialogOpen}
-        onClose={() => setIsSecondDialogOpen(false)}
-        title="Change password"
-        stack
-        description="Choose a new password for your account."
-        minHeight={firstDialogHeight}
-        footer={
-          <>
-            <Button
-              variant="secondary"
-              onClick={() => setIsSecondDialogOpen(false)}
-            >
-              Close
-            </Button>
-            <Button onClick={() => setIsSecondDialogOpen(false)}>Save</Button>
-          </>
-        }
-      >
-        <PasswordInput id="resetPassword" label="New password" />
-      </Dialog>
     </Column>
   );
 }
