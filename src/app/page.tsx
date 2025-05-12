@@ -18,8 +18,8 @@ import {
   Row,
   Select,
   SmartImage,
+  SmartLink,
   Text,
-  ThemeSwitcher,
   TiltFx,
   useToast,
 } from "@/once-ui/components";
@@ -28,9 +28,10 @@ import Map from "@/custom/map/map";
 
 export default function Home() {
   const { addToast } = useToast();
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [asistQuantity, setAsistQuantity] = useState(0);
+  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSelect = (value: string) => {
     setAsistQuantity(parseInt(value));
@@ -96,7 +97,8 @@ export default function Home() {
     {
       id: "4",
       title: "Ubicación",
-      description: "Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.",
+      description:
+        "Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.",
     },
   ];
 
@@ -357,7 +359,9 @@ export default function Home() {
                   label="Enviar"
                   arrowIcon
                   fillWidth
+                  loading={isLoading}
                   onClick={async () => {
+                    setIsLoading(true);
                     try {
                       const res = await fetch("/api/submit", {
                         method: "POST",
@@ -390,6 +394,7 @@ export default function Home() {
                           "Error al enviar la confirmación. Intentá nuevamente.",
                       });
                     }
+                    setIsLoading(false);
                   }}
                 />
               </Column>
@@ -608,13 +613,7 @@ export default function Home() {
             borderBottom="neutral-medium"
           />
         </Row>
-        <Row
-          position="relative"
-          fillWidth
-          paddingX="l"
-          paddingTop="48"
-          //paddingBottom="48"
-        >
+        <Row position="relative" fillWidth paddingX="l" paddingTop="48">
           <Background
             borderTop="brand-alpha-strong"
             mask={{
@@ -672,7 +671,13 @@ export default function Home() {
             fillWidth
             gap="16"
           >
-            {/* <ThemeSwitcher marginTop="24" /> */}
+            <Logo wordmark={false} size="s" />
+            <Text size="m">
+              <Text onBackground="neutral-weak">2025 /</Text> Web por{" "}
+              <SmartLink href="https://www.instagram.com/imanol.oc/">
+                IOC
+              </SmartLink>
+            </Text>
           </Column>
         </Row>
       </Column>
