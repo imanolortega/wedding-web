@@ -84,12 +84,12 @@ const meta = {
   home: {
     path: "/",
     title: "The Boda | Somos Martín y Luján",
-    description: "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
-    image: "/og/home.jpg",
-    canonical: "https://once-ui.com",
+    description: "Somos Martín y Luján. It’s wedding time. Acompañanos este 6 de septiembre. #ThebodaM&L",
+    image: "/martin-lujan-theboda.jpg",
+    canonical: "https://www.theboda.top",
     robots: "index,follow",
     alternates: [
-      { href: "https://once-ui.com", hrefLang: "en" },
+      { href: "https://www.theboda.top", hrefLang: "en" },
     ],
   },
   // add more routes and reference them in page.tsx
@@ -99,16 +99,16 @@ const meta = {
 const schema = {
   logo: "",
   type: "Organization",
-  name: "Once UI",
+  name: "The Boda",
   description: meta.home.description,
-  email: "lorant@once-ui.com",
+  email: "example@example.com",
 };
 
 // social links
 const social = {
-  twitter: "https://www.twitter.com/_onceui",
-  linkedin: "https://www.linkedin.com/company/once-ui/",
-  discord: "https://discord.com/invite/5EyAQ4eNdS",
+  twitter: "https://www.twitter.com/example",
+  linkedin: "https://www.linkedin.com/company/example/",
+  discord: "https://discord.com/invite/example",
 };
 
 export { baseURL, font, style, meta, schema, social, effects };
