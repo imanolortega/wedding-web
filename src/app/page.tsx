@@ -27,6 +27,8 @@ import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
 
 export default function Home() {
   const { addToast } = useToast();
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [asistQuantity, setAsistQuantity] = useState(0);
 
   const onSelect = (value: string) => {
@@ -115,7 +117,12 @@ export default function Home() {
           paddingLeft="32"
           paddingY="20"
         >
-          <Logo size="s" icon={false} href="https://once-ui.com" />
+          <Logo
+            icon={false}
+            href="https://once-ui.com"
+            size="m"
+            wordmarkSrc={'/images/ml-logo.png'}
+          />
           <Row gap="12" hide="s">
             <Button
               href="https://wa.me/5493853122118"
@@ -297,12 +304,16 @@ export default function Home() {
                       label="Nombre"
                       labelAsPlaceholder
                       radius="top-left"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                     <Input
                       id="apellido"
                       label="Apellido"
                       labelAsPlaceholder
                       radius="top-right"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </Row>
                   <Select
@@ -335,12 +346,39 @@ export default function Home() {
                   label="Enviar"
                   arrowIcon
                   fillWidth
-                  onClick={() => {
-                    addToast({
-                      variant: "success",
-                      message:
-                        "¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.",
-                    });
+                  onClick={async () => {
+                    try {
+                      const res = await fetch("/api/submit", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name,
+                          lastName,
+                          asistentQuantity: asistQuantity,
+                        }),
+                      });
+
+                      const result = await res.json();
+
+                      if (result.success) {
+                        addToast({
+                          variant: "success",
+                          message:
+                            "¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.",
+                        });
+                        setName("");
+                        setLastName("");
+                        setAsistQuantity(0);
+                      } else {
+                        throw new Error("No se pudo enviar");
+                      }
+                    } catch (err) {
+                      addToast({
+                        variant: "danger",
+                        message:
+                          "Error al enviar la confirmación. Intentá nuevamente.",
+                      });
+                    }
                   }}
                 />
               </Column>
