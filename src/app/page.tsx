@@ -137,7 +137,7 @@ export default function Home() {
           <Row gap="12" hide="s">
             <Button
               href="https://wa.me/5493853122118"
-              suffixIcon="HiOutlineEnvelope"
+              prefixIcon="email"
               size="s"
               label="Martín"
               weight="default"
@@ -145,7 +145,7 @@ export default function Home() {
             />
             <Button
               href="https://wa.me/5493853122118"
-              prefixIcon="HiOutlineEnvelope"
+              prefixIcon="email"
               size="s"
               label="Luján"
               weight="default"
@@ -613,7 +613,7 @@ export default function Home() {
           fillWidth
           paddingX="l"
           paddingTop="48"
-          paddingBottom="48"
+          //paddingBottom="48"
         >
           <Background
             borderTop="brand-alpha-strong"
