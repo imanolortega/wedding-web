@@ -9,6 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { name, lastName, asistentQuantity } = req.body
 
     const googleScriptUrl = process.env.NEXT_PUBLIC_GOOGLE_DATABASE as string
+
     const response = await fetch(googleScriptUrl, {
       method: 'POST',
       body: JSON.stringify({ name, lastName, asistentQuantity }),

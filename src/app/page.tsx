@@ -24,6 +24,7 @@ import {
   useToast,
 } from "@/once-ui/components";
 import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
+import Map from "@/custom/map/map";
 
 export default function Home() {
   const { addToast } = useToast();
@@ -131,7 +132,7 @@ export default function Home() {
             icon={false}
             href="/"
             size="m"
-            wordmarkSrc={'/images/ml-logo.png'}
+            wordmarkSrc={"/images/ml-logo.png"}
           />
           <Row gap="12" hide="s">
             <Button
@@ -403,7 +404,7 @@ export default function Home() {
             paddingX="32"
             radius="xl"
             overflow="hidden"
-            paddingY="160"
+            paddingY="80"
             fillWidth
             position="relative"
           >
@@ -499,6 +500,39 @@ export default function Home() {
                   borderBottom="neutral-medium"
                 />
               </Row>
+              <Row
+                position="relative"
+                fillWidth
+                paddingX="l"
+                paddingTop="48"
+                paddingBottom="48"
+              >
+                <Background
+                  borderTop="brand-alpha-strong"
+                  mask={{
+                    x: 50,
+                    y: 0,
+                  }}
+                  position="absolute"
+                  grid={{
+                    display: true,
+                    width: "0.25rem",
+                    color: "brand-alpha-strong",
+                    height: "0.25rem",
+                  }}
+                />
+                <Column
+                  position="relative"
+                  textVariant="body-default-xs"
+                  onBackground="neutral-medium"
+                  horizontal="center"
+                  align="center"
+                  fillWidth
+                  gap="16"
+                >
+                  <Map lat={-27.88573263581688} lng={-64.24876587235832} />
+                </Column>
+              </Row>
             </Column>
           </Column>
         </TiltFx>
@@ -573,6 +607,39 @@ export default function Home() {
             borderTop="neutral-alpha-weak"
             borderBottom="neutral-medium"
           />
+        </Row>
+        <Row
+          position="relative"
+          fillWidth
+          paddingX="l"
+          paddingTop="48"
+          paddingBottom="48"
+        >
+          <Background
+            borderTop="brand-alpha-strong"
+            mask={{
+              x: 50,
+              y: 0,
+            }}
+            position="absolute"
+            grid={{
+              display: true,
+              width: "0.25rem",
+              color: "brand-alpha-strong",
+              height: "0.25rem",
+            }}
+          />
+          <Column
+            position="relative"
+            textVariant="body-default-xs"
+            onBackground="neutral-medium"
+            horizontal="center"
+            align="center"
+            fillWidth
+            gap="16"
+          >
+            <Map lat={-27.845984302516865} lng={-64.25517892752266} />
+          </Column>
         </Row>
         <Row
           position="relative"

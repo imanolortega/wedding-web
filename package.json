@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.1",
+    "@react-google-maps/api": "^2.20.6",
     "classnames": "^2.5.1",
     "compressorjs": "^1.2.1",
-    "next": "15.2.3",
+    "next": "^15.3.2",
     "postcss": "^8.4.39",
     "postcss-preset-env": "^9.5.15",
     "prismjs": "^1.29.0",
