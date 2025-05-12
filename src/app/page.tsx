@@ -672,7 +672,7 @@ export default function Home() {
             fillWidth
             gap="16"
           >
-            <ThemeSwitcher marginTop="24" />
+            {/* <ThemeSwitcher marginTop="24" /> */}
           </Column>
         </Row>
       </Column>
