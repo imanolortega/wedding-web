@@ -7,6 +7,7 @@ import {
   Background,
   Button,
   Card,
+  Carousel,
   Column,
   Fade,
   Heading,
@@ -399,6 +400,69 @@ export default function Home() {
                 />
               </Column>
             </Row>
+
+            <Column
+              position="relative"
+              textVariant="body-default-xs"
+              onBackground="neutral-medium"
+              horizontal="center"
+              align="center"
+              fillWidth
+              gap="-1"
+            >
+              <Row
+                position="relative"
+                fillWidth
+                paddingX="32"
+                paddingTop="160"
+                paddingBottom="80"
+                horizontal="center"
+                vertical="end"
+              >
+                <Background
+                  mask={{
+                    x: 50,
+                    y: 100,
+                  }}
+                  position="absolute"
+                  grid={{
+                    display: true,
+                    width: "0.25rem",
+                    color: "neutral-alpha-medium",
+                    height: "0.25rem",
+                  }}
+                />
+                <Row
+                  position="relative"
+                  textVariant="display-default-m"
+                  align="center"
+                >
+                  It's wedding time!
+                </Row>
+
+              </Row>
+
+              <Row position="relative" fillWidth paddingX="xl">
+                <Carousel
+                  aspectRatio="16 / 9"
+                  indicator="line"
+                  images={[
+                    {
+                      alt: "Martín y Luján imagen 1",
+                      src: "/images/martin-lujan-slider-one.jpeg",
+                    },
+                    {
+                      alt: "Martín y Luján imagen 2",
+                      src: "/images/martin-lujan-slider-two.jpg",
+                    },
+                    {
+                      alt: "Martín y Luján imagen 3",
+                      src: "/images/martin-lujan-slider-three.jpg",
+                    },
+                  ]}
+                />
+              </Row>
+            </Column>
           </Column>
         </Column>
 
