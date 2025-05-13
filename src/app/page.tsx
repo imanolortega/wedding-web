@@ -20,10 +20,7 @@ import {
 } from '@/once-ui/components'
 import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 
-import AttendanceForm from '../custom/attendance-form/AttendanceForm'
-import Header from '../custom/header/Header'
-import Hero from '../custom/hero/Hero'
-import Map from '../custom/map/Map'
+import { AttendanceForm, Header, Hero, Map } from '@/sections'
 
 export default function Home() {
   const { addToast } = useToast()

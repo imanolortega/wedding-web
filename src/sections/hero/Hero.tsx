@@ -1,8 +1,11 @@
 'use client'
 
+import React, { forwardRef } from 'react'
 import { Column, InlineCode, Text, SmartImage } from '@/once-ui/components'
 
-export default function Hero() {
+export interface HeroHandle {}
+
+const Hero = forwardRef<HeroHandle>((_, ref) => {
   return (
     <Column
       fillWidth
@@ -30,4 +33,7 @@ export default function Hero() {
       </Column>
     </Column>
   )
-}
+})
+
+Hero.displayName = 'Hero'
+export { Hero }

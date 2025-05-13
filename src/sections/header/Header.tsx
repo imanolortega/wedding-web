@@ -1,8 +1,11 @@
 'use client'
 
+import React, { forwardRef } from 'react'
 import { Row, Logo, Button, IconButton } from '@/once-ui/components'
 
-export default function Header() {
+export interface HeaderHandle {}
+
+const Header = forwardRef<HeaderHandle>((_, ref) => {
   return (
     <Row position="fixed" top="0" fillWidth horizontal="center" zIndex={3}>
       <Row
@@ -52,4 +55,7 @@ export default function Header() {
       </Row>
     </Row>
   )
-}
+})
+
+Header.displayName = 'Header'
+export { Header }

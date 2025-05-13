@@ -1,3 +1,6 @@
+'use client'
+
+import React, { forwardRef } from 'react'
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 
 const containerStyle = {
@@ -5,12 +8,14 @@ const containerStyle = {
   height: '400px',
 }
 
+export interface MapHandle {}
+
 type MapProps = {
   lat: number
   lng: number
 }
 
-export default function Map({ lat, lng }: MapProps) {
+const Map = forwardRef<MapHandle, MapProps>(({ lat, lng }, ref) => {
   const center = { lat, lng }
 
   return (
@@ -22,4 +27,7 @@ export default function Map({ lat, lng }: MapProps) {
       </GoogleMap>
     </LoadScript>
   )
-}
+})
+
+Map.displayName = 'Map'
+export { Map }
