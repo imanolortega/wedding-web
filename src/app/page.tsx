@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import type React from "react";
-import { useState } from "react";
+import type React from 'react'
+import { useState } from 'react'
 
 import {
   Background,
@@ -23,85 +23,62 @@ import {
   Text,
   TiltFx,
   useToast,
-} from "@/once-ui/components";
-import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
-import Map from "@/custom/map/map";
+} from '@/once-ui/components'
+import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
+import Map from '@/custom/map/map'
 
 export default function Home() {
-  const { addToast } = useToast();
-  const [asistQuantity, setAsistQuantity] = useState(0);
-  const [lastName, setLastName] = useState("");
-  const [name, setName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { addToast } = useToast()
+  const [asistQuantity, setAsistQuantity] = useState(0)
+  const [lastName, setLastName] = useState('')
+  const [name, setName] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSelect = (value: string) => {
-    setAsistQuantity(parseInt(value));
-  };
-
-  const links = [
-    {
-      href: "https://once-ui.com/docs/theming",
-      title: "Themes",
-      description: "Style your app in minutes",
-    },
-    {
-      href: "https://once-ui.com/docs/flexComponent",
-      title: "Layout",
-      description: "Build responsive layouts",
-    },
-    {
-      href: "https://once-ui.com/docs/typography",
-      title: "Typography",
-      description: "Scale text automatically",
-    },
-    {
-      href: "https://once-ui.com/docs/",
-      title: "Typography",
-      description: "Scale text automatically",
-    },
-  ];
+    setAsistQuantity(parseInt(value))
+  }
 
   const event = [
     {
       id: 1,
-      title: "Salón",
-      description: "Abba Huasi",
+      title: 'Salón',
+      description: 'Abba Huasi',
     },
     {
       id: 2,
-      title: "Fecha",
-      description: "6/9/2025",
+      title: 'Fecha',
+      description: '6/9/2025',
     },
     {
       id: 3,
-      title: "Ubicación",
-      description: "Yanda, Santiago del Estero",
+      title: 'Ubicación',
+      description: 'Yanda, Santiago del Estero',
     },
-  ];
+  ]
 
   const wedding = [
     {
-      id: "1",
-      title: "Lugar",
-      description: "Parroquia San Juan Diego",
+      id: '1',
+      title: 'Lugar',
+      description: 'Parroquia San Juan Diego',
     },
     {
-      id: "2",
-      title: "Hora",
-      description: "18:30",
+      id: '2',
+      title: 'Hora',
+      description: '18:30',
     },
     {
-      id: "3",
-      title: "Fecha",
-      description: "6/9/2025",
+      id: '3',
+      title: 'Fecha',
+      description: '6/9/2025',
     },
     {
-      id: "4",
-      title: "Ubicación",
+      id: '4',
+      title: 'Ubicación',
       description:
-        "Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.",
+        'Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.',
     },
-  ];
+  ]
 
   return (
     <Column fillWidth paddingY="80" paddingX="s" horizontal="center" flex={1}>
@@ -112,7 +89,7 @@ export default function Home() {
         zIndex={3}
         pattern={{
           display: true,
-          size: "2",
+          size: '2',
         }}
         position="fixed"
         top="0"
@@ -135,7 +112,7 @@ export default function Home() {
             icon={false}
             href="/"
             size="m"
-            wordmarkSrc={"/images/ml-logo.png"}
+            wordmarkSrc={'/images/ml-logo.png'}
           />
           <Row gap="12" hide="s">
             <Button
@@ -195,9 +172,9 @@ export default function Home() {
             position="absolute"
             grid={{
               display: true,
-              width: "0.25rem",
-              color: "neutral-alpha-medium",
-              height: "0.25rem",
+              width: '0.25rem',
+              color: 'neutral-alpha-medium',
+              height: '0.25rem',
             }}
           />
           <Background
@@ -214,8 +191,8 @@ export default function Home() {
               width: 75,
               x: 100,
               y: 40,
-              colorStart: "accent-solid-medium",
-              colorEnd: "static-transparent",
+              colorStart: 'accent-solid-medium',
+              colorEnd: 'static-transparent',
             }}
           />
           <Background
@@ -290,9 +267,9 @@ export default function Home() {
                   grid={{
                     display: true,
                     opacity: 50,
-                    width: "0.5rem",
-                    color: "neutral-alpha-medium",
-                    height: "1rem",
+                    width: '0.5rem',
+                    color: 'neutral-alpha-medium',
+                    height: '1rem',
                   }}
                 />
                 <Heading as="h3" variant="display-default-s" align="center">
@@ -336,19 +313,19 @@ export default function Home() {
                     label="Asistes con alguien?"
                     options={[
                       {
-                        description: "Asisto solo",
-                        label: "Solo",
-                        value: "0",
+                        description: 'Asisto solo',
+                        label: 'Solo',
+                        value: '0',
                       },
                       {
-                        description: "Asisto con una persona",
-                        label: "Una persona",
-                        value: "1",
+                        description: 'Asisto con una persona',
+                        label: 'Una persona',
+                        value: '1',
                       },
                       {
-                        description: "Asisto con dos personas",
-                        label: "Dos personas",
-                        value: "2",
+                        description: 'Asisto con dos personas',
+                        label: 'Dos personas',
+                        value: '2',
                       },
                     ]}
                     value={asistQuantity.toString()}
@@ -362,40 +339,40 @@ export default function Home() {
                   fillWidth
                   loading={isLoading}
                   onClick={async () => {
-                    setIsLoading(true);
+                    setIsLoading(true)
                     try {
-                      const res = await fetch("/api/submit", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                      const res = await fetch('/api/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                           name,
                           lastName,
                           asistentQuantity: asistQuantity,
                         }),
-                      });
+                      })
 
-                      const result = await res.json();
+                      const result = await res.json()
 
                       if (result.success) {
                         addToast({
-                          variant: "success",
+                          variant: 'success',
                           message:
-                            "¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.",
-                        });
-                        setName("");
-                        setLastName("");
-                        setAsistQuantity(0);
+                            '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
+                        })
+                        setName('')
+                        setLastName('')
+                        setAsistQuantity(0)
                       } else {
-                        throw new Error("No se pudo enviar");
+                        throw new Error('No se pudo enviar')
                       }
                     } catch (err) {
                       addToast({
-                        variant: "danger",
+                        variant: 'danger',
                         message:
-                          "Error al enviar la confirmación. Intentá nuevamente.",
-                      });
+                          'Error al enviar la confirmación. Intentá nuevamente.',
+                      })
                     }
-                    setIsLoading(false);
+                    setIsLoading(false)
                   }}
                 />
               </Column>
@@ -427,9 +404,9 @@ export default function Home() {
                   position="absolute"
                   grid={{
                     display: true,
-                    width: "0.25rem",
-                    color: "neutral-alpha-medium",
-                    height: "0.25rem",
+                    width: '0.25rem',
+                    color: 'neutral-alpha-medium',
+                    height: '0.25rem',
                   }}
                 />
                 <Row
@@ -439,7 +416,6 @@ export default function Home() {
                 >
                   It's wedding time!
                 </Row>
-
               </Row>
 
               <Row position="relative" fillWidth paddingX="xl">
@@ -448,16 +424,16 @@ export default function Home() {
                   indicator="line"
                   images={[
                     {
-                      alt: "Martín y Luján imagen 1",
-                      src: "/images/martin-lujan-slider-one.jpeg",
+                      alt: 'Martín y Luján imagen 1',
+                      src: '/images/martin-lujan-slider-one.jpeg',
                     },
                     {
-                      alt: "Martín y Luján imagen 2",
-                      src: "/images/martin-lujan-slider-two.jpg",
+                      alt: 'Martín y Luján imagen 2',
+                      src: '/images/martin-lujan-slider-two.jpg',
                     },
                     {
-                      alt: "Martín y Luján imagen 3",
-                      src: "/images/martin-lujan-slider-three.jpg",
+                      alt: 'Martín y Luján imagen 3',
+                      src: '/images/martin-lujan-slider-three.jpg',
                     },
                   ]}
                 />
@@ -485,9 +461,9 @@ export default function Home() {
               position="absolute"
               grid={{
                 display: true,
-                color: "neutral-alpha-medium",
-                width: "2rem",
-                height: "2rem",
+                color: 'neutral-alpha-medium',
+                width: '2rem',
+                height: '2rem',
               }}
             />
             <Background
@@ -499,9 +475,9 @@ export default function Home() {
               position="absolute"
               grid={{
                 display: true,
-                color: "brand-alpha-strong",
-                width: "12",
-                height: "12",
+                color: 'brand-alpha-strong',
+                width: '12',
+                height: '12',
               }}
               gradient={{
                 display: true,
@@ -511,8 +487,8 @@ export default function Home() {
                 tilt: 0,
                 x: 0,
                 y: 100,
-                colorStart: "accent-solid-medium",
-                colorEnd: "static-transparent",
+                colorStart: 'accent-solid-medium',
+                colorEnd: 'static-transparent',
               }}
             />
             <Column horizontal="center" gap="48" fillWidth position="relative">
@@ -530,27 +506,26 @@ export default function Home() {
                   border="neutral-alpha-weak"
                   mobileDirection="column"
                 >
-                  {event.map((event, index) => (
+                  {event.map((item, index) => (
                     <Card
-                      key={event.id}
+                      key={item.id}
                       fillWidth
                       padding="40"
                       gap="8"
                       background="page"
                       direction="column"
                       borderRight={
-                        index < links.length - 1
-                          ? "neutral-alpha-weak"
+                        index < event.length - 1 || index === 2
+                          ? 'neutral-alpha-weak'
                           : undefined
                       }
-                      border={undefined}
                     >
                       <Row fillWidth center gap="12">
                         <Text
                           variant="body-strong-m"
                           onBackground="neutral-strong"
                         >
-                          {event.title}
+                          {item.title}
                         </Text>
                       </Row>
                       <Text
@@ -558,7 +533,7 @@ export default function Home() {
                         variant="body-default-s"
                         onBackground="neutral-weak"
                       >
-                        {event.description}
+                        {item.description}
                       </Text>
                     </Card>
                   ))}
@@ -585,9 +560,9 @@ export default function Home() {
                   position="absolute"
                   grid={{
                     display: true,
-                    width: "0.25rem",
-                    color: "brand-alpha-strong",
-                    height: "0.25rem",
+                    width: '0.25rem',
+                    color: 'brand-alpha-strong',
+                    height: '0.25rem',
                   }}
                 />
                 <Column
@@ -623,9 +598,9 @@ export default function Home() {
             position="absolute"
             grid={{
               display: true,
-              width: "0.25rem",
-              color: "brand-alpha-strong",
-              height: "0.25rem",
+              width: '0.25rem',
+              color: 'brand-alpha-strong',
+              height: '0.25rem',
             }}
           />
           <Row
@@ -643,22 +618,22 @@ export default function Home() {
             borderBottom="neutral-medium"
           />
           <Row fillWidth border="neutral-alpha-weak" mobileDirection="column">
-            {wedding.map((link, index) => (
+            {wedding.map((item, index) => (
               <Card
-                key={link.id}
+                key={item.id}
                 fillWidth
                 padding="40"
                 gap="8"
                 background="page"
                 direction="column"
                 borderRight={
-                  index < links.length - 1 ? "neutral-alpha-weak" : undefined
+                  index < wedding.length - 1 ? 'neutral-alpha-weak' : undefined
                 }
                 border={undefined}
               >
                 <Row fillWidth center gap="12">
                   <Text variant="body-strong-m" onBackground="neutral-strong">
-                    {link.title}
+                    {item.title}
                   </Text>
                 </Row>
                 <Text
@@ -666,7 +641,7 @@ export default function Home() {
                   variant="body-default-s"
                   onBackground="neutral-weak"
                 >
-                  {link.description}
+                  {item.description}
                 </Text>
               </Card>
             ))}
@@ -677,6 +652,7 @@ export default function Home() {
             borderBottom="neutral-medium"
           />
         </Row>
+
         <Row position="relative" fillWidth paddingX="l" paddingTop="48">
           <Background
             borderTop="brand-alpha-strong"
@@ -687,9 +663,9 @@ export default function Home() {
             position="absolute"
             grid={{
               display: true,
-              width: "0.25rem",
-              color: "brand-alpha-strong",
-              height: "0.25rem",
+              width: '0.25rem',
+              color: 'brand-alpha-strong',
+              height: '0.25rem',
             }}
           />
           <Column
@@ -721,9 +697,9 @@ export default function Home() {
             position="absolute"
             grid={{
               display: true,
-              width: "0.25rem",
-              color: "brand-alpha-strong",
-              height: "0.25rem",
+              width: '0.25rem',
+              color: 'brand-alpha-strong',
+              height: '0.25rem',
             }}
           />
           <Column
@@ -737,7 +713,7 @@ export default function Home() {
           >
             <Logo wordmark={false} size="s" />
             <Text size="m">
-              <Text onBackground="neutral-weak">2025 /</Text> Web por{" "}
+              <Text onBackground="neutral-weak">2025 /</Text> Web por{' '}
               <SmartLink href="https://www.instagram.com/imanol.oc/">
                 IOC
               </SmartLink>
@@ -746,5 +722,5 @@ export default function Home() {
         </Row>
       </Column>
     </Column>
-  );
+  )
 }

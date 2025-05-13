@@ -1,56 +1,62 @@
-"use client";
+'use client'
 
-import { Row } from "./Row";
-import { IconButton } from "./IconButton";
-import { useState, ReactNode } from "react";
+import { Row } from './Row'
+import { IconButton } from './IconButton'
+import { useState, ReactNode } from 'react'
 
 type TableProps = {
   data: {
     headers: {
-      content: ReactNode;
-      key: string;
-      sortable?: boolean;
-    }[];
-    rows: ReactNode[][];
-  };
-  onRowClick?: (rowIndex: number) => void;
-};
+      content: ReactNode
+      key: string
+      sortable?: boolean
+    }[]
+    rows: ReactNode[][]
+  }
+  onRowClick?: (rowIndex: number) => void
+}
 
 function Table({ data, onRowClick }: TableProps) {
   const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "ascending" | "descending";
-  } | null>(null);
+    key: string
+    direction: 'ascending' | 'descending'
+  } | null>(null)
 
   const handleSort = (key: string) => {
-    let direction: "ascending" | "descending" = "ascending";
+    let direction: 'ascending' | 'descending' = 'ascending'
 
     if (sortConfig && sortConfig.key === key) {
-      direction = sortConfig.direction === "ascending" ? "descending" : "ascending";
+      direction =
+        sortConfig.direction === 'ascending' ? 'descending' : 'ascending'
     }
 
-    setSortConfig({ key, direction });
-  };
+    setSortConfig({ key, direction })
+  }
 
   const sortedRows = [...data.rows].sort((a, b) => {
-    if (!sortConfig) return 0;
+    if (!sortConfig) return 0
 
-    const headerIndex = data.headers.findIndex((header) => header.key === sortConfig.key);
-    if (headerIndex === -1) return 0;
+    const headerIndex = data.headers.findIndex(
+      (header) => header.key === sortConfig.key
+    )
+    if (headerIndex === -1) return 0
 
-    const aValue = String(a[headerIndex]);
-    const bValue = String(b[headerIndex]);
+    const aValue = String(a[headerIndex])
+    const bValue = String(b[headerIndex])
 
-    if (sortConfig.direction === "ascending") {
-      return aValue.localeCompare(bValue);
+    if (sortConfig.direction === 'ascending') {
+      return aValue.localeCompare(bValue)
     } else {
-      return bValue.localeCompare(aValue);
+      return bValue.localeCompare(aValue)
     }
-  });
+  })
 
   const headers = data.headers.map((header, index) => (
     <th
-      style={{ textAlign: "left", borderBottom: "1px solid var(--neutral-alpha-medium)" }}
+      style={{
+        textAlign: 'left',
+        borderBottom: '1px solid var(--neutral-alpha-medium)',
+      }}
       className="px-16 py-12 font-label font-default font-s"
       key={index}
     >
@@ -60,16 +66,16 @@ function Table({ data, onRowClick }: TableProps) {
           <IconButton
             icon={
               sortConfig?.key === header.key
-                ? sortConfig.direction === "ascending"
-                  ? "chevronUp"
-                  : "chevronDown"
-                : "chevronDown"
+                ? sortConfig.direction === 'ascending'
+                  ? 'chevronUp'
+                  : 'chevronDown'
+                : 'chevronDown'
             }
             size="s"
             variant="ghost"
             onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-              handleSort(header.key);
+              e.stopPropagation()
+              handleSort(header.key)
             }}
             style={{
               opacity: sortConfig?.key === header.key ? 1 : 0.6,
@@ -78,22 +84,27 @@ function Table({ data, onRowClick }: TableProps) {
         )}
       </Row>
     </th>
-  ));
+  ))
 
   const rows = (sortConfig ? sortedRows : data.rows).map((row, index) => (
     <tr
       key={index}
       onClick={onRowClick ? () => onRowClick(index) : undefined}
-      className={onRowClick ? "cursor-interactive hover-row" : ""}
-      style={onRowClick ? { transition: "background-color 0.2s ease" } : undefined}
+      className={onRowClick ? 'cursor-interactive hover-row' : ''}
+      style={
+        onRowClick ? { transition: 'background-color 0.2s ease' } : undefined
+      }
     >
       {row.map((cell, cellIndex) => (
-        <td className="px-16 py-12 font-body font-default font-s" key={cellIndex}>
+        <td
+          className="px-16 py-12 font-body font-default font-s"
+          key={cellIndex}
+        >
           {cell}
         </td>
       ))}
     </tr>
-  ));
+  ))
 
   return (
     <Row
@@ -112,7 +123,11 @@ function Table({ data, onRowClick }: TableProps) {
       `}</style>
       <table
         className="fill-width surface-background"
-        style={{ borderSpacing: 0, borderCollapse: "collapse", minWidth: "32rem" }}
+        style={{
+          borderSpacing: 0,
+          borderCollapse: 'collapse',
+          minWidth: '32rem',
+        }}
       >
         <thead className="neutral-on-background-strong">
           <tr>{headers}</tr>
@@ -122,7 +137,10 @@ function Table({ data, onRowClick }: TableProps) {
             rows
           ) : (
             <tr>
-              <td colSpan={headers.length} className="px-24 py-12 font-body font-default font-s">
+              <td
+                colSpan={headers.length}
+                className="px-24 py-12 font-body font-default font-s"
+              >
                 No data available
               </td>
             </tr>
@@ -130,7 +148,7 @@ function Table({ data, onRowClick }: TableProps) {
         </tbody>
       </table>
     </Row>
-  );
+  )
 }
 
-export { Table };
+export { Table }

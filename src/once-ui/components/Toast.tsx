@@ -1,39 +1,39 @@
-"use client";
+'use client'
 
-import React, { useEffect, useState, forwardRef } from "react";
-import { IconButton, Icon, Flex, Text } from ".";
-import classNames from "classnames";
-import styles from "./Toast.module.scss";
-import { IconName } from "../icons";
+import React, { useEffect, useState, forwardRef } from 'react'
+import { IconButton, Icon, Flex, Text } from '.'
+import classNames from 'classnames'
+import styles from './Toast.module.scss'
+import { IconName } from '../icons'
 
 interface ToastProps {
-  className?: string;
-  variant: "success" | "danger";
-  icon?: boolean;
-  onClose?: () => void;
-  action?: React.ReactNode;
-  children: React.ReactNode;
+  className?: string
+  variant: 'success' | 'danger'
+  icon?: boolean
+  onClose?: () => void
+  action?: React.ReactNode
+  children: React.ReactNode
 }
 
-const iconMap: { [key in ToastProps["variant"]]: IconName } = {
-  success: "checkCircle",
-  danger: "errorCircle",
-};
+const iconMap: { [key in ToastProps['variant']]: IconName } = {
+  success: 'checkCircle',
+  danger: 'errorCircle',
+}
 
 const Toast = forwardRef<HTMLDivElement, ToastProps>(
   ({ variant, className, icon = true, onClose, action, children }, ref) => {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(true)
 
     useEffect(() => {
-      const timer = setTimeout(() => setVisible(false), 6000);
-      return () => clearTimeout(timer);
-    }, []);
+      const timer = setTimeout(() => setVisible(false), 6000)
+      return () => clearTimeout(timer)
+    }, [])
 
     useEffect(() => {
       if (!visible && onClose) {
-        onClose();
+        onClose()
       }
-    }, [visible, onClose]);
+    }, [visible, onClose])
 
     return (
       <Flex
@@ -59,7 +59,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
               name={iconMap[variant]}
             />
           )}
-          <Text variant="body-default-s" style={{ width: "100%" }} as="div">
+          <Text variant="body-default-s" style={{ width: '100%' }} as="div">
             {children}
           </Text>
           {action && <div>{action}</div>}
@@ -75,10 +75,10 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
           )}
         </Flex>
       </Flex>
-    );
+    )
   }
-);
+)
 
-Toast.displayName = "Toast";
+Toast.displayName = 'Toast'
 
-export { Toast };
+export { Toast }

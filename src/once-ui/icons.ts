@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import { IconType } from 'react-icons'
 
 import {
   HiChevronUp,
@@ -30,13 +30,13 @@ import {
   HiOutlineSparkles,
   HiOutlineComputerDesktop,
   HiOutlineEnvelope,
-} from "react-icons/hi2";
+} from 'react-icons/hi2'
 
-import { RiVisaLine } from "react-icons/ri";
+import { RiVisaLine } from 'react-icons/ri'
 
-import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa6";
+import { FaDiscord, FaGithub, FaGoogle } from 'react-icons/fa6'
 
-import { LuChevronsLeftRight } from "react-icons/lu";
+import { LuChevronsLeftRight } from 'react-icons/lu'
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -73,7 +73,7 @@ export const iconLibrary: Record<string, IconType> = {
   sparkle: HiOutlineSparkles,
   visa: RiVisaLine,
   warningTriangle: HiExclamationTriangle,
-};
+}
 
-export type IconLibrary = typeof iconLibrary;
-export type IconName = keyof IconLibrary;
+export type IconLibrary = typeof iconLibrary
+export type IconName = keyof IconLibrary

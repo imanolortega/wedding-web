@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { Flex } from "@/once-ui/components";
-import styles from "./ScrollToTop.module.scss";
-import classNames from "classnames";
+import { useState, useEffect } from 'react'
+import { Flex } from '@/once-ui/components'
+import styles from './ScrollToTop.module.scss'
+import classNames from 'classnames'
 
 interface ScrollToTopProps extends React.ComponentProps<typeof Flex> {
-  offset?: number;
+  offset?: number
 }
 
 export const ScrollToTop = ({
@@ -13,23 +13,23 @@ export const ScrollToTop = ({
   className,
   ...rest
 }: ScrollToTopProps) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   const handleScroll = () => {
-    setIsVisible(window.scrollY > offset);
-  };
+    setIsVisible(window.scrollY > offset)
+  }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
-    });
-  };
+      behavior: 'smooth',
+    })
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <Flex
@@ -47,5 +47,5 @@ export const ScrollToTop = ({
     >
       {children}
     </Flex>
-  );
-};
+  )
+}
