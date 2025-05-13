@@ -5,19 +5,14 @@ import { useState } from 'react'
 
 import {
   Background,
-  Button,
   Card,
   Carousel,
   Column,
   Fade,
   Heading,
   IconButton,
-  Input,
-  Line,
   Logo,
   Row,
-  Select,
-  SmartImage,
   SmartLink,
   Text,
   TiltFx,
@@ -25,9 +20,10 @@ import {
 } from '@/once-ui/components'
 import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 
-import Map from '@/custom/map/Map'
+import AttendanceForm from '@/custom/attendance-form/AttendanceForm'
 import Header from '@/custom/header/Header'
 import Hero from '@/custom/hero/Hero'
+import Map from '@/custom/map/Map'
 
 export default function Home() {
   const { addToast } = useToast()
@@ -167,148 +163,18 @@ export default function Home() {
             horizontal="center"
             position="relative"
           >
-            <Row
-              marginY="32"
-              background="overlay"
-              fillWidth
-              radius="xl"
-              border="neutral-alpha-weak"
-              overflow="hidden"
-            >
-              <Row fill hide="m">
-                <SmartImage
-                  src="/images/martin-lujan-theboda.jpg"
-                  alt="Preview image"
-                  sizes="560px"
-                />
-              </Row>
-              <Column
-                fillWidth
-                horizontal="center"
-                gap="20"
-                padding="32"
-                position="relative"
-              >
-                <Background
-                  mask={{
-                    x: 100,
-                    y: 0,
-                    radius: 75,
-                  }}
-                  position="absolute"
-                  grid={{
-                    display: true,
-                    opacity: 50,
-                    width: '0.5rem',
-                    color: 'neutral-alpha-medium',
-                    height: '1rem',
-                  }}
-                />
-                <Heading as="h3" variant="display-default-s" align="center">
-                  Confirmá tu presencia
-                </Heading>
-                <Text onBackground="neutral-medium" marginBottom="24">
-                  Agregá tus datos para confirmar tu asistencia.
-                </Text>
-                <Row fillWidth paddingY="24">
-                  <Row
-                    onBackground="neutral-weak"
-                    fillWidth
-                    gap="24"
-                    vertical="center"
-                  >
-                    <Line />/<Line />
-                  </Row>
-                </Row>
-                <Column gap="-1" fillWidth>
-                  <Row fillWidth gap="-1">
-                    <Input
-                      id="nombre"
-                      label="Nombre"
-                      labelAsPlaceholder
-                      radius="top-left"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                    <Input
-                      id="apellido"
-                      label="Apellido"
-                      labelAsPlaceholder
-                      radius="top-right"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  </Row>
-                  <Select
-                    radius="bottom"
-                    id="select"
-                    label="Asistes con alguien?"
-                    options={[
-                      {
-                        description: 'Asisto solo',
-                        label: 'Solo',
-                        value: '0',
-                      },
-                      {
-                        description: 'Asisto con una persona',
-                        label: 'Una persona',
-                        value: '1',
-                      },
-                      {
-                        description: 'Asisto con dos personas',
-                        label: 'Dos personas',
-                        value: '2',
-                      },
-                    ]}
-                    value={asistQuantity.toString()}
-                    onSelect={onSelect}
-                  />
-                </Column>
-                <Button
-                  id="send"
-                  label="Enviar"
-                  arrowIcon
-                  fillWidth
-                  loading={isLoading}
-                  onClick={async () => {
-                    setIsLoading(true)
-                    try {
-                      const res = await fetch('/api/submit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                          name,
-                          lastName,
-                          asistentQuantity: asistQuantity,
-                        }),
-                      })
-
-                      const result = await res.json()
-
-                      if (result.success) {
-                        addToast({
-                          variant: 'success',
-                          message:
-                            '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
-                        })
-                        setName('')
-                        setLastName('')
-                        setAsistQuantity(0)
-                      } else {
-                        throw new Error('No se pudo enviar')
-                      }
-                    } catch (err) {
-                      addToast({
-                        variant: 'danger',
-                        message:
-                          'Error al enviar la confirmación. Intentá nuevamente.',
-                      })
-                    }
-                    setIsLoading(false)
-                  }}
-                />
-              </Column>
-            </Row>
+            <AttendanceForm
+              name={name}
+              setName={setName}
+              lastName={lastName}
+              setLastName={setLastName}
+              asistQuantity={asistQuantity}
+              setAsistQuantity={setAsistQuantity}
+              onSelect={onSelect}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              addToast={addToast}
+            />
 
             <Column
               position="relative"

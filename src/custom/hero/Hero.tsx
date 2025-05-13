@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  Column,
-  InlineCode,
-  Text,
-  SmartImage,
-} from '@/once-ui/components'
+import { Column, InlineCode, Text, SmartImage } from '@/once-ui/components'
 
 export default function Hero() {
   return (
