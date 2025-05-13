@@ -38,7 +38,3 @@ Agregala en un archivo .env.local:
 ```bash
 NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=tu_api_key
 ```
-
-```bash
-Hecho con ❤️ por @imanol.oc
-```
