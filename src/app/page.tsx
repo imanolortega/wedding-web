@@ -25,7 +25,10 @@ import {
   useToast,
 } from '@/once-ui/components'
 import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
-import Map from '@/custom/map/map'
+
+import Map from '@/custom/map/Map'
+import Header from '@/custom/header/Header'
+import Hero from '@/custom/hero/Hero'
 
 export default function Home() {
   const { addToast } = useToast()
@@ -99,53 +102,7 @@ export default function Home() {
         fillWidth
         blur={0.25}
       />
-      <Row position="fixed" top="0" fillWidth horizontal="center" zIndex={3}>
-        <Row
-          data-border="rounded"
-          horizontal="space-between"
-          maxWidth="l"
-          paddingRight="64"
-          paddingLeft="32"
-          paddingY="20"
-        >
-          <Logo
-            icon={false}
-            href="/"
-            size="m"
-            wordmarkSrc={'/images/ml-logo.png'}
-          />
-          <Row gap="12" hide="s">
-            <Button
-              href="https://wa.me/5493853122118"
-              prefixIcon="email"
-              size="s"
-              label="Martín"
-              weight="default"
-              variant="tertiary"
-            />
-            <Button
-              href="https://wa.me/5493853122118"
-              prefixIcon="email"
-              size="s"
-              label="Luján"
-              weight="default"
-              variant="tertiary"
-            />
-          </Row>
-          <Row gap="16" show="s" horizontal="center" paddingRight="24">
-            <IconButton
-              href="https://discord.com/invite/5EyAQ4eNdS"
-              icon="email"
-              variant="tertiary"
-            />
-            <IconButton
-              href="https://github.com/once-ui-system/nextjs-starter"
-              icon="email"
-              variant="tertiary"
-            />
-          </Row>
-        </Row>
-      </Row>
+      <Header />
       <Column
         overflow="hidden"
         as="main"
@@ -203,31 +160,7 @@ export default function Home() {
             }}
             position="absolute"
           />
-          <Column
-            fillWidth
-            horizontal="center"
-            gap="32"
-            padding="32"
-            position="relative"
-          >
-            <InlineCode radius="xl" shadow="m" fit paddingX="16" paddingY="8">
-              <Text onSolid="brand-medium">
-                Somos Martín y Luján, acompañanos en este proceso
-              </Text>
-            </InlineCode>
-
-            <Column maxWidth={32}>
-              <SmartImage
-                alt="ML The Boda"
-                aspectRatio="16/9"
-                isLoading={false}
-                objectFit="cover"
-                radius="l"
-                src="/images/ml-the-boda.png"
-                maxWidth={300}
-              />
-            </Column>
-          </Column>
+          <Hero />
           <Column
             fillWidth
             paddingX="12"
