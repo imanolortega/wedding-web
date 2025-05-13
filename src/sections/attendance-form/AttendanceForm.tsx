@@ -31,6 +31,20 @@ interface AttendanceFormProps {
   addToast: (args: { variant: 'success' | 'danger'; message: string }) => void
 }
 
+const selectOptions = [
+  { label: 'Voy Solo', value: '0', description: 'Asisto solo' },
+  {
+    label: 'Una persona',
+    value: '1',
+    description: 'Asisto con una persona',
+  },
+  {
+    label: 'Dos personas',
+    value: '2',
+    description: 'Asisto con dos personas',
+  },
+]
+
 const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
   (
     {
@@ -128,19 +142,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
               radius="bottom"
               id="select"
               label="Asistes con alguien?"
-              options={[
-                { label: 'Solo', value: '0', description: 'Asisto solo' },
-                {
-                  label: 'Una persona',
-                  value: '1',
-                  description: 'Asisto con una persona',
-                },
-                {
-                  label: 'Dos personas',
-                  value: '2',
-                  description: 'Asisto con dos personas',
-                },
-              ]}
+              options={selectOptions}
               value={asistQuantity.toString()}
               onSelect={onSelect}
             />
