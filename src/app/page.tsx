@@ -12,7 +12,6 @@ import {
   Fade,
   Heading,
   IconButton,
-  InlineCode,
   Input,
   Line,
   Logo,
