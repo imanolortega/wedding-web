@@ -1,8 +1,8 @@
-'use client'
-
 import { wedding } from '@/app/resources/config'
-import { Background, Card, Row, Text } from '@/once-ui/components'
+import { Background, Card, Column, Row, Text } from '@/once-ui/components'
 import React, { forwardRef } from 'react'
+
+import { Map } from '@/sections'
 
 export interface WeddingInfo {}
 
@@ -75,6 +75,33 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
           borderTop="neutral-alpha-weak"
           borderBottom="neutral-medium"
         />
+      </Row>
+      <Row position="relative" fillWidth paddingX="l" paddingTop="48">
+        <Background
+          borderTop="brand-alpha-strong"
+          mask={{
+            x: 50,
+            y: 0,
+          }}
+          position="absolute"
+          grid={{
+            display: true,
+            width: '0.25rem',
+            color: 'brand-alpha-strong',
+            height: '0.25rem',
+          }}
+        />
+        <Column
+          position="relative"
+          textVariant="body-default-xs"
+          onBackground="neutral-medium"
+          horizontal="center"
+          align="center"
+          fillWidth
+          gap="16"
+        >
+          <Map lat={-27.845984302516865} lng={-64.25517892752266} />
+        </Column>
       </Row>
     </>
   )

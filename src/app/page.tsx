@@ -5,21 +5,15 @@ import { useState } from 'react'
 
 import {
   Background,
-  Card,
   Column,
   Fade,
-  Heading,
   IconButton,
-  Logo,
   Row,
-  SmartLink,
-  Text,
-  TiltFx,
   useToast,
 } from '@/once-ui/components'
 import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 
-import { AttendanceForm, Gallery, Header, Hero, Map } from '@/sections'
+import { AttendanceForm, Footer, Gallery, Header, Hero } from '@/sections'
 import { EventInfo } from '@/sections/event-info/EventInfo'
 import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo'
 
@@ -180,73 +174,7 @@ export default function Home() {
         <EventInfo />
         <WeddingInfo />
 
-        <Row position="relative" fillWidth paddingX="l" paddingTop="48">
-          <Background
-            borderTop="brand-alpha-strong"
-            mask={{
-              x: 50,
-              y: 0,
-            }}
-            position="absolute"
-            grid={{
-              display: true,
-              width: '0.25rem',
-              color: 'brand-alpha-strong',
-              height: '0.25rem',
-            }}
-          />
-          <Column
-            position="relative"
-            textVariant="body-default-xs"
-            onBackground="neutral-medium"
-            horizontal="center"
-            align="center"
-            fillWidth
-            gap="16"
-          >
-            <Map lat={-27.845984302516865} lng={-64.25517892752266} />
-          </Column>
-        </Row>
-        <Row
-          position="relative"
-          as="footer"
-          fillWidth
-          paddingX="l"
-          paddingTop="128"
-          paddingBottom="80"
-        >
-          <Background
-            borderTop="brand-alpha-strong"
-            mask={{
-              x: 50,
-              y: 0,
-            }}
-            position="absolute"
-            grid={{
-              display: true,
-              width: '0.25rem',
-              color: 'brand-alpha-strong',
-              height: '0.25rem',
-            }}
-          />
-          <Column
-            position="relative"
-            textVariant="body-default-xs"
-            onBackground="neutral-medium"
-            horizontal="center"
-            align="center"
-            fillWidth
-            gap="16"
-          >
-            <Logo wordmark={false} size="s" />
-            <Text size="m">
-              <Text onBackground="neutral-weak">2025 /</Text> Web por{' '}
-              <SmartLink href="https://www.instagram.com/imanol.oc/">
-                IOC
-              </SmartLink>
-            </Text>
-          </Column>
-        </Row>
+        <Footer />
       </Column>
     </Column>
   )

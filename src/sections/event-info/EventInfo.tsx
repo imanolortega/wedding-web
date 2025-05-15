@@ -1,5 +1,3 @@
-'use client'
-
 import React, { forwardRef } from 'react'
 import { event } from '@/app/resources/config'
 

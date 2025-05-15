@@ -1,5 +1,3 @@
-'use client'
-
 import React, { forwardRef } from 'react'
 import { Row, Carousel } from '@/once-ui/components'
 

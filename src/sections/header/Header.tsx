@@ -1,5 +1,3 @@
-'use client'
-
 import React, { forwardRef } from 'react'
 import { Row, Logo, Button, IconButton } from '@/once-ui/components'
 

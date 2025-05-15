@@ -1,5 +1,3 @@
-'use client'
-
 import React, { forwardRef } from 'react'
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 

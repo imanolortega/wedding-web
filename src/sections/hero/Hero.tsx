@@ -1,5 +1,3 @@
-'use client'
-
 import React, { forwardRef } from 'react'
 import { Column, InlineCode, Text, SmartImage } from '@/once-ui/components'
 
