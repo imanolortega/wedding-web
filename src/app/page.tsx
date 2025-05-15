@@ -20,7 +20,7 @@ import {
 } from '@/once-ui/components'
 import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 
-import { AttendanceForm, Header, Hero, Map } from '@/sections'
+import { AttendanceForm, Gallery, Header, Hero, Map } from '@/sections'
 
 export default function Home() {
   const { addToast } = useToast()
@@ -213,26 +213,7 @@ export default function Home() {
                 </Row>
               </Row>
 
-              <Row position="relative" fillWidth paddingX="xl">
-                <Carousel
-                  aspectRatio="16 / 9"
-                  indicator="line"
-                  images={[
-                    {
-                      alt: 'Martín y Luján imagen 1',
-                      src: '/images/martin-lujan-slider-one.jpeg',
-                    },
-                    {
-                      alt: 'Martín y Luján imagen 2',
-                      src: '/images/martin-lujan-slider-two.jpg',
-                    },
-                    {
-                      alt: 'Martín y Luján imagen 3',
-                      src: '/images/martin-lujan-slider-three.jpg',
-                    },
-                  ]}
-                />
-              </Row>
+              <Gallery />
             </Column>
           </Column>
         </Column>
