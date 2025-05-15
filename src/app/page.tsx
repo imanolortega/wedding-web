@@ -21,6 +21,7 @@ import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 
 import { AttendanceForm, Gallery, Header, Hero, Map } from '@/sections'
 import { EventInfo } from '@/sections/event-info/EventInfo'
+import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo'
 
 export default function Home() {
   const { addToast } = useToast()
@@ -32,48 +33,6 @@ export default function Home() {
   const onSelect = (value: string) => {
     setAsistQuantity(parseInt(value))
   }
-
-  const event = [
-    {
-      id: 1,
-      title: 'Salón',
-      description: 'Abba Huasi',
-    },
-    {
-      id: 2,
-      title: 'Fecha',
-      description: '6/9/2025',
-    },
-    {
-      id: 3,
-      title: 'Ubicación',
-      description: 'Yanda, Santiago del Estero',
-    },
-  ]
-
-  const wedding = [
-    {
-      id: '1',
-      title: 'Lugar',
-      description: 'Parroquia San Juan Diego',
-    },
-    {
-      id: '2',
-      title: 'Hora',
-      description: '18:30',
-    },
-    {
-      id: '3',
-      title: 'Fecha',
-      description: '6/9/2025',
-    },
-    {
-      id: '4',
-      title: 'Ubicación',
-      description:
-        'Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.',
-    },
-  ]
 
   return (
     <Column fillWidth paddingY="80" paddingX="s" horizontal="center" flex={1}>
@@ -219,78 +178,7 @@ export default function Home() {
         </Column>
 
         <EventInfo />
-
-        <Row
-          position="relative"
-          fillWidth
-          paddingX="32"
-          paddingTop="160"
-          paddingBottom="80"
-          horizontal="center"
-          vertical="end"
-        >
-          <Background
-            mask={{
-              x: 50,
-              y: 100,
-            }}
-            position="absolute"
-            grid={{
-              display: true,
-              width: '0.25rem',
-              color: 'brand-alpha-strong',
-              height: '0.25rem',
-            }}
-          />
-          <Row
-            position="relative"
-            textVariant="display-default-m"
-            align="center"
-          >
-            Misa
-          </Row>
-        </Row>
-        <Row fillWidth overflow="hidden">
-          <Row
-            maxWidth="32"
-            borderTop="neutral-alpha-weak"
-            borderBottom="neutral-medium"
-          />
-          <Row fillWidth border="neutral-alpha-weak" mobileDirection="column">
-            {wedding.map((item, index) => (
-              <Card
-                key={item.id}
-                fillWidth
-                padding="40"
-                gap="8"
-                background="page"
-                direction="column"
-                borderRight={
-                  index < wedding.length - 1 ? 'neutral-alpha-weak' : undefined
-                }
-                border={undefined}
-              >
-                <Row fillWidth center gap="12">
-                  <Text variant="body-strong-m" onBackground="neutral-strong">
-                    {item.title}
-                  </Text>
-                </Row>
-                <Text
-                  align="center"
-                  variant="body-default-s"
-                  onBackground="neutral-weak"
-                >
-                  {item.description}
-                </Text>
-              </Card>
-            ))}
-          </Row>
-          <Row
-            maxWidth="32"
-            borderTop="neutral-alpha-weak"
-            borderBottom="neutral-medium"
-          />
-        </Row>
+        <WeddingInfo />
 
         <Row position="relative" fillWidth paddingX="l" paddingTop="48">
           <Background

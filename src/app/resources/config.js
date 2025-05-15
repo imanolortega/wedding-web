@@ -128,4 +128,27 @@ const event = [
   },
 ]
 
-export { baseURL, event, font, style, meta, schema, social, effects }
+const wedding = [
+  {
+    id: '1',
+    title: 'Lugar',
+    description: 'Parroquia San Juan Diego',
+  },
+  {
+    id: '2',
+    title: 'Hora',
+    description: '18:30',
+  },
+  {
+    id: '3',
+    title: 'Fecha',
+    description: '6/9/2025',
+  },
+  {
+    id: '4',
+    title: 'Ubicación',
+    description: 'Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.',
+  },
+]
+
+export { baseURL, effects, event, font, meta, schema, social, style, wedding }
