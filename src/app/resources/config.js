@@ -110,4 +110,22 @@ const social = {
   discord: 'https://discord.com/invite/example',
 }
 
-export { baseURL, font, style, meta, schema, social, effects }
+const event = [
+  {
+    id: 1,
+    title: 'Salón',
+    description: 'Abba Huasi',
+  },
+  {
+    id: 2,
+    title: 'Fecha',
+    description: '6/9/2025',
+  },
+  {
+    id: 3,
+    title: 'Ubicación',
+    description: 'Yanda, Santiago del Estero',
+  },
+]
+
+export { baseURL, event, font, style, meta, schema, social, effects }
