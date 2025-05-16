@@ -8,7 +8,6 @@ import {
   Column,
   Fade,
   IconButton,
-  Row,
   useToast,
 } from '@/once-ui/components'
 import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
@@ -125,49 +124,7 @@ export default function Home() {
               setIsLoading={setIsLoading}
               addToast={addToast}
             />
-
-            <Column
-              position="relative"
-              textVariant="body-default-xs"
-              onBackground="neutral-medium"
-              horizontal="center"
-              align="center"
-              fillWidth
-              gap="-1"
-            >
-              <Row
-                position="relative"
-                fillWidth
-                paddingX="32"
-                paddingTop="160"
-                paddingBottom="80"
-                horizontal="center"
-                vertical="end"
-              >
-                <Background
-                  mask={{
-                    x: 50,
-                    y: 100,
-                  }}
-                  position="absolute"
-                  grid={{
-                    display: true,
-                    width: '0.25rem',
-                    color: 'neutral-alpha-medium',
-                    height: '0.25rem',
-                  }}
-                />
-                <Row
-                  position="relative"
-                  textVariant="display-default-m"
-                  align="center"
-                >
-                  It's wedding time!
-                </Row>
-              </Row>
-
-              <Gallery />
-            </Column>
+            <Gallery />
           </Column>
         </Column>
 
