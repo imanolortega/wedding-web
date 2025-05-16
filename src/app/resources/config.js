@@ -124,7 +124,7 @@ const event = [
   {
     id: 3,
     title: 'Ubicación',
-    description: 'Yanda, Santiago del Estero',
+    description: 'Ruta 9, Yanda, Santiago del Estero',
   },
 ]
 

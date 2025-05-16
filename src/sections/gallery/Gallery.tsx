@@ -43,7 +43,7 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
       <Row position="relative" fillWidth paddingX="xl">
         <Carousel
           aspectRatio="16 / 9"
-          indicator="line"
+          indicator="thumbnail"
           images={[
             {
               alt: 'Martín y Luján imagen 1',

@@ -38,7 +38,7 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
             variant="tertiary"
           />
         </Row>
-        <Row gap="16" show="s" horizontal="center" paddingRight="24">
+        {/* <Row gap="16" show="s" horizontal="center" paddingRight="24">
           <IconButton
             href="https://discord.com/invite/5EyAQ4eNdS"
             icon="email"
@@ -49,7 +49,7 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
             icon="email"
             variant="tertiary"
           />
-        </Row>
+        </Row> */}
       </Row>
     </Row>
   )
