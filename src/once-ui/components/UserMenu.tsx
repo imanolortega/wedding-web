@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React from "react";
-import classNames from "classnames";
-import { Flex, DropdownWrapper, User, UserProps } from ".";
-import styles from "./UserMenu.module.scss";
-import { DropdownWrapperProps } from "./DropdownWrapper";
+import React from 'react';
+import classNames from 'classnames';
+import { Flex, DropdownWrapper, User, UserProps } from '.';
+import styles from './UserMenu.module.scss';
+import { DropdownWrapperProps } from './DropdownWrapper';
 
 interface UserMenuProps
   extends UserProps,
-    Pick<DropdownWrapperProps, "minHeight" | "minWidth" | "maxWidth"> {
+    Pick<DropdownWrapperProps, 'minHeight' | 'minWidth' | 'maxWidth'> {
   selected?: boolean;
   dropdown?: React.ReactNode;
   className?: string;
@@ -31,7 +31,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
       maxWidth={maxWidth}
       minHeight={minHeight}
       style={{
-        borderRadius: "var(--radius-full)",
+        borderRadius: 'var(--radius-full)',
       }}
       trigger={
         <Flex
@@ -40,9 +40,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
           padding="4"
           radius="full"
           cursor="interactive"
-          border={selected ? "neutral-medium" : "transparent"}
-          background={selected ? "neutral-strong" : "transparent"}
-          className={classNames(className || "", selected ? styles.selected : "", styles.wrapper)}
+          border={selected ? 'neutral-medium' : 'transparent'}
+          background={selected ? 'neutral-strong' : 'transparent'}
+          className={classNames(className || '', selected ? styles.selected : '', styles.wrapper)}
           style={style}
         >
           <User {...userProps} />
@@ -53,5 +53,5 @@ const UserMenu: React.FC<UserMenuProps> = ({
   );
 };
 
-UserMenu.displayName = "UserMenu";
+UserMenu.displayName = 'UserMenu';
 export { UserMenu };

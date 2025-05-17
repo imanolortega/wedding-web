@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Heading, Flex, IconButton, useToast } from "@/once-ui/components";
+import React from 'react';
+import { Heading, Flex, IconButton, useToast } from '@/once-ui/components';
 
-import styles from "./HeadingLink.module.scss";
+import styles from './HeadingLink.module.scss';
 
 interface HeadingLinkProps {
   id: string;
-  as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   children: React.ReactNode;
   style?: React.CSSProperties;
 }
@@ -20,26 +20,26 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({ id, as, children, styl
     navigator.clipboard.writeText(url).then(
       () => {
         addToast({
-          variant: "success",
-          message: "Link copied to clipboard.",
+          variant: 'success',
+          message: 'Link copied to clipboard.',
         });
       },
       () => {
         addToast({
-          variant: "danger",
-          message: "Failed to copy link.",
+          variant: 'danger',
+          message: 'Failed to copy link.',
         });
       },
     );
   };
 
   const variantMap = {
-    h1: "display-strong-xs",
-    h2: "heading-strong-xl",
-    h3: "heading-strong-l",
-    h4: "heading-strong-m",
-    h5: "heading-strong-s",
-    h6: "heading-strong-xs",
+    h1: 'display-strong-xs',
+    h2: 'heading-strong-xl',
+    h3: 'heading-strong-l',
+    h4: 'heading-strong-m',
+    h5: 'heading-strong-s',
+    h6: 'heading-strong-xs',
   } as const;
 
   const variant = variantMap[as];

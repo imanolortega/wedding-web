@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useCallback, useEffect } from "react";
-import { Input, DropdownWrapper, Flex, DateRange, DateRangePicker, Row } from ".";
+import React, { useState, useCallback, useEffect } from 'react';
+import { Input, DropdownWrapper, Flex, DateRange, DateRangePicker, Row } from '.';
 
 interface DateRangeInputProps
-  extends Omit<React.ComponentProps<typeof Input>, "onChange" | "value" | "label"> {
+  extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value' | 'label'> {
   id: string;
   startLabel: string;
   endLabel: string;
@@ -22,20 +22,20 @@ interface LocalizedDateRange {
 
 const formatDateRange = (range: DateRange): LocalizedDateRange => {
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
   };
   return {
-    startDate: range.startDate?.toLocaleDateString("en-US", options) || null,
-    endDate: range.endDate?.toLocaleDateString("en-US", options) || null,
+    startDate: range.startDate?.toLocaleDateString('en-US', options) || null,
+    endDate: range.endDate?.toLocaleDateString('en-US', options) || null,
   };
 };
 
 export const DateRangeInput: React.FC<DateRangeInputProps> = ({
   id,
-  startLabel = "Start",
-  endLabel = "End",
+  startLabel = 'Start',
+  endLabel = 'End',
   value,
   onChange,
   error,
@@ -46,7 +46,7 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState(
-    value ? formatDateRange(value) : { startDate: "", endDate: "" },
+    value ? formatDateRange(value) : { startDate: '', endDate: '' },
   );
   useEffect(() => {
     if (value) {
@@ -74,12 +74,12 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({
       <Input
         className="cursor-interactive"
         style={{
-          textOverflow: "ellipsis",
+          textOverflow: 'ellipsis',
         }}
-        radius={"left"}
+        radius={'left'}
         id={id}
         label={startLabel}
-        value={inputValue.startDate ?? ""}
+        value={inputValue.startDate ?? ''}
         error={error}
         readOnly
         onClick={handleInputClick}
@@ -88,12 +88,12 @@ export const DateRangeInput: React.FC<DateRangeInputProps> = ({
       <Input
         className="cursor-interactive"
         style={{
-          textOverflow: "ellipsis",
+          textOverflow: 'ellipsis',
         }}
-        radius={"right"}
+        radius={'right'}
         id={id}
         label={endLabel}
-        value={inputValue.endDate ?? ""}
+        value={inputValue.endDate ?? ''}
         error={error}
         readOnly
         onClick={handleInputClick}

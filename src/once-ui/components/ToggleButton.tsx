@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import React, { forwardRef, ReactNode } from "react";
-import classNames from "classnames";
-import { ElementType } from "./ElementType";
-import { Flex, Icon } from ".";
-import styles from "./ToggleButton.module.scss";
-import { IconName } from "../icons";
+import React, { forwardRef, ReactNode } from 'react';
+import classNames from 'classnames';
+import { ElementType } from './ElementType';
+import { Flex, Icon } from '.';
+import styles from './ToggleButton.module.scss';
+import { IconName } from '../icons';
 
 interface CommonProps {
   label?: ReactNode;
   selected?: boolean;
-  variant?: "ghost" | "outline";
-  size?: "s" | "m" | "l";
+  variant?: 'ghost' | 'outline';
+  size?: 's' | 'm' | 'l';
   radius?:
-    | "none"
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top-left"
-    | "top-right"
-    | "bottom-right"
-    | "bottom-left";
-  justifyContent?: "start" | "center" | "end" | "space-between";
+    | 'none'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-right'
+    | 'bottom-left';
+  justifyContent?: 'start' | 'center' | 'end' | 'space-between';
   fillWidth?: boolean;
-  weight?: "default" | "strong";
+  weight?: 'default' | 'strong';
   truncate?: boolean;
   prefixIcon?: IconName;
   suffixIcon?: IconName;
@@ -41,12 +41,12 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
     {
       label,
       selected = false,
-      variant = "ghost",
-      size = "m",
+      variant = 'ghost',
+      size = 'm',
       radius,
-      justifyContent = "center",
+      justifyContent = 'center',
       fillWidth = false,
-      weight = "default",
+      weight = 'default',
       truncate = false,
       prefixIcon,
       suffixIcon,
@@ -67,43 +67,43 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
           styles[variant],
           styles[size],
           selected && styles.selected,
-          radius === "none"
-            ? "radius-none"
+          radius === 'none'
+            ? 'radius-none'
             : radius
               ? `radius-${size}-${radius}`
               : `radius-${size}`,
-          "text-decoration-none",
-          "button",
-          "cursor-interactive",
+          'text-decoration-none',
+          'button',
+          'cursor-interactive',
           {
-            ["fill-width"]: fillWidth,
-            ["fit-width"]: !fillWidth,
-            ["justify-" + justifyContent]: justifyContent,
+            ['fill-width']: fillWidth,
+            ['fit-width']: !fillWidth,
+            ['justify-' + justifyContent]: justifyContent,
           },
           className,
         )}
         style={style}
         {...props}
       >
-        {prefixIcon && <Icon name={prefixIcon} size={size === "l" ? "s" : "xs"} />}
+        {prefixIcon && <Icon name={prefixIcon} size={size === 'l' ? 's' : 'xs'} />}
         {(label || children) && (
           <Flex
             fillWidth={fillWidth}
             horizontal={justifyContent}
-            padding={size === "s" ? "2" : "4"}
+            padding={size === 's' ? '2' : '4'}
             textWeight={weight}
-            textSize={size === "l" ? "m" : "s"}
+            textSize={size === 'l' ? 'm' : 's'}
             className="font-label"
             position="static"
           >
             {label || children}
           </Flex>
         )}
-        {suffixIcon && <Icon name={suffixIcon} size={size === "l" ? "s" : "xs"} />}
+        {suffixIcon && <Icon name={suffixIcon} size={size === 'l' ? 's' : 'xs'} />}
       </ElementType>
     );
   },
 );
 
-ToggleButton.displayName = "ToggleButton";
+ToggleButton.displayName = 'ToggleButton';
 export { ToggleButton };

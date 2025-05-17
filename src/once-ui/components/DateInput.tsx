@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useCallback, useEffect } from "react";
-import { Input, DropdownWrapper, Flex, DatePicker } from ".";
+import React, { useState, useCallback, useEffect } from 'react';
+import { Input, DropdownWrapper, Flex, DatePicker } from '.';
 
-interface DateInputProps extends Omit<React.ComponentProps<typeof Input>, "onChange" | "value"> {
+interface DateInputProps extends Omit<React.ComponentProps<typeof Input>, 'onChange' | 'value'> {
   id: string;
   label: string;
   value?: Date;
@@ -16,17 +16,17 @@ interface DateInputProps extends Omit<React.ComponentProps<typeof Input>, "onCha
 
 const formatDate = (date: Date, timePicker: boolean) => {
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
     ...(timePicker && {
-      hour: "2-digit",
-      minute: "2-digit",
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: false,
     }),
   };
 
-  return date.toLocaleString("en-US", options);
+  return date.toLocaleString('en-US', options);
 };
 
 export const DateInput: React.FC<DateInputProps> = ({
@@ -42,7 +42,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   ...rest
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(value ? formatDate(value, timePicker) : "");
+  const [inputValue, setInputValue] = useState(value ? formatDate(value, timePicker) : '');
 
   useEffect(() => {
     if (value) {
@@ -69,7 +69,7 @@ export const DateInput: React.FC<DateInputProps> = ({
     <Input
       className="cursor-interactive"
       style={{
-        textOverflow: "ellipsis",
+        textOverflow: 'ellipsis',
       }}
       id={id}
       label={label}

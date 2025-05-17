@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import styles from "./TiltFx.module.scss";
-import { Flex } from ".";
+import React, { useRef } from 'react';
+import styles from './TiltFx.module.scss';
+import { Flex } from '.';
 
 interface TiltFxProps extends React.ComponentProps<typeof Flex> {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const TiltFx: React.FC<TiltFxProps> = ({ children, ...rest }) => {
   let resetTimeout: NodeJS.Timeout;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if ("ontouchstart" in window) return;
+    if ('ontouchstart' in window) return;
 
     clearTimeout(resetTimeout);
 
@@ -44,13 +44,13 @@ const TiltFx: React.FC<TiltFxProps> = ({ children, ...rest }) => {
   };
 
   const handleMouseLeave = () => {
-    if ("ontouchstart" in window) return;
+    if ('ontouchstart' in window) return;
 
     const element = ref.current;
     if (element) {
       resetTimeout = setTimeout(() => {
         element.style.transform =
-          "perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)";
+          'perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)';
       }, 100);
     }
   };
@@ -70,4 +70,4 @@ const TiltFx: React.FC<TiltFxProps> = ({ children, ...rest }) => {
 };
 
 export { TiltFx };
-TiltFx.displayName = "TiltFx";
+TiltFx.displayName = 'TiltFx';

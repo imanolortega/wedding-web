@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { forwardRef } from "react";
-import { Flex } from ".";
+import { forwardRef } from 'react';
+import { Flex } from '.';
 
 interface ColumnProps extends React.ComponentProps<typeof Flex> {
   children?: React.ReactNode;
@@ -15,5 +15,5 @@ const Column = forwardRef<HTMLDivElement, ColumnProps>(({ children, ...rest }, r
   );
 });
 
-Column.displayName = "Column";
+Column.displayName = 'Column';
 export { Column };

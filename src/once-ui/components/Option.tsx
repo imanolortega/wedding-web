@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import { Flex, Text } from ".";
-import styles from "./Option.module.scss";
-import { ElementType } from "./ElementType";
-import React, { forwardRef } from "react";
+import classNames from 'classnames';
+import { Flex, Text } from '.';
+import styles from './Option.module.scss';
+import { ElementType } from './ElementType';
+import React, { forwardRef } from 'react';
 
 export interface OptionProps {
   label: React.ReactNode;
@@ -39,7 +39,7 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
     ref,
   ) => {
     if (href && onClick) {
-      console.warn("Option should not have both `href` and `onClick` props.");
+      console.warn('Option should not have both `href` and `onClick` props.');
     }
 
     return (
@@ -77,7 +77,7 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
           <Flex
             horizontal="start"
             style={{
-              whiteSpace: "nowrap",
+              whiteSpace: 'nowrap',
             }}
             fillWidth
             direction="column"
@@ -98,5 +98,5 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
   },
 );
 
-Option.displayName = "Option";
+Option.displayName = 'Option';
 export { Option };

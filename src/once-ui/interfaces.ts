@@ -1,4 +1,4 @@
-import { CSSProperties, ElementType, HTMLAttributes, ReactNode } from "react";
+import { CSSProperties, ElementType, HTMLAttributes, ReactNode } from 'react';
 import {
   ColorScheme,
   ColorWeight,
@@ -13,7 +13,7 @@ import {
   TextType,
   TextVariant,
   TextWeight,
-} from "./types";
+} from './types';
 
 export interface GridProps extends HTMLAttributes<HTMLDivElement> {
   columns?: gridColumns;
@@ -25,34 +25,34 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
-  direction?: "row" | "column" | "row-reverse" | "column-reverse";
-  tabletDirection?: "row" | "column" | "row-reverse" | "column-reverse";
-  mobileDirection?: "row" | "column" | "row-reverse" | "column-reverse";
+  direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+  tabletDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+  mobileDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   horizontal?:
-    | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around"
-    | "space-evenly"
-    | "stretch";
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | 'stretch';
   vertical?:
-    | "start"
-    | "center"
-    | "end"
-    | "space-between"
-    | "space-around"
-    | "space-evenly"
-    | "stretch";
+    | 'start'
+    | 'center'
+    | 'end'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly'
+    | 'stretch';
   center?: boolean;
   wrap?: boolean;
   flex?: flex;
 }
 
-export interface TextProps<T extends ElementType = "span"> extends HTMLAttributes<T> {
+export interface TextProps<T extends ElementType = 'span'> extends HTMLAttributes<T> {
   as?: T;
   variant?: TextVariant;
-  wrap?: CSSProperties["textWrap"];
+  wrap?: CSSProperties['textWrap'];
   size?: TextSize;
   weight?: TextWeight;
 }
@@ -70,7 +70,7 @@ export interface SizeProps extends HTMLAttributes<HTMLDivElement> {
   fill?: boolean;
   fillWidth?: boolean;
   fillHeight?: boolean;
-  aspectRatio?: CSSProperties["aspectRatio"];
+  aspectRatio?: CSSProperties['aspectRatio'];
 }
 
 export interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
@@ -88,7 +88,7 @@ export interface SpacingProps extends HTMLAttributes<HTMLDivElement> {
   marginBottom?: SpacingToken;
   marginX?: SpacingToken;
   marginY?: SpacingToken;
-  gap?: SpacingToken | "-1";
+  gap?: SpacingToken | '-1';
   top?: SpacingToken;
   right?: SpacingToken;
   bottom?: SpacingToken;
@@ -103,37 +103,37 @@ export interface StyleProps extends HTMLAttributes<HTMLDivElement> {
   background?:
     | `${ColorScheme}-${ColorWeight}`
     | `${ColorScheme}-alpha-${ColorWeight}`
-    | "surface"
-    | "overlay"
-    | "page"
-    | "transparent";
+    | 'surface'
+    | 'overlay'
+    | 'page'
+    | 'transparent';
   solid?: `${ColorScheme}-${ColorWeight}`;
   borderTop?:
     | `${ColorScheme}-${ColorWeight}`
     | `${ColorScheme}-alpha-${ColorWeight}`
-    | "surface"
-    | "transparent";
+    | 'surface'
+    | 'transparent';
   borderRight?:
     | `${ColorScheme}-${ColorWeight}`
     | `${ColorScheme}-alpha-${ColorWeight}`
-    | "surface"
-    | "transparent";
+    | 'surface'
+    | 'transparent';
   borderBottom?:
     | `${ColorScheme}-${ColorWeight}`
     | `${ColorScheme}-alpha-${ColorWeight}`
-    | "surface"
-    | "transparent";
+    | 'surface'
+    | 'transparent';
   borderLeft?:
     | `${ColorScheme}-${ColorWeight}`
     | `${ColorScheme}-alpha-${ColorWeight}`
-    | "surface"
-    | "transparent";
+    | 'surface'
+    | 'transparent';
   border?:
     | `${ColorScheme}-${ColorWeight}`
     | `${ColorScheme}-alpha-${ColorWeight}`
-    | "surface"
-    | "transparent";
-  borderStyle?: "solid" | "dashed";
+    | 'surface'
+    | 'transparent';
+  borderStyle?: 'solid' | 'dashed';
   borderWidth?: 1 | 2;
   topRadius?: RadiusSize;
   rightRadius?: RadiusSize;
@@ -145,29 +145,29 @@ export interface StyleProps extends HTMLAttributes<HTMLDivElement> {
   bottomRightRadius?: RadiusSize;
   radius?: RadiusSize | `${RadiusSize}-${RadiusNest}`;
   shadow?: ShadowSize;
-  cursor?: CSSProperties["cursor"] | "interactive";
+  cursor?: CSSProperties['cursor'] | 'interactive';
 }
 
 export interface ConditionalProps extends HTMLAttributes<HTMLDivElement> {
-  hide?: "s" | "m" | "l";
-  show?: "s" | "m" | "l";
+  hide?: 's' | 'm' | 'l';
+  show?: 's' | 'm' | 'l';
 }
 
 export interface DisplayProps extends HTMLAttributes<HTMLDivElement> {
   as?: ElementType;
   inline?: boolean;
-  pointerEvents?: "none" | "all" | "auto";
-  position?: CSSProperties["position"];
-  overflow?: CSSProperties["overflow"];
-  overflowX?: CSSProperties["overflowX"];
-  overflowY?: CSSProperties["overflowY"];
+  pointerEvents?: 'none' | 'all' | 'auto';
+  position?: CSSProperties['position'];
+  overflow?: CSSProperties['overflow'];
+  overflowX?: CSSProperties['overflowX'];
+  overflowY?: CSSProperties['overflowY'];
   transition?:
-    | "micro-short"
-    | "micro-medium"
-    | "micro-long"
-    | "macro-short"
-    | "macro-medium"
-    | "macro-long";
+    | 'micro-short'
+    | 'micro-medium'
+    | 'micro-long'
+    | 'macro-short'
+    | 'macro-medium'
+    | 'macro-long';
   opacity?: opacity;
   zIndex?: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   dark?: boolean;
@@ -177,7 +177,7 @@ export interface DisplayProps extends HTMLAttributes<HTMLDivElement> {
 export interface CommonProps extends HTMLAttributes<HTMLDivElement> {
   onBackground?: `${ColorScheme}-${ColorWeight}`;
   onSolid?: `${ColorScheme}-${ColorWeight}`;
-  align?: CSSProperties["textAlign"];
+  align?: CSSProperties['textAlign'];
   className?: string;
   children?: ReactNode;
   style?: React.CSSProperties;

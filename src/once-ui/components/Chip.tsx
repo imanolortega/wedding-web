@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { ReactNode, MouseEventHandler, forwardRef } from "react";
-import classNames from "classnames";
-import { Text, Icon, IconButton, IconButtonProps, Flex } from ".";
-import styles from "./Chip.module.scss";
-import { IconName } from "../icons";
+import React, { ReactNode, MouseEventHandler, forwardRef } from 'react';
+import classNames from 'classnames';
+import { Text, Icon, IconButton, IconButtonProps, Flex } from '.';
+import styles from './Chip.module.scss';
+import { IconName } from '../icons';
 
 interface ChipProps extends React.ComponentProps<typeof Flex> {
   label: string;
@@ -33,10 +33,10 @@ const Chip: React.FC<ChipProps> = forwardRef<HTMLDivElement, ChipProps>(
     ref,
   ) => {
     const defaultIconButtonProps: IconButtonProps = {
-      icon: "close",
-      variant: "ghost",
-      size: "s",
-      tooltip: "Remove",
+      icon: 'close',
+      variant: 'ghost',
+      size: 's',
+      tooltip: 'Remove',
       onClick: (e) => {
         e.stopPropagation();
         if (onRemove) onRemove();
@@ -53,7 +53,7 @@ const Chip: React.FC<ChipProps> = forwardRef<HTMLDivElement, ChipProps>(
     };
 
     const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-      if (e.key === "Enter" || e.key === " ") {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         if (onClick) onClick(e as unknown as React.MouseEvent<HTMLDivElement>);
       }
@@ -87,7 +87,7 @@ const Chip: React.FC<ChipProps> = forwardRef<HTMLDivElement, ChipProps>(
         {onRemove && (
           <IconButton
             style={{
-              color: "inherit",
+              color: 'inherit',
             }}
             {...combinedIconButtonProps}
           />
@@ -97,6 +97,6 @@ const Chip: React.FC<ChipProps> = forwardRef<HTMLDivElement, ChipProps>(
   },
 );
 
-Chip.displayName = "Chip";
+Chip.displayName = 'Chip';
 
 export { Chip };

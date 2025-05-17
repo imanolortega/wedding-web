@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { forwardRef, useState } from "react";
-import { IconButton, StylePanel, Flex, Background } from ".";
-import styles from "./StyleOverlay.module.scss";
+import { forwardRef, useState } from 'react';
+import { IconButton, StylePanel, Flex, Background } from '.';
+import styles from './StyleOverlay.module.scss';
 
 interface StyleOverlayProps extends React.ComponentProps<typeof Flex> {
   iconButtonProps?: Partial<React.ComponentProps<typeof IconButton>>;
@@ -25,7 +25,7 @@ const StyleOverlay = forwardRef<HTMLDivElement, StyleOverlayProps>(
           className={`${styles.panel} ${isOpen && styles.open}`}
           maxWidth={28}
           style={{
-            maxHeight: "calc(100% - var(--static-space-4))",
+            maxHeight: 'calc(100% - var(--static-space-4))',
           }}
           fillHeight
           position="absolute"
@@ -49,7 +49,7 @@ const StyleOverlay = forwardRef<HTMLDivElement, StyleOverlayProps>(
               width={8}
               height={4}
               mask={{ x: 100, y: 0, radius: 7 }}
-              dots={{ display: true, size: "2", color: "page-background" }}
+              dots={{ display: true, size: '2', color: 'page-background' }}
             />
             <IconButton
               variant="secondary"
@@ -64,5 +64,5 @@ const StyleOverlay = forwardRef<HTMLDivElement, StyleOverlayProps>(
   },
 );
 
-StyleOverlay.displayName = "StyleOverlay";
+StyleOverlay.displayName = 'StyleOverlay';
 export { StyleOverlay };

@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import classNames from "classnames";
-import styles from "./Arrow.module.scss";
-import { Flex } from ".";
+import { useEffect, useRef } from 'react';
+import classNames from 'classnames';
+import styles from './Arrow.module.scss';
+import { Flex } from '.';
 
 interface ArrowProps {
   trigger: string;
   scale?: number;
-  color?: "onBackground" | "onSolid";
+  color?: 'onBackground' | 'onSolid';
   style?: React.CSSProperties;
   className?: string;
 }
@@ -16,7 +16,7 @@ interface ArrowProps {
 const Arrow: React.FC<ArrowProps> = ({
   trigger,
   scale = 0.8,
-  color = "onBackground",
+  color = 'onBackground',
   style,
   className,
 }) => {
@@ -34,12 +34,12 @@ const Arrow: React.FC<ArrowProps> = ({
         ref.current?.classList.remove(styles.active);
       };
 
-      triggerElement.addEventListener("mouseenter", handleMouseOver);
-      triggerElement.addEventListener("mouseleave", handleMouseOut);
+      triggerElement.addEventListener('mouseenter', handleMouseOver);
+      triggerElement.addEventListener('mouseleave', handleMouseOut);
 
       return () => {
-        triggerElement.removeEventListener("mouseenter", handleMouseOver);
-        triggerElement.removeEventListener("mouseleave", handleMouseOut);
+        triggerElement.removeEventListener('mouseenter', handleMouseOver);
+        triggerElement.removeEventListener('mouseleave', handleMouseOut);
       };
     }
   }, [trigger]);
@@ -71,5 +71,5 @@ const Arrow: React.FC<ArrowProps> = ({
   );
 };
 
-Arrow.displayName = "Arrow";
+Arrow.displayName = 'Arrow';
 export { Arrow };

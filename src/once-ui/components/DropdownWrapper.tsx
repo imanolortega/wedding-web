@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, {
   useState,
@@ -8,7 +8,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useCallback,
-} from "react";
+} from 'react';
 import {
   useFloating,
   shift,
@@ -17,9 +17,9 @@ import {
   size,
   autoUpdate,
   Placement,
-} from "@floating-ui/react-dom";
-import { Flex, Dropdown } from ".";
-import styles from "./DropdownWrapper.module.scss";
+} from '@floating-ui/react-dom';
+import { Flex, Dropdown } from '.';
+import styles from './DropdownWrapper.module.scss';
 
 export interface DropdownWrapperProps {
   fillWidth?: boolean;
@@ -52,7 +52,7 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
       minWidth,
       maxWidth,
       fillWidth = false,
-      floatingPlacement = "bottom-start",
+      floatingPlacement = 'bottom-start',
       className,
       style,
     },
@@ -86,7 +86,7 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
         size({
           apply({ availableWidth, availableHeight, elements }) {
             Object.assign(elements.floating.style, {
-              width: fillWidth ? "100%" : "auto",
+              width: fillWidth ? '100%' : 'auto',
               minWidth: minWidth ? `${minWidth}rem` : undefined,
               maxWidth: maxWidth ? `${maxWidth}rem` : `${availableWidth}px`,
               minHeight: `${Math.min(minHeight || 0)}px`,
@@ -144,12 +144,12 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
     useEffect(() => {
       const currentWrapperRef = wrapperRef.current;
 
-      document.addEventListener("mousedown", handleClickOutside);
-      currentWrapperRef?.addEventListener("focusout", handleFocusOut);
+      document.addEventListener('mousedown', handleClickOutside);
+      currentWrapperRef?.addEventListener('focusout', handleFocusOut);
 
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-        currentWrapperRef?.removeEventListener("focusout", handleFocusOut);
+        document.removeEventListener('mousedown', handleClickOutside);
+        currentWrapperRef?.removeEventListener('focusout', handleFocusOut);
       };
     }, [handleClickOutside, handleFocusOut]);
 
@@ -174,7 +174,7 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
           }
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
+          if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             handleOpenChange(!isOpen);
           }
@@ -213,5 +213,5 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
   },
 );
 
-DropdownWrapper.displayName = "DropdownWrapper";
+DropdownWrapper.displayName = 'DropdownWrapper';
 export { DropdownWrapper };

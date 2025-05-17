@@ -1,5 +1,5 @@
-import React, { forwardRef } from "react";
-import { Row, Carousel, Background, Column } from "@/once-ui/components";
+import React, { forwardRef } from 'react';
+import { Row, Carousel, Background, Column } from '@/once-ui/components';
 
 export interface GalleryHandle {}
 
@@ -31,9 +31,9 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
           position="absolute"
           grid={{
             display: true,
-            width: "0.25rem",
-            color: "neutral-alpha-medium",
-            height: "0.25rem",
+            width: '0.25rem',
+            color: 'neutral-alpha-medium',
+            height: '0.25rem',
           }}
         />
         <Row position="relative" textVariant="display-default-m" align="center">
@@ -46,16 +46,16 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
           indicator="thumbnail"
           images={[
             {
-              alt: "Martín y Luján imagen 1",
-              src: "/images/martin-lujan-slider-one.jpeg",
+              alt: 'Martín y Luján imagen 1',
+              src: '/images/martin-lujan-slider-one.jpeg',
             },
             {
-              alt: "Martín y Luján imagen 2",
-              src: "/images/martin-lujan-slider-two.jpg",
+              alt: 'Martín y Luján imagen 2',
+              src: '/images/martin-lujan-slider-two.jpg',
             },
             {
-              alt: "Martín y Luján imagen 3",
-              src: "/images/martin-lujan-slider-three.jpg",
+              alt: 'Martín y Luján imagen 3',
+              src: '/images/martin-lujan-slider-three.jpg',
             },
           ]}
         />
@@ -64,5 +64,5 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
   );
 });
 
-Gallery.displayName = "Gallery";
+Gallery.displayName = 'Gallery';
 export { Gallery };

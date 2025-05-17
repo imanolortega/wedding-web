@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
-import { Flex, IconButton } from ".";
-import styles from "./Scroller.module.scss";
-import { Fade } from "./Fade";
+import React, { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
+import { Flex, IconButton } from '.';
+import styles from './Scroller.module.scss';
+import { Fade } from './Fade';
 
 interface ScrollerProps extends React.ComponentProps<typeof Flex> {
   children?: React.ReactNode;
-  direction?: "row" | "column";
+  direction?: 'row' | 'column';
   onItemClick?: (index: number) => void;
 }
 
@@ -19,7 +19,7 @@ interface ScrollableChildProps {
 
 const Scroller: React.FC<ScrollerProps> = ({
   children,
-  direction = "row",
+  direction = 'row',
   className,
   style,
   onItemClick,
@@ -33,9 +33,9 @@ const Scroller: React.FC<ScrollerProps> = ({
     const scroller = scrollerRef.current;
     const handleScroll = () => {
       if (scroller) {
-        const scrollPosition = direction === "row" ? scroller.scrollLeft : scroller.scrollTop;
+        const scrollPosition = direction === 'row' ? scroller.scrollLeft : scroller.scrollTop;
         const maxScrollPosition =
-          direction === "row"
+          direction === 'row'
             ? scroller.scrollWidth - scroller.clientWidth
             : scroller.scrollHeight - scroller.clientHeight;
         setShowPrevButton(scrollPosition > 0);
@@ -45,13 +45,13 @@ const Scroller: React.FC<ScrollerProps> = ({
 
     if (
       scroller &&
-      (direction === "row"
+      (direction === 'row'
         ? scroller.scrollWidth > scroller.clientWidth
         : scroller.scrollHeight > scroller.clientHeight)
     ) {
       handleScroll();
-      scroller.addEventListener("scroll", handleScroll);
-      return () => scroller.removeEventListener("scroll", handleScroll);
+      scroller.addEventListener('scroll', handleScroll);
+      return () => scroller.removeEventListener('scroll', handleScroll);
     }
   }, [direction]);
 
@@ -59,10 +59,10 @@ const Scroller: React.FC<ScrollerProps> = ({
     const scroller = scrollerRef.current;
     if (scroller) {
       const scrollAmount =
-        direction === "row" ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
+        direction === 'row' ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
       scroller.scrollBy({
-        [direction === "row" ? "left" : "top"]: scrollAmount,
-        behavior: "smooth",
+        [direction === 'row' ? 'left' : 'top']: scrollAmount,
+        behavior: 'smooth',
       });
     }
   };
@@ -71,10 +71,10 @@ const Scroller: React.FC<ScrollerProps> = ({
     const scroller = scrollerRef.current;
     if (scroller) {
       const scrollAmount =
-        direction === "row" ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
+        direction === 'row' ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
       scroller.scrollBy({
-        [direction === "row" ? "left" : "top"]: -scrollAmount,
-        behavior: "smooth",
+        [direction === 'row' ? 'left' : 'top']: -scrollAmount,
+        behavior: 'smooth',
       });
     }
   };
@@ -91,7 +91,7 @@ const Scroller: React.FC<ScrollerProps> = ({
         },
         onKeyDown: (e: React.KeyboardEvent) => {
           childOnKeyDown?.(e);
-          if (e.key === "Enter" || e.key === " ") {
+          if (e.key === 'Enter' || e.key === ' ') {
             childOnClick?.(e as any);
             onItemClick?.(index);
           }
@@ -106,10 +106,10 @@ const Scroller: React.FC<ScrollerProps> = ({
       {showPrevButton && (
         <Fade to="right" width={4} fillHeight position="absolute" left="0" zIndex={1}>
           <IconButton
-            icon={direction === "row" ? "chevronLeft" : "chevronUp"}
+            icon={direction === 'row' ? 'chevronLeft' : 'chevronUp'}
             onClick={handleScrollPrev}
             onKeyDown={(e: React.KeyboardEvent) => {
-              if (e.key === "Enter" || e.key === " ") {
+              if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 handleScrollPrev();
               }
@@ -134,10 +134,10 @@ const Scroller: React.FC<ScrollerProps> = ({
       {showNextButton && (
         <Fade to="left" width={4} fillHeight position="absolute" right="0" zIndex={1}>
           <IconButton
-            icon={direction === "row" ? "chevronRight" : "chevronDown"}
+            icon={direction === 'row' ? 'chevronRight' : 'chevronDown'}
             onClick={handleScrollNext}
             onKeyDown={(e: React.KeyboardEvent) => {
-              if (e.key === "Enter" || e.key === " ") {
+              if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 handleScrollNext();
               }
@@ -153,7 +153,7 @@ const Scroller: React.FC<ScrollerProps> = ({
   );
 };
 
-Scroller.displayName = "Scroller";
+Scroller.displayName = 'Scroller';
 
 export { Scroller };
 export type { ScrollerProps };

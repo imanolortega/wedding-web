@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
+import React, { forwardRef } from 'react';
 
-import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from ".";
-import styles from "./Avatar.module.scss";
+import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from '.';
+import styles from './Avatar.module.scss';
 
 interface AvatarProps extends React.ComponentProps<typeof Flex> {
-  size?: "xs" | "s" | "m" | "l" | "xl" | number;
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl' | number;
   value?: string;
   src?: string;
   loading?: boolean;
   empty?: boolean;
   statusIndicator?: {
-    color: "green" | "yellow" | "red" | "gray";
+    color: 'green' | 'yellow' | 'red' | 'gray';
   };
   style?: React.CSSProperties;
   className?: string;
 }
 
-const sizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", number> = {
+const sizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', number> = {
   xs: 20,
   s: 24,
   m: 32,
@@ -26,20 +26,20 @@ const sizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", number> = {
   xl: 160,
 };
 
-const statusIndicatorSizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", "s" | "m" | "l"> = {
-  xs: "s",
-  s: "s",
-  m: "m",
-  l: "m",
-  xl: "l",
+const statusIndicatorSizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', 's' | 'm' | 'l'> = {
+  xs: 's',
+  s: 's',
+  m: 'm',
+  l: 'm',
+  xl: 'l',
 };
 
 const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
-    { size = "m", value, src, loading, empty, statusIndicator, className, style = {}, ...rest },
+    { size = 'm', value, src, loading, empty, statusIndicator, className, style = {}, ...rest },
     ref,
   ) => {
-    const sizeInRem = typeof size === "number" ? `${size}rem` : undefined;
+    const sizeInRem = typeof size === 'number' ? `${size}rem` : undefined;
     const sizeStyle = sizeInRem
       ? {
           width: sizeInRem,
@@ -61,8 +61,8 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           {...rest}
           border="neutral-medium"
           shape="circle"
-          width={typeof size === "number" ? "m" : size}
-          height={typeof size === "number" ? "m" : size}
+          width={typeof size === 'number' ? 'm' : size}
+          height={typeof size === 'number' ? 'm' : size}
           className={`${styles.avatar} ${className}`}
           aria-busy="true"
           aria-label="Loading avatar"
@@ -77,7 +77,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             onBackground="neutral-medium"
             name="person"
             size="m"
-            style={typeof size === "number" ? { fontSize: `${size}rem` } : undefined}
+            style={typeof size === 'number' ? { fontSize: `${size}rem` } : undefined}
             className={styles.icon}
             aria-label="Empty avatar"
           />
@@ -91,7 +91,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             src={src}
             fill
             alt="Avatar"
-            sizes={typeof size === "string" ? `${sizeMapping[size]}px` : `${size * 16}px`}
+            sizes={typeof size === 'string' ? `${sizeMapping[size]}px` : `${size * 16}px`}
             className={styles.image}
           />
         );
@@ -102,7 +102,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           <Text
             as="span"
             onBackground="neutral-weak"
-            variant={`body-default-${typeof size === "string" ? size : "m"}`}
+            variant={`body-default-${typeof size === 'string' ? size : 'm'}`}
             className={styles.value}
             aria-label={`Avatar with initials ${value}`}
           >
@@ -124,16 +124,16 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         border="neutral-strong"
         background="surface"
         style={sizeStyle}
-        className={`${styles.avatar} ${typeof size === "string" ? styles[size] : ""} ${className || ""}`}
+        className={`${styles.avatar} ${typeof size === 'string' ? styles[size] : ''} ${className || ''}`}
         {...rest}
       >
         {renderContent()}
         {statusIndicator && (
           <StatusIndicator
             position="absolute"
-            size={typeof size === "string" ? statusIndicatorSizeMapping[size] : "l"}
+            size={typeof size === 'string' ? statusIndicatorSizeMapping[size] : 'l'}
             color={statusIndicator.color}
-            className={`${styles.className || ""} ${styles.indicator} ${size === "xl" || (typeof size === "number" && size >= 10) ? styles.position : ""}`}
+            className={`${styles.className || ''} ${styles.indicator} ${size === 'xl' || (typeof size === 'number' && size >= 10) ? styles.position : ''}`}
             aria-label={`Status: ${statusIndicator.color}`}
           />
         )}
@@ -142,7 +142,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   },
 );
 
-Avatar.displayName = "Avatar";
+Avatar.displayName = 'Avatar';
 
 export { Avatar };
 export type { AvatarProps };

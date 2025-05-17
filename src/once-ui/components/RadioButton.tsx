@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, forwardRef } from "react";
-import classNames from "classnames";
-import { Flex, InteractiveDetails, InteractiveDetailsProps } from ".";
-import styles from "./SharedInteractiveStyles.module.scss";
+import React, { useState, useEffect, forwardRef } from 'react';
+import classNames from 'classnames';
+import { Flex, InteractiveDetails, InteractiveDetailsProps } from '.';
+import styles from './SharedInteractiveStyles.module.scss';
 
 interface RadioButtonProps
-  extends Omit<InteractiveDetailsProps, "onClick">,
+  extends Omit<InteractiveDetailsProps, 'onClick'>,
     React.InputHTMLAttributes<HTMLInputElement> {
   style?: React.CSSProperties;
   className?: string;
@@ -44,7 +44,7 @@ const RadioButton: React.FC<RadioButtonProps> = forwardRef<HTMLInputElement, Rad
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
       if (disabled) return;
-      if (event.key === "Enter" || event.key === " ") {
+      if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         toggleItem();
       }
@@ -91,7 +91,7 @@ const RadioButton: React.FC<RadioButtonProps> = forwardRef<HTMLInputElement, Rad
           {(controlledIsChecked !== undefined ? controlledIsChecked : isChecked) && (
             <Flex
               style={{
-                backgroundColor: "var(--neutral-on-solid-strong)",
+                backgroundColor: 'var(--neutral-on-solid-strong)',
               }}
               radius="full"
               width="12"
@@ -106,7 +106,7 @@ const RadioButton: React.FC<RadioButtonProps> = forwardRef<HTMLInputElement, Rad
   },
 );
 
-RadioButton.displayName = "RadioButton";
+RadioButton.displayName = 'RadioButton';
 
 export { RadioButton };
 export type { RadioButtonProps };

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle } from 'react';
 import {
   Row,
   Column,
@@ -12,7 +12,7 @@ import {
   Input,
   Select,
   Button,
-} from "@/once-ui/components";
+} from '@/once-ui/components';
 
 export interface AttendanceFormHandle {
   reset: () => void;
@@ -28,20 +28,20 @@ interface AttendanceFormProps {
   onSelect: (value: string) => void;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
-  addToast: (args: { variant: "success" | "danger"; message: string }) => void;
+  addToast: (args: { variant: 'success' | 'danger'; message: string }) => void;
 }
 
 const selectOptions = [
-  { label: "Voy Solo", value: "0", description: "Asisto solo" },
+  { label: 'Voy Solo', value: '0', description: 'Asisto solo' },
   {
-    label: "Una persona",
-    value: "1",
-    description: "Asisto con una persona",
+    label: 'Una persona',
+    value: '1',
+    description: 'Asisto con una persona',
   },
   {
-    label: "Dos personas",
-    value: "2",
-    description: "Asisto con dos personas",
+    label: 'Dos personas',
+    value: '2',
+    description: 'Asisto con dos personas',
   },
 ];
 
@@ -63,8 +63,8 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
   ) => {
     useImperativeHandle(ref, () => ({
       reset: () => {
-        setName("");
-        setLastName("");
+        setName('');
+        setLastName('');
         setAsistQuantity(0);
       },
     }));
@@ -88,9 +88,9 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             grid={{
               display: true,
               opacity: 50,
-              width: "0.5rem",
-              color: "neutral-alpha-medium",
-              height: "1rem",
+              width: '0.5rem',
+              color: 'neutral-alpha-medium',
+              height: '1rem',
             }}
           />
           <Heading as="h3" variant="display-default-s" align="center">
@@ -141,9 +141,9 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             onClick={async () => {
               setIsLoading(true);
               try {
-                const res = await fetch("/api/submit", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
+                const res = await fetch('/api/submit', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({
                     name,
                     lastName,
@@ -155,20 +155,20 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
 
                 if (result.success) {
                   addToast({
-                    variant: "success",
+                    variant: 'success',
                     message:
-                      "¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.",
+                      '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
                   });
-                  setName("");
-                  setLastName("");
+                  setName('');
+                  setLastName('');
                   setAsistQuantity(0);
                 } else {
-                  throw new Error("No se pudo enviar");
+                  throw new Error('No se pudo enviar');
                 }
               } catch (err) {
                 addToast({
-                  variant: "danger",
-                  message: "Error al enviar la confirmación. Intentá nuevamente.",
+                  variant: 'danger',
+                  message: 'Error al enviar la confirmación. Intentá nuevamente.',
                 });
               }
               setIsLoading(false);
@@ -180,5 +180,5 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
   },
 );
 
-AttendanceForm.displayName = "AttendanceForm";
+AttendanceForm.displayName = 'AttendanceForm';
 export { AttendanceForm };

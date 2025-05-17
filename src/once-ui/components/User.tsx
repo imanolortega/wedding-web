@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
-import classNames from "classnames";
+import React, { forwardRef } from 'react';
+import classNames from 'classnames';
 
-import { Flex, Text, Skeleton, Tag, TagProps, Avatar, AvatarProps } from ".";
+import { Flex, Text, Skeleton, Tag, TagProps, Avatar, AvatarProps } from '.';
 
 interface UserProps {
   name?: string;
@@ -69,7 +69,7 @@ const User = forwardRef<HTMLDivElement, UserProps>(
   },
 );
 
-User.displayName = "User";
+User.displayName = 'User';
 
 export { User };
 export type { UserProps };

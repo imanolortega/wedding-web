@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { forwardRef } from "react";
-import { Flex } from ".";
+import { forwardRef } from 'react';
+import { Flex } from '.';
 
 interface RowProps extends React.ComponentProps<typeof Flex> {
   children?: React.ReactNode;
@@ -15,5 +15,5 @@ const Row = forwardRef<HTMLDivElement, RowProps>(({ children, ...rest }, ref) =>
   );
 });
 
-Row.displayName = "Row";
+Row.displayName = 'Row';
 export { Row };

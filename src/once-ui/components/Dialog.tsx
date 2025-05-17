@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, {
   ReactNode,
@@ -8,13 +8,13 @@ import React, {
   forwardRef,
   useState,
   useContext,
-} from "react";
-import ReactDOM from "react-dom";
-import classNames from "classnames";
-import { Flex, Heading, IconButton, Text } from ".";
-import styles from "./Dialog.module.scss";
+} from 'react';
+import ReactDOM from 'react-dom';
+import classNames from 'classnames';
+import { Flex, Heading, IconButton, Text } from '.';
+import styles from './Dialog.module.scss';
 
-interface DialogProps extends Omit<React.ComponentProps<typeof Flex>, "title"> {
+interface DialogProps extends Omit<React.ComponentProps<typeof Flex>, 'title'> {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode | string;
@@ -103,10 +103,10 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (event.key === "Escape" && !base) {
+        if (event.key === 'Escape' && !base) {
           onClose();
         }
-        if (event.key === "Tab" && dialogRef.current) {
+        if (event.key === 'Tab' && dialogRef.current) {
           const focusableElements = dialogRef.current.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
           );
@@ -130,19 +130,19 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
 
     useEffect(() => {
       if (isOpen) {
-        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener('keydown', handleKeyDown);
         return () => {
-          document.removeEventListener("keydown", handleKeyDown);
+          document.removeEventListener('keydown', handleKeyDown);
         };
       }
     }, [isOpen, handleKeyDown]);
 
     useEffect(() => {
       if (isOpen) {
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
         // Make everything outside the dialog inert
         document.body.childNodes.forEach((node) => {
-          if (node instanceof HTMLElement && node !== document.getElementById("portal-root")) {
+          if (node instanceof HTMLElement && node !== document.getElementById('portal-root')) {
             node.inert = true;
           }
         });
@@ -172,7 +172,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
               node.inert = false;
             }
           });
-          document.body.style.overflow = "unset";
+          document.body.style.overflow = 'unset';
         }
       }
     }, [isOpen, stack]);
@@ -197,9 +197,9 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
       };
 
       if (isVisible) {
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
-          document.removeEventListener("mousedown", handleClickOutside);
+          document.removeEventListener('mousedown', handleClickOutside);
         };
       }
     }, [isVisible, onClose, stack, base]);
@@ -231,7 +231,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
           center
           transition="macro-medium"
           style={{
-            transform: base ? "scale(0.94) translateY(-1.25rem)" : "",
+            transform: base ? 'scale(0.94) translateY(-1.25rem)' : '',
           }}
         >
           <Flex
@@ -251,7 +251,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
             direction="column"
             tabIndex={-1}
             onKeyDown={(e) => {
-              if (e.key === "Tab") {
+              if (e.key === 'Tab') {
                 const focusableElements = Array.from(
                   dialogRef.current?.querySelectorAll(
                     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
@@ -283,7 +283,7 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
               gap="4"
             >
               <Flex fillWidth horizontal="space-between" gap="8">
-                {typeof title === "string" ? (
+                {typeof title === 'string' ? (
                   <Heading id="dialog-title" variant="heading-strong-l">
                     {title}
                   </Heading>
@@ -327,6 +327,6 @@ const Dialog: React.FC<DialogProps> = forwardRef<HTMLDivElement, DialogProps>(
   },
 );
 
-Dialog.displayName = "Dialog";
+Dialog.displayName = 'Dialog';
 
 export { Dialog };

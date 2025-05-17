@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef, useCallback, useMemo, ReactNode } from "react";
-import { Flex, Text, Icon, Column, Input, Option, Row } from ".";
-import { createPortal } from "react-dom";
-import { useRouter, usePathname } from "next/navigation";
-import styles from "./Kbar.module.scss";
+import React, { useState, useEffect, useRef, useCallback, useMemo, ReactNode } from 'react';
+import { Flex, Text, Icon, Column, Input, Option, Row } from '.';
+import { createPortal } from 'react-dom';
+import { useRouter, usePathname } from 'next/navigation';
+import styles from './Kbar.module.scss';
 
 export interface KbarItem {
   id: string;
@@ -51,7 +51,7 @@ interface KbarContentProps {
 }
 
 export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -151,21 +151,21 @@ export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items
       if (!nonCustomOptions.length) return;
 
       switch (e.key) {
-        case "ArrowDown":
+        case 'ArrowDown':
           e.preventDefault();
           setHighlightedIndex((prevIndex) => {
             if (prevIndex === null) return 0;
             return (prevIndex + 1) % nonCustomOptions.length;
           });
           break;
-        case "ArrowUp":
+        case 'ArrowUp':
           e.preventDefault();
           setHighlightedIndex((prevIndex) => {
             if (prevIndex === null) return nonCustomOptions.length - 1;
             return (prevIndex - 1 + nonCustomOptions.length) % nonCustomOptions.length;
           });
           break;
-        case "Enter":
+        case 'Enter':
           e.preventDefault();
           if (highlightedIndex !== null && highlightedIndex < nonCustomOptions.length) {
             const selectedOption = nonCustomOptions[highlightedIndex];
@@ -219,17 +219,17 @@ export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items
   // Handle escape key
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === 'Escape') {
         handleClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscapeKey);
+      document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
+      document.removeEventListener('keydown', handleEscapeKey);
     };
   }, [isOpen, handleClose]);
 
@@ -237,22 +237,22 @@ export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items
   useEffect(() => {
     if (isOpen) {
       // Prevent body scrolling when kbar is open
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
       // Restore body scrolling when kbar is closed
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
       // Cleanup function to ensure body scroll is restored
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
   // Clear search query when kbar is closed
   useEffect(() => {
     if (!isOpen) {
-      setSearchQuery("");
+      setSearchQuery('');
       setHighlightedIndex(null);
     } else {
       // Set the first item as highlighted when opened
@@ -293,7 +293,7 @@ export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items
       zIndex={10}
       center
       background="overlay"
-      className={`${styles.overlay} ${isClosing ? styles.closing : ""}`}
+      className={`${styles.overlay} ${isClosing ? styles.closing : ''}`}
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           handleClose();
@@ -310,7 +310,7 @@ export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items
         border="neutral-alpha-medium"
         overflow="hidden"
         shadow="l"
-        className={`${styles.content} ${isClosing ? styles.closing : ""}`}
+        className={`${styles.content} ${isClosing ? styles.closing : ''}`}
         onClick={(e) => e.stopPropagation()}
       >
         <Flex fillWidth position="relative">
@@ -326,9 +326,9 @@ export const KbarContent: React.FC<KbarContentProps> = ({ isOpen, onClose, items
             radius="none"
             autoComplete="off"
             style={{
-              marginTop: "-1px",
-              marginLeft: "-1px",
-              width: "calc(100% + 2px)",
+              marginTop: '-1px',
+              marginLeft: '-1px',
+              width: 'calc(100% + 2px)',
             }}
           />
         </Flex>
@@ -409,18 +409,18 @@ export const Kbar: React.FC<KbarProps> = ({ items, children, ...rest }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Check for Command+K (Mac) or Control+K (Windows/Linux)
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault(); // Prevent default browser behavior
         setIsOpen((prev) => !prev); // Toggle Kbar open/close
       }
     };
 
     // Add the event listener
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     // Clean up the event listener on component unmount
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 

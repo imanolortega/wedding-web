@@ -1,8 +1,8 @@
-import { wedding } from "@/app/resources/config";
-import { Background, Card, Column, Row, Text } from "@/once-ui/components";
-import React, { forwardRef } from "react";
+import { wedding } from '@/app/resources/config';
+import { Background, Card, Column, Row, Text } from '@/once-ui/components';
+import React, { forwardRef } from 'react';
 
-import { Map } from "@/sections";
+import { Map } from '@/sections';
 
 export interface WeddingInfo {}
 
@@ -26,9 +26,9 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
           position="absolute"
           grid={{
             display: true,
-            width: "0.25rem",
-            color: "brand-alpha-strong",
-            height: "0.25rem",
+            width: '0.25rem',
+            color: 'brand-alpha-strong',
+            height: '0.25rem',
           }}
         />
         <Row position="relative" textVariant="display-default-m" align="center">
@@ -46,7 +46,7 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
               gap="8"
               background="page"
               direction="column"
-              borderRight={index < wedding.length - 1 ? "neutral-alpha-weak" : undefined}
+              borderRight={index < wedding.length - 1 ? 'neutral-alpha-weak' : undefined}
               border={undefined}
             >
               <Row fillWidth center gap="12">
@@ -72,9 +72,9 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
           position="absolute"
           grid={{
             display: true,
-            width: "0.25rem",
-            color: "brand-alpha-strong",
-            height: "0.25rem",
+            width: '0.25rem',
+            color: 'brand-alpha-strong',
+            height: '0.25rem',
           }}
         />
         <Column
@@ -92,5 +92,5 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
     </>
   );
 });
-WeddingInfo.displayName = "WeddingInfo";
+WeddingInfo.displayName = 'WeddingInfo';
 export { WeddingInfo };

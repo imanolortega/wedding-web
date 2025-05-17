@@ -1,5 +1,5 @@
-import React from "react";
-import { Column, Accordion, Line, Flex } from "@/once-ui/components";
+import React from 'react';
+import { Column, Accordion, Line, Flex } from '@/once-ui/components';
 
 export type AccordionItem = {
   title: React.ReactNode;
@@ -8,10 +8,10 @@ export type AccordionItem = {
 
 export interface AccordionGroupProps extends React.ComponentProps<typeof Flex> {
   items: AccordionItem[];
-  size?: "s" | "m" | "l";
+  size?: 's' | 'm' | 'l';
 }
 
-const AccordionGroup: React.FC<AccordionGroupProps> = ({ items, size = "m", ...rest }) => {
+const AccordionGroup: React.FC<AccordionGroupProps> = ({ items, size = 'm', ...rest }) => {
   if (!items || items.length === 0) {
     return null;
   }
@@ -30,5 +30,5 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({ items, size = "m", ...r
   );
 };
 
-AccordionGroup.displayName = "AccordionGroup";
+AccordionGroup.displayName = 'AccordionGroup';
 export { AccordionGroup };

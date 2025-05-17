@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useRef, forwardRef } from "react";
-import { Flex, Input, InputProps, IconButton, Icon } from ".";
+import React, { useRef, forwardRef } from 'react';
+import { Flex, Input, InputProps, IconButton, Icon } from '.';
 
-interface ColorInputProps extends Omit<InputProps, "onChange" | "value"> {
+interface ColorInputProps extends Omit<InputProps, 'onChange' | 'value'> {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -20,13 +20,13 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
 
     const handleReset = () => {
       onChange({
-        target: { value: "" },
+        target: { value: '' },
       } as React.ChangeEvent<HTMLInputElement>);
     };
 
     return (
       <Input
-        style={{ cursor: "pointer" }}
+        style={{ cursor: 'pointer' }}
         id={id}
         ref={colorInputRef}
         label={label}
@@ -37,10 +37,10 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
           <Flex>
             <Flex
               style={{
-                width: value ? "var(--static-space-0)" : "var(--static-space-20)",
-                transform: value ? "scale(0)" : "scale(1)",
-                opacity: value ? "0" : "1",
-                transition: "0.2s ease-in-out all",
+                width: value ? 'var(--static-space-0)' : 'var(--static-space-20)',
+                transform: value ? 'scale(0)' : 'scale(1)',
+                opacity: value ? '0' : '1',
+                transition: '0.2s ease-in-out all',
               }}
             >
               <Flex padding="2">
@@ -49,37 +49,37 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
             </Flex>
             <Flex
               border="neutral-strong"
-              className={`prefix ${value ? "" : "hidden"}`}
+              className={`prefix ${value ? '' : 'hidden'}`}
               onClick={handleHexClick}
               height="20"
               radius="xs"
               style={{
                 backgroundColor: value,
-                cursor: "pointer",
-                width: value ? "var(--static-space-20)" : "var(--static-space-0)",
-                transform: value ? "scale(1)" : "scale(0)",
-                opacity: value ? "1" : "0",
-                transition: "0.2s ease-in-out all",
+                cursor: 'pointer',
+                width: value ? 'var(--static-space-20)' : 'var(--static-space-0)',
+                transform: value ? 'scale(1)' : 'scale(0)',
+                opacity: value ? '1' : '0',
+                transition: '0.2s ease-in-out all',
               }}
             ></Flex>
           </Flex>
         }
         hasSuffix={
           <Flex
-            className={`suffix ${value ? "" : "hidden"}`}
+            className={`suffix ${value ? '' : 'hidden'}`}
             position="absolute"
             style={{
-              left: "var(--static-space-48)",
-              cursor: "pointer",
-              width: "calc(100% - var(--static-space-48))",
+              left: 'var(--static-space-48)',
+              cursor: 'pointer',
+              width: 'calc(100% - var(--static-space-48))',
             }}
           >
             <Flex
               onClick={handleHexClick}
               fillWidth
               style={{
-                opacity: value ? "1" : "0",
-                transition: "opacity 0.2s ease-in-out",
+                opacity: value ? '1' : '0',
+                transition: 'opacity 0.2s ease-in-out',
               }}
             >
               {value}
@@ -92,9 +92,9 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
                 tooltipPosition="left"
                 icon="close"
                 style={{
-                  position: "absolute",
-                  right: "var(--static-space-12)",
-                  transform: "translateY(-50%)",
+                  position: 'absolute',
+                  right: 'var(--static-space-12)',
+                  transform: 'translateY(-50%)',
                 }}
               />
             )}
@@ -106,6 +106,6 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
   },
 );
 
-ColorInput.displayName = "ColorInput";
+ColorInput.displayName = 'ColorInput';
 
 export { ColorInput };

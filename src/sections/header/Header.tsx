@@ -1,5 +1,5 @@
-import React, { forwardRef } from "react";
-import { Row, Logo, Button, IconButton } from "@/once-ui/components";
+import React, { forwardRef } from 'react';
+import { Row, Logo, Button, IconButton } from '@/once-ui/components';
 
 export interface HeaderHandle {}
 
@@ -14,7 +14,7 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         paddingLeft="32"
         paddingY="20"
       >
-        <Logo icon={false} href="/" size="m" wordmarkSrc={"/images/ml-logo.png"} />
+        <Logo icon={false} href="/" size="m" wordmarkSrc={'/images/ml-logo.png'} />
         <Row gap="12" hide="s">
           <Button
             href="https://wa.me/5493853122118"
@@ -50,5 +50,5 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
   );
 });
 
-Header.displayName = "Header";
+Header.displayName = 'Header';
 export { Header };

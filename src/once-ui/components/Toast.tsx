@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, forwardRef } from "react";
-import { IconButton, Icon, Flex, Text } from ".";
-import classNames from "classnames";
-import styles from "./Toast.module.scss";
-import { IconName } from "../icons";
+import React, { useEffect, useState, forwardRef } from 'react';
+import { IconButton, Icon, Flex, Text } from '.';
+import classNames from 'classnames';
+import styles from './Toast.module.scss';
+import { IconName } from '../icons';
 
 interface ToastProps {
   className?: string;
-  variant: "success" | "danger";
+  variant: 'success' | 'danger';
   icon?: boolean;
   onClose?: () => void;
   action?: React.ReactNode;
   children: React.ReactNode;
 }
 
-const iconMap: { [key in ToastProps["variant"]]: IconName } = {
-  success: "checkCircle",
-  danger: "errorCircle",
+const iconMap: { [key in ToastProps['variant']]: IconName } = {
+  success: 'checkCircle',
+  danger: 'errorCircle',
 };
 
 const Toast = forwardRef<HTMLDivElement, ToastProps>(
@@ -53,7 +53,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
       >
         <Flex fillWidth vertical="center" gap="8">
           {icon && <Icon size="s" onBackground={`${variant}-medium`} name={iconMap[variant]} />}
-          <Text variant="body-default-s" style={{ width: "100%" }} as="div">
+          <Text variant="body-default-s" style={{ width: '100%' }} as="div">
             {children}
           </Text>
           {action && <div>{action}</div>}
@@ -73,6 +73,6 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
   },
 );
 
-Toast.displayName = "Toast";
+Toast.displayName = 'Toast';
 
 export { Toast };

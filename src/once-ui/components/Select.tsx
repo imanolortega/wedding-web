@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import React, { useState, useRef, useEffect, forwardRef, ReactNode } from "react";
-import classNames from "classnames";
-import { DropdownWrapper, Flex, Icon, IconButton, Input, InputProps, Option } from ".";
-import inputStyles from "./Input.module.scss";
-import type { OptionProps } from "./Option";
-import type { DropdownWrapperProps } from "./DropdownWrapper";
-import { Placement } from "@floating-ui/react-dom";
+import React, { useState, useRef, useEffect, forwardRef, ReactNode } from 'react';
+import classNames from 'classnames';
+import { DropdownWrapper, Flex, Icon, IconButton, Input, InputProps, Option } from '.';
+import inputStyles from './Input.module.scss';
+import type { OptionProps } from './Option';
+import type { DropdownWrapperProps } from './DropdownWrapper';
+import { Placement } from '@floating-ui/react-dom';
 
-type SelectOptionType = Omit<OptionProps, "selected">;
+type SelectOptionType = Omit<OptionProps, 'selected'>;
 
 interface SelectProps
-  extends Omit<InputProps, "onSelect" | "value">,
-    Pick<DropdownWrapperProps, "minHeight" | "minWidth" | "maxWidth"> {
+  extends Omit<InputProps, 'onSelect' | 'value'>,
+    Pick<DropdownWrapperProps, 'minHeight' | 'minWidth' | 'maxWidth'> {
   options: SelectOptionType[];
   value?: string;
   emptyState?: ReactNode;
@@ -27,10 +27,10 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
   (
     {
       options,
-      value = "",
+      value = '',
       onSelect,
       searchable = false,
-      emptyState = "No results",
+      emptyState = 'No results',
       minHeight,
       minWidth,
       maxWidth,
@@ -48,7 +48,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
       if (!options?.length || !value) return null;
       return options.findIndex((option) => option.value === value);
     });
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
     const selectRef = useRef<HTMLDivElement | null>(null);
     const clearButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -70,13 +70,13 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (!isFocused && event.key !== "Enter") return;
+      if (!isFocused && event.key !== 'Enter') return;
 
       switch (event.key) {
-        case "Escape":
+        case 'Escape':
           setIsDropdownOpen(false);
           break;
-        case "ArrowDown":
+        case 'ArrowDown':
           if (!isDropdownOpen) {
             setIsDropdownOpen(true);
             break;
@@ -89,7 +89,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
           });
           break;
 
-        case "ArrowUp":
+        case 'ArrowUp':
           event.preventDefault();
           setHighlightedIndex((prevIndex) => {
             const newIndex =
@@ -98,7 +98,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
           });
           break;
 
-        case "Enter":
+        case 'Enter':
           event.preventDefault();
           if (highlightedIndex !== null && isDropdownOpen) {
             handleSelect(options[highlightedIndex].value);
@@ -115,9 +115,9 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     const handleClearSearch = (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      setSearchQuery("");
+      setSearchQuery('');
       // Force focus back to the input after clearing
-      const input = selectRef.current?.querySelector("input");
+      const input = selectRef.current?.querySelector('input');
       if (input) {
         input.focus();
       }
@@ -140,12 +140,12 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
         }
       };
 
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("focusout", handleFocusOut);
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('focusout', handleFocusOut);
 
       return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-        document.removeEventListener("focusout", handleFocusOut);
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('focusout', handleFocusOut);
       };
     }, []);
 
@@ -154,7 +154,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
         fillWidth
         ref={(node) => {
           selectRef.current = node;
-          if (typeof ref === "function") ref(node);
+          if (typeof ref === 'function') ref(node);
           else if (ref) ref.current = node;
         }}
         isOpen={isDropdownOpen}
@@ -165,14 +165,14 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
           <Input
             {...rest}
             style={{
-              textOverflow: "ellipsis",
+              textOverflow: 'ellipsis',
               ...style,
             }}
             value={value}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             readOnly
-            className={classNames("cursor-interactive", "fill-width", {
+            className={classNames('cursor-interactive', 'fill-width', {
               [inputStyles.filled]: isFilled,
               [inputStyles.focused]: isFocused,
               className,
@@ -188,9 +188,9 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                 <Input
                   data-scaling="90"
                   style={{
-                    marginTop: "-1px",
-                    marginLeft: "-1px",
-                    width: "calc(100% + 2px)",
+                    marginTop: '-1px',
+                    marginLeft: '-1px',
+                    width: 'calc(100% + 2px)',
                   }}
                   labelAsPlaceholder
                   id="search"
@@ -251,5 +251,5 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
   },
 );
 
-Select.displayName = "Select";
+Select.displayName = 'Select';
 export { Select };

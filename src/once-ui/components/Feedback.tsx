@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { forwardRef, ReactNode } from "react";
-import { IconButton, Button, Icon, Flex, Text } from ".";
+import React, { forwardRef, ReactNode } from 'react';
+import { IconButton, Button, Icon, Flex, Text } from '.';
 
-interface FeedbackProps extends Omit<React.ComponentProps<typeof Flex>, "title"> {
-  variant?: "info" | "danger" | "warning" | "success";
+interface FeedbackProps extends Omit<React.ComponentProps<typeof Flex>, 'title'> {
+  variant?: 'info' | 'danger' | 'warning' | 'success';
   icon?: boolean;
   title?: string;
   description?: string;
@@ -15,18 +15,18 @@ interface FeedbackProps extends Omit<React.ComponentProps<typeof Flex>, "title">
 }
 
 const variantIconMap: {
-  [key in "info" | "danger" | "warning" | "success"]: string;
+  [key in 'info' | 'danger' | 'warning' | 'success']: string;
 } = {
-  info: "infoCircle",
-  danger: "errorCircle",
-  warning: "warningTriangle",
-  success: "checkCircle",
+  info: 'infoCircle',
+  danger: 'errorCircle',
+  warning: 'warningTriangle',
+  success: 'checkCircle',
 };
 
 const Feedback = forwardRef<HTMLDivElement, FeedbackProps>(
   (
     {
-      variant = "info",
+      variant = 'info',
       icon,
       title,
       description,
@@ -111,5 +111,5 @@ const Feedback = forwardRef<HTMLDivElement, FeedbackProps>(
   },
 );
 
-Feedback.displayName = "Feedback";
+Feedback.displayName = 'Feedback';
 export { Feedback };

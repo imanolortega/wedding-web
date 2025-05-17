@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, {
   useState,
@@ -7,29 +7,29 @@ import React, {
   InputHTMLAttributes,
   useCallback,
   ReactNode,
-} from "react";
-import classNames from "classnames";
-import { Flex, Text } from ".";
-import styles from "./Input.module.scss";
-import useDebounce from "../hooks/useDebounce";
+} from 'react';
+import classNames from 'classnames';
+import { Flex, Text } from '.';
+import styles from './Input.module.scss';
+import useDebounce from '../hooks/useDebounce';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
-  height?: "s" | "m";
+  height?: 's' | 'm';
   error?: boolean;
   errorMessage?: ReactNode;
   description?: ReactNode;
   radius?:
-    | "none"
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top-left"
-    | "top-right"
-    | "bottom-right"
-    | "bottom-left";
+    | 'none'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-right'
+    | 'bottom-left';
   className?: string;
   style?: React.CSSProperties;
   hasPrefix?: ReactNode;
@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     {
       id,
       label,
-      height = "m",
+      height = 'm',
       error = false,
       errorMessage,
       description,
@@ -109,14 +109,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const displayError = validationError || errorMessage;
 
-    const inputClassNames = classNames(styles.input, "font-body", "font-default", "font-m", {
+    const inputClassNames = classNames(styles.input, 'font-body', 'font-default', 'font-m', {
       [styles.filled]: isFilled,
       [styles.focused]: isFocused,
       [styles.withPrefix]: hasPrefix,
       [styles.withSuffix]: hasSuffix,
       [styles.labelAsPlaceholder]: labelAsPlaceholder,
       [styles.hasChildren]: children,
-      [styles.error]: displayError && debouncedValue !== "",
+      [styles.error]: displayError && debouncedValue !== '',
     });
 
     return (
@@ -127,7 +127,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         fillWidth
         fitHeight
         className={classNames(className, {
-          [styles.error]: (error || (displayError && debouncedValue !== "")) && props.value !== "",
+          [styles.error]: (error || (displayError && debouncedValue !== '')) && props.value !== '',
         })}
       >
         <Flex
@@ -139,12 +139,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           className={classNames(
             styles.base,
             {
-              [styles.s]: height === "s",
+              [styles.s]: height === 's',
             },
             {
-              [styles.m]: height === "m",
+              [styles.m]: height === 'm',
             },
-            radius === "none" ? "radius-none" : radius ? `radius-l-${radius}` : "radius-l",
+            radius === 'none' ? 'radius-none' : radius ? `radius-l-${radius}` : 'radius-l',
           )}
         >
           {hasPrefix && (
@@ -208,7 +208,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export { Input };
 export type { InputProps };

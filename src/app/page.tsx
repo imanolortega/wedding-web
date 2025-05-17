@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import type React from "react";
-import { useState } from "react";
+import type React from 'react';
+import { useState } from 'react';
 
-import { Background, Column, Fade, IconButton, useToast } from "@/once-ui/components";
-import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
+import { Background, Column, Fade, IconButton, useToast } from '@/once-ui/components';
+import { ScrollToTop } from '@/once-ui/components/ScrollToTop';
 
-import { AttendanceForm, Footer, Gallery, Header, Hero } from "@/sections";
-import { EventInfo } from "@/sections/event-info/EventInfo";
-import { WeddingInfo } from "@/sections/wedding-info/WeddingInfo";
+import { AttendanceForm, Footer, Gallery, Header, Hero } from '@/sections';
+import { EventInfo } from '@/sections/event-info/EventInfo';
+import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo';
 
 export default function Home() {
   const { addToast } = useToast();
   const [asistQuantity, setAsistQuantity] = useState(0);
-  const [lastName, setLastName] = useState("");
-  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const onSelect = (value: string) => {
@@ -30,7 +30,7 @@ export default function Home() {
         zIndex={3}
         pattern={{
           display: true,
-          size: "2",
+          size: '2',
         }}
         position="fixed"
         top="0"
@@ -67,9 +67,9 @@ export default function Home() {
             position="absolute"
             grid={{
               display: true,
-              width: "0.25rem",
-              color: "neutral-alpha-medium",
-              height: "0.25rem",
+              width: '0.25rem',
+              color: 'neutral-alpha-medium',
+              height: '0.25rem',
             }}
           />
           <Background
@@ -86,8 +86,8 @@ export default function Home() {
               width: 75,
               x: 100,
               y: 40,
-              colorStart: "accent-solid-medium",
-              colorEnd: "static-transparent",
+              colorStart: 'accent-solid-medium',
+              colorEnd: 'static-transparent',
             }}
           />
           <Background

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { forwardRef, useEffect, useState, useRef, useCallback } from "react";
-import { Column, Flex, Row, SmartLink, Text } from "@/once-ui/components";
-import { useHeadingLinks } from "@/once-ui/hooks/generateHeadingLinks";
+import React, { forwardRef, useEffect, useState, useRef, useCallback } from 'react';
+import { Column, Flex, Row, SmartLink, Text } from '@/once-ui/components';
+import { useHeadingLinks } from '@/once-ui/hooks/generateHeadingLinks';
 
 interface props extends React.ComponentProps<typeof Flex> {}
 
@@ -115,7 +115,7 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -134,7 +134,7 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
         }
       },
       {
-        rootMargin: "-150px 0px -30% 0px",
+        rootMargin: '-150px 0px -30% 0px',
         threshold: [0, 0.1, 0.5, 1],
       },
     );
@@ -145,7 +145,7 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
       }
     });
 
-    window.addEventListener("resize", calculateHeadingPositions);
+    window.addEventListener('resize', calculateHeadingPositions);
 
     findActiveHeading();
 
@@ -155,8 +155,8 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
           if (element) observerRef.current?.unobserve(element);
         });
       }
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", calculateHeadingPositions);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', calculateHeadingPositions);
 
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
@@ -186,7 +186,7 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
           position="absolute"
           style={{
             top: `calc(${activeIndex} * var(--static-space-32))`,
-            transition: "top 0.3s ease",
+            transition: 'top 0.3s ease',
           }}
         >
           <Row fillWidth solid="brand-strong" radius="full" />
@@ -201,7 +201,7 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
             <Flex key={heading.id} fillWidth height="32" paddingX="4">
               <SmartLink
                 fillWidth
-                href={"#" + heading.id}
+                href={'#' + heading.id}
                 onClick={(e) => {
                   e.preventDefault();
                   const target = document.getElementById(heading.id);
@@ -210,7 +210,7 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
                       target.getBoundingClientRect().top + window.scrollY - 150;
                     window.scrollTo({
                       top: targetPosition,
-                      behavior: "smooth",
+                      behavior: 'smooth',
                     });
 
                     handleHeadingClick(heading.id, index);
@@ -219,18 +219,18 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
                 style={{
                   paddingLeft: `calc(${indent} * var(--static-space-8))`,
                   color: isActive
-                    ? "var(--neutral-on-background-strong)"
-                    : "var(--neutral-on-background-weak)",
-                  transition: "color 0.2s ease",
+                    ? 'var(--neutral-on-background-strong)'
+                    : 'var(--neutral-on-background-weak)',
+                  transition: 'color 0.2s ease',
                 }}
               >
                 <Text
-                  variant={isActive ? "body-strong-s" : "body-default-s"}
+                  variant={isActive ? 'body-strong-s' : 'body-default-s'}
                   style={{
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    whiteSpace: "nowrap",
-                    transition: "font-weight 0.2s ease",
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    transition: 'font-weight 0.2s ease',
                   }}
                 >
                   {heading.text}
@@ -244,5 +244,5 @@ const HeadingNav = forwardRef<HTMLDivElement, props>(({ className, style, ...res
   );
 });
 
-HeadingNav.displayName = "HeadingNav";
+HeadingNav.displayName = 'HeadingNav';
 export { HeadingNav };

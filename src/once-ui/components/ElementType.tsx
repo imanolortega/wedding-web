@@ -1,6 +1,6 @@
-import Link from "next/link";
-import React, { ReactNode, forwardRef } from "react";
-import { Flex } from "./Flex";
+import Link from 'next/link';
+import React, { ReactNode, forwardRef } from 'react';
+import { Flex } from './Flex';
 
 interface ElementTypeProps {
   href?: string;
@@ -48,7 +48,7 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
       );
     }
 
-    if (onClick || type === "submit" || type === "button") {
+    if (onClick || type === 'submit' || type === 'button') {
       return (
         <button
           ref={ref as React.Ref<HTMLButtonElement>}
@@ -75,5 +75,5 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
   },
 );
 
-ElementType.displayName = "ElementType";
+ElementType.displayName = 'ElementType';
 export { ElementType };

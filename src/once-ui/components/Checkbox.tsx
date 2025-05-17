@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, forwardRef } from "react";
-import classNames from "classnames";
-import { Flex, Icon, InteractiveDetails, InteractiveDetailsProps } from ".";
-import styles from "./SharedInteractiveStyles.module.scss";
+import React, { useState, useEffect, forwardRef } from 'react';
+import classNames from 'classnames';
+import { Flex, Icon, InteractiveDetails, InteractiveDetailsProps } from '.';
+import styles from './SharedInteractiveStyles.module.scss';
 
 interface CheckboxProps
-  extends Omit<InteractiveDetailsProps, "onClick">,
+  extends Omit<InteractiveDetailsProps, 'onClick'>,
     React.InputHTMLAttributes<HTMLInputElement> {
   isChecked?: boolean;
   isIndeterminate?: boolean;
@@ -48,7 +48,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
       if (disabled) return;
-      if (event.key === "Enter" || event.key === " ") {
+      if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         toggleItem();
       }
@@ -68,7 +68,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           ref={ref}
           aria-checked={
             isIndeterminate
-              ? "mixed"
+              ? 'mixed'
               : controlledIsChecked !== undefined
                 ? controlledIsChecked
                 : isChecked
@@ -81,7 +81,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
         />
         <Flex
           style={{
-            borderRadius: "min(var(--static-space-4), var(--radius-xs))",
+            borderRadius: 'min(var(--static-space-4), var(--radius-xs))',
           }}
           role="checkbox"
           position="relative"
@@ -91,7 +91,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           radius="xs"
           aria-checked={
             isIndeterminate
-              ? "mixed"
+              ? 'mixed'
               : controlledIsChecked !== undefined
                 ? controlledIsChecked
                 : isChecked
@@ -125,7 +125,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
   },
 );
 
-Checkbox.displayName = "Checkbox";
+Checkbox.displayName = 'Checkbox';
 
 export { Checkbox };
 export type { CheckboxProps };

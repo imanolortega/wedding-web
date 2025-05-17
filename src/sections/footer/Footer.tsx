@@ -1,6 +1,6 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef } from 'react';
 
-import { Background, Column, Logo, Row, SmartLink, Text } from "@/once-ui/components";
+import { Background, Column, Logo, Row, SmartLink, Text } from '@/once-ui/components';
 
 export interface Footer {}
 const Footer = forwardRef<Footer>((_, ref) => {
@@ -15,9 +15,9 @@ const Footer = forwardRef<Footer>((_, ref) => {
         position="absolute"
         grid={{
           display: true,
-          width: "0.25rem",
-          color: "brand-alpha-strong",
-          height: "0.25rem",
+          width: '0.25rem',
+          color: 'brand-alpha-strong',
+          height: '0.25rem',
         }}
       />
       <Column
@@ -31,7 +31,7 @@ const Footer = forwardRef<Footer>((_, ref) => {
       >
         <Logo wordmark={false} size="s" />
         <Text size="m">
-          <Text onBackground="neutral-weak">2025 /</Text> Web por{" "}
+          <Text onBackground="neutral-weak">2025 /</Text> Web por{' '}
           <SmartLink href="https://www.instagram.com/imanol.oc/">IOC</SmartLink>
         </Text>
       </Column>
@@ -39,5 +39,5 @@ const Footer = forwardRef<Footer>((_, ref) => {
   );
 });
 
-Footer.displayName = "Footer";
+Footer.displayName = 'Footer';
 export { Footer };

@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import React, { forwardRef, useState, useEffect, ReactNode } from "react";
-import { ElementType } from "./ElementType";
-import { Flex, Icon, Tooltip } from ".";
-import buttonStyles from "./Button.module.scss";
-import iconStyles from "./IconButton.module.scss";
-import classNames from "classnames";
-import { IconName } from "../icons";
+import React, { forwardRef, useState, useEffect, ReactNode } from 'react';
+import { ElementType } from './ElementType';
+import { Flex, Icon, Tooltip } from '.';
+import buttonStyles from './Button.module.scss';
+import iconStyles from './IconButton.module.scss';
+import classNames from 'classnames';
+import { IconName } from '../icons';
 
 interface CommonProps {
   icon?: IconName;
   id?: string;
-  size?: "s" | "m" | "l";
+  size?: 's' | 'm' | 'l';
   radius?:
-    | "none"
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top-left"
-    | "top-right"
-    | "bottom-right"
-    | "bottom-left";
+    | 'none'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-right'
+    | 'bottom-left';
   tooltip?: string;
-  tooltipPosition?: "top" | "bottom" | "left" | "right";
-  variant?: "primary" | "secondary" | "tertiary" | "danger" | "ghost";
+  tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'ghost';
   className?: string;
   style?: React.CSSProperties;
   href?: string;
@@ -37,13 +37,13 @@ type AnchorProps = CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
   (
     {
-      icon = "refresh",
-      size = "m",
+      icon = 'refresh',
+      size = 'm',
       id,
       radius,
       tooltip,
-      tooltipPosition = "top",
-      variant = "primary",
+      tooltipPosition = 'top',
+      variant = 'primary',
       href,
       children,
       className,
@@ -79,7 +79,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
       </>
     );
 
-    const radiusSize = size === "s" || size === "m" ? "m" : "l";
+    const radiusSize = size === 's' || size === 'm' ? 'm' : 'l';
 
     return (
       <ElementType
@@ -91,14 +91,14 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
           buttonStyles[variant],
           iconStyles[size],
           className,
-          radius === "none"
-            ? "radius-none"
+          radius === 'none'
+            ? 'radius-none'
             : radius
               ? `radius-${radiusSize}-${radius}`
               : `radius-${radiusSize}`,
-          "text-decoration-none",
-          "button",
-          "cursor-interactive",
+          'text-decoration-none',
+          'button',
+          'cursor-interactive',
           className,
         )}
         style={style}
@@ -115,5 +115,5 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
   },
 );
 
-IconButton.displayName = "IconButton";
+IconButton.displayName = 'IconButton';
 export { IconButton };

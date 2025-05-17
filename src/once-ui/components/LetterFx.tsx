@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useRef, useCallback, useEffect, forwardRef, ReactNode } from "react";
-import classNames from "classnames";
+import React, { useState, useRef, useCallback, useEffect, forwardRef, ReactNode } from 'react';
+import classNames from 'classnames';
 
-const defaultCharset = ["X", "$", "@", "a", "H", "z", "o", "0", "y", "#", "?", "*", "0", "1", "+"];
+const defaultCharset = ['X', '$', '@', 'a', 'H', 'z', 'o', '0', 'y', '#', '?', '*', '0', '1', '+'];
 
 function getRandomCharacter(charset: string[]): string {
   const randomIndex = Math.floor(Math.random() * charset.length);
@@ -15,7 +15,7 @@ function createEventHandler(
   setText: React.Dispatch<React.SetStateAction<string>>,
   inProgress: boolean,
   setInProgress: React.Dispatch<React.SetStateAction<boolean>>,
-  speed: "fast" | "medium" | "slow",
+  speed: 'fast' | 'medium' | 'slow',
   charset: string[],
   setHasAnimated?: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
@@ -41,9 +41,9 @@ function createEventHandler(
 
   const generateRandomText = () =>
     originalText
-      .split("")
-      .map((char) => (char === " " ? " " : getRandomCharacter(charset)))
-      .join("");
+      .split('')
+      .map((char) => (char === ' ' ? ' ' : getRandomCharacter(charset)))
+      .join('');
 
   return async () => {
     if (inProgress) return;
@@ -73,8 +73,8 @@ function createEventHandler(
 
 type LetterFxProps = {
   children: ReactNode;
-  trigger?: "hover" | "instant" | "custom";
-  speed?: "fast" | "medium" | "slow";
+  trigger?: 'hover' | 'instant' | 'custom';
+  speed?: 'fast' | 'medium' | 'slow';
   charset?: string[];
   onTrigger?: (triggerFn: () => void) => void;
   className?: string;
@@ -85,8 +85,8 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
   (
     {
       children,
-      trigger = "hover",
-      speed = "medium",
+      trigger = 'hover',
+      speed = 'medium',
       charset = defaultCharset,
       onTrigger,
       className,
@@ -94,10 +94,10 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
     },
     ref,
   ) => {
-    const [text, setText] = useState<string>(typeof children === "string" ? children : "");
+    const [text, setText] = useState<string>(typeof children === 'string' ? children : '');
     const [inProgress, setInProgress] = useState<boolean>(false);
     const [hasAnimated, setHasAnimated] = useState<boolean>(false);
-    const originalText = useRef<string>(typeof children === "string" ? children : "");
+    const originalText = useRef<string>(typeof children === 'string' ? children : '');
 
     const eventHandler = useCallback(() => {
       createEventHandler(
@@ -107,23 +107,23 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
         setInProgress,
         speed,
         charset,
-        trigger === "instant" ? setHasAnimated : undefined,
+        trigger === 'instant' ? setHasAnimated : undefined,
       )();
     }, [inProgress, speed, charset, trigger, setHasAnimated]);
 
     useEffect(() => {
-      if (typeof children === "string") {
+      if (typeof children === 'string') {
         setText(children);
         originalText.current = children;
 
-        if (trigger === "instant" && !hasAnimated) {
+        if (trigger === 'instant' && !hasAnimated) {
           eventHandler();
         }
       }
     }, [children, trigger, eventHandler, hasAnimated]);
 
     useEffect(() => {
-      if (trigger === "custom" && onTrigger) {
+      if (trigger === 'custom' && onTrigger) {
         onTrigger(eventHandler);
       }
     }, [trigger, onTrigger, eventHandler]);
@@ -133,7 +133,7 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
         ref={ref}
         className={classNames(className)}
         style={style}
-        onMouseOver={trigger === "hover" ? eventHandler : undefined}
+        onMouseOver={trigger === 'hover' ? eventHandler : undefined}
       >
         {text}
       </span>
@@ -141,6 +141,6 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
   },
 );
 
-LetterFx.displayName = "LetterFx";
+LetterFx.displayName = 'LetterFx';
 
 export { LetterFx };

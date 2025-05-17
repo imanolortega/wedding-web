@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
-import { Row, useTheme, IconButton } from "@/once-ui/components";
+import React, { forwardRef } from 'react';
+import { Row, useTheme, IconButton } from '@/once-ui/components';
 
-type ThemeType = "system" | "dark" | "light";
+type ThemeType = 'system' | 'dark' | 'light';
 
 interface ThemeSwitchProps extends React.ComponentProps<typeof Row> {
   defaultTheme?: ThemeType;
 }
 
 const ThemeSwitcher = forwardRef<HTMLDivElement, ThemeSwitchProps>(
-  ({ defaultTheme = "light", ...rest }, ref) => {
+  ({ defaultTheme = 'light', ...rest }, ref) => {
     const { theme, setTheme } = useTheme();
 
     return (
@@ -42,5 +42,5 @@ const ThemeSwitcher = forwardRef<HTMLDivElement, ThemeSwitchProps>(
   },
 );
 
-ThemeSwitcher.displayName = "ThemeSwitcher";
+ThemeSwitcher.displayName = 'ThemeSwitcher';
 export { ThemeSwitcher };

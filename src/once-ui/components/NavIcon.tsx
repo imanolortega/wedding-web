@@ -1,7 +1,7 @@
-import React, { forwardRef } from "react";
-import styles from "./NavIcon.module.scss";
-import { Flex } from ".";
-import classNames from "classnames";
+import React, { forwardRef } from 'react';
+import styles from './NavIcon.module.scss';
+import { Flex } from '.';
+import classNames from 'classnames';
 
 interface NavIconProps extends React.ComponentProps<typeof Flex> {
   className?: string;
@@ -34,6 +34,6 @@ const NavIcon = forwardRef<HTMLDivElement, Partial<NavIconProps>>(
   },
 );
 
-NavIcon.displayName = "NavIcon";
+NavIcon.displayName = 'NavIcon';
 
 export { NavIcon };

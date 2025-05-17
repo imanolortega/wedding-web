@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Flex, DatePicker } from ".";
+import React, { useState, useEffect } from 'react';
+import { Flex, DatePicker } from '.';
 
 export interface DateRange {
   startDate: Date | undefined;
   endDate: Date | undefined;
 }
 
-export interface DateRangePickerProps extends Omit<React.ComponentProps<typeof Flex>, "onChange"> {
+export interface DateRangePickerProps extends Omit<React.ComponentProps<typeof Flex>, 'onChange'> {
   value?: DateRange;
   onChange?: (range: DateRange) => void;
   minDate?: Date;
   maxDate?: Date;
-  size?: "s" | "m" | "l";
+  size?: 's' | 'm' | 'l';
 }
 
 const DateRangePicker: React.FC<DateRangePickerProps> = ({
@@ -21,7 +21,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   onChange,
   minDate,
   maxDate,
-  size = "m",
+  size = 'm',
   ...rest
 }) => {
   const [internalValue, setInternalValue] = useState<DateRange>({
@@ -125,5 +125,5 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   );
 };
 
-DateRangePicker.displayName = "DateRangePicker";
+DateRangePicker.displayName = 'DateRangePicker';
 export { DateRangePicker };

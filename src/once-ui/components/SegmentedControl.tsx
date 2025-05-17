@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { ToggleButton, Scroller, Flex } from ".";
-import type { ToggleButtonProps } from "./ToggleButton";
+import { useState, useEffect, useRef } from 'react';
+import { ToggleButton, Scroller, Flex } from '.';
+import type { ToggleButtonProps } from './ToggleButton';
 
-interface ButtonOption extends Omit<ToggleButtonProps, "selected"> {
+interface ButtonOption extends Omit<ToggleButtonProps, 'selected'> {
   value: string;
 }
 
-interface SegmentedControlProps extends Omit<React.ComponentProps<typeof Scroller>, "onToggle"> {
+interface SegmentedControlProps extends Omit<React.ComponentProps<typeof Scroller>, 'onToggle'> {
   buttons: ButtonOption[];
   onToggle: (value: string, event?: React.MouseEvent<HTMLButtonElement>) => void;
   defaultSelected?: string;
@@ -31,7 +31,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
   const [internalSelected, setInternalSelected] = useState<string>(() => {
     if (selected !== undefined) return selected;
     if (defaultSelected !== undefined) return defaultSelected;
-    return buttons[0]?.value || "";
+    return buttons[0]?.value || '';
   });
 
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -56,8 +56,8 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
     const focusedIndex = buttonRefs.current.findIndex((ref) => ref === document.activeElement);
 
     switch (event.key) {
-      case "ArrowLeft":
-      case "ArrowUp":
+      case 'ArrowLeft':
+      case 'ArrowUp':
         event.preventDefault();
         const prevIndex =
           focusedIndex === -1
@@ -67,8 +67,8 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
               : buttons.length - 1;
         buttonRefs.current[prevIndex]?.focus();
         break;
-      case "ArrowRight":
-      case "ArrowDown":
+      case 'ArrowRight':
+      case 'ArrowDown':
         event.preventDefault();
         const nextIndex =
           focusedIndex === -1
@@ -78,8 +78,8 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
               : 0;
         buttonRefs.current[nextIndex]?.focus();
         break;
-      case "Enter":
-      case " ": // Space key
+      case 'Enter':
+      case ' ': // Space key
         event.preventDefault();
         if (focusedIndex >= 0 && focusedIndex < buttons.length) {
           const focusedButton = buttons[focusedIndex];
@@ -111,7 +111,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
                 buttonRefs.current[index] = el as HTMLButtonElement;
               }}
               variant="outline"
-              radius={index === 0 ? "left" : index === buttons.length - 1 ? "right" : "none"}
+              radius={index === 0 ? 'left' : index === buttons.length - 1 ? 'right' : 'none'}
               key={button.value}
               selected={index === selectedIndex}
               onClick={(event) => handleButtonClick(button, event)}
@@ -131,7 +131,7 @@ const SegmentedControl: React.FC<SegmentedControlProps> = ({
   );
 };
 
-SegmentedControl.displayName = "SegmentedControl";
+SegmentedControl.displayName = 'SegmentedControl';
 
 export { SegmentedControl };
 export type { SegmentedControlProps, ButtonOption };

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, forwardRef, useImperativeHandle, useEffect, useCallback } from "react";
-import { Flex, Icon, Text, Column, Grid } from ".";
-import styles from "./Accordion.module.scss";
+import React, { useState, forwardRef, useImperativeHandle, useEffect, useCallback } from 'react';
+import { Flex, Icon, Text, Column, Grid } from '.';
+import styles from './Accordion.module.scss';
 
 export interface AccordionHandle extends HTMLDivElement {
   toggle: () => void;
@@ -10,13 +10,13 @@ export interface AccordionHandle extends HTMLDivElement {
   close: () => void;
 }
 
-interface AccordionProps extends Omit<React.ComponentProps<typeof Flex>, "title"> {
+interface AccordionProps extends Omit<React.ComponentProps<typeof Flex>, 'title'> {
   title: React.ReactNode;
   children: React.ReactNode;
   icon?: string;
   iconRotation?: number;
-  size?: "s" | "m" | "l";
-  radius?: "xs" | "s" | "m" | "l" | "full";
+  size?: 's' | 'm' | 'l';
+  radius?: 'xs' | 's' | 'm' | 'l' | 'full';
   open?: boolean;
 }
 
@@ -28,8 +28,8 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
       open = false,
       iconRotation = 180,
       radius,
-      icon = "chevronDown",
-      size = "m",
+      icon = 'chevronDown',
+      size = 'm',
       ...rest
     },
     ref,
@@ -53,7 +53,7 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           close: () => setIsOpen(false),
         };
 
-        return Object.assign(document.createElement("div"), methods) as unknown as AccordionHandle;
+        return Object.assign(document.createElement('div'), methods) as unknown as AccordionHandle;
       },
       [toggleAccordion],
     );
@@ -65,13 +65,13 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           className={styles.accordion}
           cursor="pointer"
           transition="macro-medium"
-          paddingY={size === "s" ? "8" : size === "m" ? "12" : "16"}
-          paddingX={size === "s" ? "12" : size === "m" ? "16" : "20"}
+          paddingY={size === 's' ? '8' : size === 'm' ? '12' : '16'}
+          paddingX={size === 's' ? '12' : size === 'm' ? '16' : '20'}
           vertical="center"
           horizontal="space-between"
           onClick={toggleAccordion}
           onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
+            if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
               toggleAccordion();
             }
@@ -84,12 +84,12 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           <Text variant="heading-strong-s">{title}</Text>
           <Icon
             name={icon}
-            size={size === "s" ? "xs" : "s"}
-            onBackground={isOpen ? "neutral-strong" : "neutral-weak"}
+            size={size === 's' ? 'xs' : 's'}
+            onBackground={isOpen ? 'neutral-strong' : 'neutral-weak'}
             style={{
-              display: "flex",
-              transform: isOpen ? `rotate(${iconRotation}deg)` : "rotate(0deg)",
-              transition: "var(--transition-micro-medium)",
+              display: 'flex',
+              transform: isOpen ? `rotate(${iconRotation}deg)` : 'rotate(0deg)',
+              transition: 'var(--transition-micro-medium)',
             }}
           />
         </Flex>
@@ -97,9 +97,9 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           id="accordion-content"
           fillWidth
           style={{
-            gridTemplateRows: isOpen ? "1fr" : "0fr",
+            gridTemplateRows: isOpen ? '1fr' : '0fr',
             transition:
-              "grid-template-rows var(--transition-duration-macro-medium) var(--transition-eased)",
+              'grid-template-rows var(--transition-duration-macro-medium) var(--transition-eased)',
           }}
           aria-hidden={!isOpen}
         >
@@ -114,5 +114,5 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
   },
 );
 
-Accordion.displayName = "Accordion";
+Accordion.displayName = 'Accordion';
 export { Accordion };

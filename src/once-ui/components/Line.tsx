@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
-import { Flex } from ".";
+import React, { forwardRef } from 'react';
+import { Flex } from '.';
 
 interface LineProps extends React.ComponentProps<typeof Flex> {
   vert?: boolean;
@@ -12,14 +12,14 @@ const Line = forwardRef<HTMLDivElement, LineProps>(({ vert, className, style, ..
   return (
     <Flex
       ref={ref}
-      minWidth={(vert && "1") || undefined}
-      minHeight={(!vert && "1") || undefined}
-      width={(vert && "1") || undefined}
-      height={(!vert && "1") || undefined}
+      minWidth={(vert && '1') || undefined}
+      minHeight={(!vert && '1') || undefined}
+      width={(vert && '1') || undefined}
+      height={(!vert && '1') || undefined}
       fillWidth={!vert}
       fillHeight={vert}
       background="neutral-strong"
-      direction={vert ? "column" : "row"}
+      direction={vert ? 'column' : 'row'}
       className={className}
       style={style}
       {...rest}
@@ -27,5 +27,5 @@ const Line = forwardRef<HTMLDivElement, LineProps>(({ vert, className, style, ..
   );
 });
 
-Line.displayName = "Line";
+Line.displayName = 'Line';
 export { Line };

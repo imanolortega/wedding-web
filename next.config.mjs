@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   sassOptions: {
-    compiler: "modern",
-    silenceDeprecations: ["legacy-js-api"],
+    compiler: 'modern',
+    silenceDeprecations: ['legacy-js-api'],
   },
 };
 

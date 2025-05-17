@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
-import { Arrow, Flex, Icon, SmartLink, Text } from ".";
+import React, { forwardRef } from 'react';
+import { Arrow, Flex, Icon, SmartLink, Text } from '.';
 
-import styles from "./Badge.module.scss";
-import { IconName } from "../icons";
+import styles from './Badge.module.scss';
+import { IconName } from '../icons';
 
 interface BadgeProps extends React.ComponentProps<typeof Flex> {
   title?: string;
@@ -47,7 +47,7 @@ const Badge = forwardRef<HTMLDivElement | HTMLAnchorElement, BadgeProps>(
         <SmartLink
           unstyled
           style={{
-            borderRadius: "var(--radius-full)",
+            borderRadius: 'var(--radius-full)',
           }}
           href={href}
           ref={ref as React.Ref<HTMLAnchorElement>}
@@ -63,5 +63,5 @@ const Badge = forwardRef<HTMLDivElement | HTMLAnchorElement, BadgeProps>(
   },
 );
 
-Badge.displayName = "Badge";
+Badge.displayName = 'Badge';
 export { Badge };

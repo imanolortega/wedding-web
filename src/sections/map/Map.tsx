@@ -1,9 +1,9 @@
-import React, { forwardRef } from "react";
-import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
+import React, { forwardRef } from 'react';
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: "100%",
-  height: "400px",
+  width: '100%',
+  height: '400px',
 };
 
 export interface MapHandle {}
@@ -25,5 +25,5 @@ const Map = forwardRef<MapHandle, MapProps>(({ lat, lng }, ref) => {
   );
 });
 
-Map.displayName = "Map";
+Map.displayName = 'Map';
 export { Map };

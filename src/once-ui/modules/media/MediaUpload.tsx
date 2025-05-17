@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useRef, useState, forwardRef, useEffect } from "react";
-import Compressor from "compressorjs";
-import { Flex, Icon, SmartImage, Spinner, Text } from "../../components";
-import styles from "./MediaUpload.module.scss";
+import React, { useRef, useState, forwardRef, useEffect } from 'react';
+import Compressor from 'compressorjs';
+import { Flex, Icon, SmartImage, Spinner, Text } from '../../components';
+import styles from './MediaUpload.module.scss';
 
 interface MediaUploadProps extends React.ComponentProps<typeof Flex> {
   onFileUpload?: (file: File) => Promise<void>;
@@ -30,10 +30,10 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
     {
       onFileUpload,
       compress = true,
-      aspectRatio = "16 / 9",
+      aspectRatio = '16 / 9',
       quality = 0.8,
-      convertTypes = ["image/png", "image/webp", "image/jpg"],
-      emptyState = "Drag and drop or click to browse",
+      convertTypes = ['image/png', 'image/webp', 'image/jpg'],
+      emptyState = 'Drag and drop or click to browse',
       resizeMaxWidth = 1920,
       resizeMaxHeight = 1920,
       resizeWidth = 1200,
@@ -42,7 +42,7 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
       sizes,
       children,
       initialPreviewImage = null,
-      accept = "image/*",
+      accept = 'image/*',
       ...rest
     },
     ref,
@@ -90,16 +90,16 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
       const file = files[0];
       if (!file) return;
 
-      if (file.type.startsWith("image/")) {
+      if (file.type.startsWith('image/')) {
         setPreviewImage(URL.createObjectURL(file));
 
-        if (compress && file.type.startsWith("image/")) {
+        if (compress && file.type.startsWith('image/')) {
           compressImage(file);
         } else {
           uploadFile(file);
         }
       } else {
-        console.warn("Unsupported file type:", file.type);
+        console.warn('Unsupported file type:', file.type);
       }
     };
 
@@ -115,7 +115,7 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
           uploadFile(compressedFile as File);
         },
         error(err) {
-          console.error("Compression error:", err);
+          console.error('Compression error:', err);
           uploadFile(file);
         },
       });
@@ -152,12 +152,12 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
             {previewImage ? (
               <SmartImage
                 style={{
-                  cursor: "pointer",
-                  filter: uploading ? "grayscale(1)" : "",
+                  cursor: 'pointer',
+                  filter: uploading ? 'grayscale(1)' : '',
                 }}
                 sizes={sizes}
                 fill
-                src={previewImage ? previewImage : ""}
+                src={previewImage ? previewImage : ''}
                 alt="Preview of uploaded image"
               />
             ) : (
@@ -190,7 +190,7 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
           type="file"
           ref={inputRef}
           accept={accept}
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
           onChange={(e) => {
             if (e.target.files) {
               handleFiles(e.target.files);
@@ -202,5 +202,5 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
   },
 );
 
-MediaUpload.displayName = "MediaUpload";
+MediaUpload.displayName = 'MediaUpload';
 export { MediaUpload };

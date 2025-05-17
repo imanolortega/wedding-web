@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { forwardRef, useState } from "react";
-import { Input } from ".";
-import { Flex } from ".";
-import { IconButton } from ".";
-import styles from "./NumberInput.module.scss";
-import classNames from "classnames";
+import React, { forwardRef, useState } from 'react';
+import { Input } from '.';
+import { Flex } from '.';
+import { IconButton } from '.';
+import styles from './NumberInput.module.scss';
+import classNames from 'classnames';
 
 interface NumberInputProps
-  extends Omit<React.ComponentProps<typeof Input>, "type" | "value" | "onChange"> {
+  extends Omit<React.ComponentProps<typeof Input>, 'type' | 'value' | 'onChange'> {
   value?: number;
   onChange?: (value: number) => void;
   min?: number;
@@ -21,8 +21,8 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
   ({ value, onChange, min, max, step = 1, padStart, ...props }, ref) => {
     const [localValue, setLocalValue] = useState<string>(
       padStart && value !== undefined
-        ? value.toString().padStart(padStart, "0")
-        : (value?.toString() ?? ""),
+        ? value.toString().padStart(padStart, '0')
+        : (value?.toString() ?? ''),
     );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
 
     const updateValue = (newValue: number) => {
       const formattedValue = padStart
-        ? newValue.toString().padStart(padStart, "0")
+        ? newValue.toString().padStart(padStart, '0')
         : newValue.toString();
       setLocalValue(formattedValue);
       onChange?.(newValue);
@@ -86,7 +86,7 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
                 position="static"
                 borderBottom="neutral-medium"
                 paddingX="4"
-                className={classNames(styles.stepper, "transition-micro-medium")}
+                className={classNames(styles.stepper, 'transition-micro-medium')}
               >
                 <IconButton
                   icon="chevronUp"
@@ -100,7 +100,7 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
                 fillHeight
                 position="static"
                 paddingX="4"
-                className={classNames(styles.stepper, "transition-micro-medium")}
+                className={classNames(styles.stepper, 'transition-micro-medium')}
               >
                 <IconButton
                   icon="chevronDown"
@@ -119,5 +119,5 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
   },
 );
 
-NumberInput.displayName = "NumberInput";
+NumberInput.displayName = 'NumberInput';
 export { NumberInput };

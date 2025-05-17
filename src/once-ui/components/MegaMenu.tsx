@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import { Flex, Row, Column, Text, Icon, ToggleButton } from ".";
-import styles from "./MegaMenu.module.scss";
+import React, { useState, useRef, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { Flex, Row, Column, Text, Icon, ToggleButton } from '.';
+import styles from './MegaMenu.module.scss';
 
 export interface MenuLink {
   label: string;
@@ -156,12 +156,12 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menuGroups, className, ...re
           pointerEvents="auto"
           opacity={100}
           top="32"
-          className={isFirstAppearance ? styles.dropdown : ""}
+          className={isFirstAppearance ? styles.dropdown : ''}
           style={{
             left: `${dropdownPosition.left}px`,
             width: `${dropdownPosition.width}px`,
-            transition: "left 0.3s ease, width 0.3s ease",
-            visibility: "visible",
+            transition: 'left 0.3s ease, width 0.3s ease',
+            visibility: 'visible',
           }}
           onMouseEnter={() => {
             // Keep the current active dropdown when hovering over it
@@ -247,4 +247,4 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menuGroups, className, ...re
   );
 };
 
-MegaMenu.displayName = "MegaMenu";
+MegaMenu.displayName = 'MegaMenu';

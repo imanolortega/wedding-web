@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import styles from "./HoloFx.module.scss";
-import { Flex } from ".";
-import { CSSProperties } from "react";
-import classNames from "classnames";
+import React, { useEffect, useRef } from 'react';
+import styles from './HoloFx.module.scss';
+import { Flex } from '.';
+import { CSSProperties } from 'react';
+import classNames from 'classnames';
 
 interface MaskOptions {
   maskPosition?: string;
@@ -15,26 +15,26 @@ interface HoloFxProps extends React.ComponentProps<typeof Flex> {
   shine?: {
     opacity?: number;
     filter?: string;
-    blending?: CSSProperties["mixBlendMode"];
+    blending?: CSSProperties['mixBlendMode'];
     mask?: MaskOptions;
   };
   burn?: {
     opacity?: number;
     filter?: string;
-    blending?: CSSProperties["mixBlendMode"];
+    blending?: CSSProperties['mixBlendMode'];
     mask?: MaskOptions;
   };
   texture?: {
     opacity?: number;
     filter?: string;
-    blending?: CSSProperties["mixBlendMode"];
+    blending?: CSSProperties['mixBlendMode'];
     image?: string;
     mask?: MaskOptions;
   };
 }
 
-const formatMask = (maskPosition: string = "100 200"): string => {
-  const [x, y] = maskPosition.split(" ");
+const formatMask = (maskPosition: string = '100 200'): string => {
+  const [x, y] = maskPosition.split(' ');
   const formattedX = `${x}%`;
   const formattedY = `${y ? y : x}%`;
   return `radial-gradient(ellipse ${formattedX} ${formattedY} at var(--gradient-pos-x, 50%) var(--gradient-pos-y, 50%), black 50%, transparent 100%)`;
@@ -50,24 +50,24 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
 
   const shineDefaults = {
     opacity: 30,
-    blending: "color-dodge" as CSSProperties["mixBlendMode"],
+    blending: 'color-dodge' as CSSProperties['mixBlendMode'],
     mask: getMaskStyle(shine?.mask),
     ...shine,
   };
 
   const burnDefaults = {
     opacity: 30,
-    filter: "brightness(0.2) contrast(2)",
-    blending: "color-dodge" as CSSProperties["mixBlendMode"],
+    filter: 'brightness(0.2) contrast(2)',
+    blending: 'color-dodge' as CSSProperties['mixBlendMode'],
     mask: getMaskStyle(burn?.mask),
     ...burn,
   };
 
   const textureDefaults = {
     opacity: 10,
-    blending: "color-dodge" as CSSProperties["mixBlendMode"],
+    blending: 'color-dodge' as CSSProperties['mixBlendMode'],
     image:
-      "repeating-linear-gradient(-45deg, var(--static-white) 0, var(--static-white) 1px, transparent 3px, transparent 2px)",
+      'repeating-linear-gradient(-45deg, var(--static-white) 0, var(--static-white) 1px, transparent 3px, transparent 2px)',
     mask: getMaskStyle(texture?.mask),
     ...texture,
   };
@@ -91,14 +91,14 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
       const deltaX = ((offsetX - centerX) / centerX) * 100;
       const deltaY = ((offsetY - centerY) / centerY) * 100;
 
-      element.style.setProperty("--gradient-pos-x", `${deltaX}%`);
-      element.style.setProperty("--gradient-pos-y", `${deltaY}%`);
+      element.style.setProperty('--gradient-pos-x', `${deltaX}%`);
+      element.style.setProperty('--gradient-pos-y', `${deltaY}%`);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -114,7 +114,7 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
         pointerEvents="none"
         className={classNames(styles.overlay, styles.burn)}
         style={{
-          ["--burn-opacity" as any]: burnDefaults.opacity + "%",
+          ['--burn-opacity' as any]: burnDefaults.opacity + '%',
           filter: burnDefaults.filter,
           mixBlendMode: burnDefaults.blending,
           maskImage: burnDefaults.mask as string,
@@ -129,7 +129,7 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
         pointerEvents="none"
         className={classNames(styles.overlay, styles.shine)}
         style={{
-          ["--shine-opacity" as any]: shineDefaults.opacity + "%",
+          ['--shine-opacity' as any]: shineDefaults.opacity + '%',
           filter: shineDefaults.filter,
           mixBlendMode: shineDefaults.blending,
           maskImage: shineDefaults.mask as string,
@@ -144,7 +144,7 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
         pointerEvents="none"
         className={classNames(styles.overlay, styles.texture)}
         style={{
-          ["--texture-opacity" as any]: textureDefaults.opacity + "%",
+          ['--texture-opacity' as any]: textureDefaults.opacity + '%',
           backgroundImage: textureDefaults.image,
           filter: textureDefaults.filter,
           mixBlendMode: textureDefaults.blending,
@@ -155,5 +155,5 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
   );
 };
 
-HoloFx.displayName = "HoloFx";
+HoloFx.displayName = 'HoloFx';
 export { HoloFx };

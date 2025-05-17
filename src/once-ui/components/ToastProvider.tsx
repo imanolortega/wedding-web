@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { Toaster } from "./Toaster";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { Toaster } from './Toaster';
 
 interface Toast {
   id: string;
-  variant: "success" | "danger";
+  variant: 'success' | 'danger';
   message: string;
   action?: ReactNode;
 }
 
 interface ToastContextProps {
   toasts: Toast[];
-  addToast: (toast: Omit<Toast, "id">) => void;
+  addToast: (toast: Omit<Toast, 'id'>) => void;
   removeToast: (id: string) => void;
 }
 
@@ -21,7 +21,7 @@ const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 export const useToast = () => {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error("useToast must be used within a ToastProvider");
+    throw new Error('useToast must be used within a ToastProvider');
   }
   return context;
 };
@@ -31,7 +31,7 @@ const ToastProvider: React.FC<{
 }> = ({ children }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const addToast = (toast: Omit<Toast, "id">) => {
+  const addToast = (toast: Omit<Toast, 'id'>) => {
     const newToast: Toast = {
       id: Math.random().toString(36).substring(7),
       ...toast,
@@ -57,5 +57,5 @@ const ToastProvider: React.FC<{
   );
 };
 
-ToastProvider.displayName = "ToastProvider";
+ToastProvider.displayName = 'ToastProvider';
 export { ToastProvider };

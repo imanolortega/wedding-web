@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, {
   useState,
@@ -7,34 +7,34 @@ import React, {
   TextareaHTMLAttributes,
   useCallback,
   ReactNode,
-} from "react";
-import classNames from "classnames";
-import { Flex, Text } from ".";
-import styles from "./Input.module.scss";
-import useDebounce from "../hooks/useDebounce";
+} from 'react';
+import classNames from 'classnames';
+import { Flex, Text } from '.';
+import styles from './Input.module.scss';
+import useDebounce from '../hooks/useDebounce';
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   id: string;
   label: string;
-  lines?: number | "auto";
+  lines?: number | 'auto';
   error?: boolean;
   errorMessage?: ReactNode;
   description?: ReactNode;
   radius?:
-    | "none"
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top-left"
-    | "top-right"
-    | "bottom-right"
-    | "bottom-left";
+    | 'none'
+    | 'top'
+    | 'right'
+    | 'bottom'
+    | 'left'
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-right'
+    | 'bottom-left';
   className?: string;
   hasPrefix?: ReactNode;
   hasSuffix?: ReactNode;
   labelAsPlaceholder?: boolean;
-  resize?: "horizontal" | "vertical" | "both" | "none";
+  resize?: 'horizontal' | 'vertical' | 'both' | 'none';
   validate?: (value: ReactNode) => ReactNode | null;
 }
 
@@ -52,7 +52,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       hasPrefix,
       hasSuffix,
       labelAsPlaceholder = false,
-      resize = "vertical",
+      resize = 'vertical',
       validate,
       children,
       onFocus,
@@ -72,13 +72,13 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const adjustHeight = () => {
       if (textareaRef.current) {
-        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height = 'auto';
         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set to scroll height
       }
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      if (lines === "auto") {
+      if (lines === 'auto') {
         adjustHeight();
       }
       if (onChange) onChange(event);
@@ -118,7 +118,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     }, [debouncedValue, validateInput]);
 
     useEffect(() => {
-      if (lines === "auto") {
+      if (lines === 'auto') {
         adjustHeight();
       }
     }, [props.value, lines]);
@@ -128,9 +128,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     const textareaClassNames = classNames(
       styles.input,
       styles.textarea,
-      "font-body",
-      "font-default",
-      "font-m",
+      'font-body',
+      'font-default',
+      'font-m',
       {
         [styles.filled]: isFilled,
         [styles.focused]: isFocused,
@@ -148,11 +148,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         fillWidth
         fitHeight
         className={classNames(className, {
-          [styles.error]: displayError && debouncedValue !== "",
+          [styles.error]: displayError && debouncedValue !== '',
         })}
       >
         <Flex
-          minHeight={labelAsPlaceholder ? "48" : "56"}
+          minHeight={labelAsPlaceholder ? '48' : '56'}
           transition="micro-medium"
           border="neutral-medium"
           background="neutral-alpha-weak"
@@ -160,8 +160,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           vertical="stretch"
           className={classNames(
             styles.base,
-            lines !== "auto" && styles.textareaBase,
-            radius === "none" ? "radius-none" : radius ? `radius-l-${radius}` : "radius-l",
+            lines !== 'auto' && styles.textareaBase,
+            radius === 'none' ? 'radius-none' : radius ? `radius-l-${radius}` : 'radius-l',
           )}
         >
           {hasPrefix && (
@@ -173,7 +173,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             <textarea
               {...props}
               ref={(node) => {
-                if (typeof ref === "function") {
+                if (typeof ref === 'function') {
                   ref(node);
                 } else if (ref) {
                   ref.current = node;
@@ -182,7 +182,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                 textareaRef.current = node;
               }}
               id={id}
-              rows={typeof lines === "number" ? lines : 1}
+              rows={typeof lines === 'number' ? lines : 1}
               placeholder={labelAsPlaceholder ? label : props.placeholder}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -191,8 +191,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
               aria-invalid={!!displayError}
               style={{
                 ...style,
-                resize: lines === "auto" ? "none" : resize,
-                height: height ? `${height}rem` : "auto",
+                resize: lines === 'auto' ? 'none' : resize,
+                height: height ? `${height}rem` : 'auto',
               }}
               onChange={handleChange}
             />
@@ -240,7 +240,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   },
 );
 
-Textarea.displayName = "Textarea";
+Textarea.displayName = 'Textarea';
 
 export { Textarea };
 export type { TextareaProps };

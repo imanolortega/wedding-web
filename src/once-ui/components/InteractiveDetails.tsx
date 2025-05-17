@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
-import { Text, Flex, IconButton, IconButtonProps } from ".";
+import React, { forwardRef } from 'react';
+import { Text, Flex, IconButton, IconButtonProps } from '.';
 
 interface InteractiveDetailsProps {
   label?: React.ReactNode;
@@ -37,7 +37,7 @@ const InteractiveDetails: React.FC<InteractiveDetailsProps> = forwardRef<
   );
 });
 
-InteractiveDetails.displayName = "InteractiveDetails";
+InteractiveDetails.displayName = 'InteractiveDetails';
 
 export { InteractiveDetails };
 export type { InteractiveDetailsProps };

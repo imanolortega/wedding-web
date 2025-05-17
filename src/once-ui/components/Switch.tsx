@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { forwardRef } from "react";
-import classNames from "classnames";
+import React, { forwardRef } from 'react';
+import classNames from 'classnames';
 
-import { Flex, InteractiveDetails, InteractiveDetailsProps, Spinner } from ".";
-import styles from "./Switch.module.scss";
-import commonStyles from "./SharedInteractiveStyles.module.scss";
+import { Flex, InteractiveDetails, InteractiveDetailsProps, Spinner } from '.';
+import styles from './Switch.module.scss';
+import commonStyles from './SharedInteractiveStyles.module.scss';
 
 interface SwitchProps
-  extends Omit<InteractiveDetailsProps, "onClick">,
+  extends Omit<InteractiveDetailsProps, 'onClick'>,
     React.InputHTMLAttributes<HTMLInputElement> {
   style?: React.CSSProperties;
   className?: string;
@@ -30,7 +30,7 @@ const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
       reverse = false,
       loading = false,
       onToggle,
-      ariaLabel = "Toggle switch",
+      ariaLabel = 'Toggle switch',
       disabled,
       name,
       value,
@@ -39,7 +39,7 @@ const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
     ref,
   ) => {
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!disabled && (event.key === "Enter" || event.key === " ")) {
+      if (!disabled && (event.key === 'Enter' || event.key === ' ')) {
         event.preventDefault();
         onToggle();
       }
@@ -55,7 +55,7 @@ const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
       <Flex
         gap="16"
         vertical="center"
-        horizontal={reverse ? "space-between" : undefined}
+        horizontal={reverse ? 'space-between' : undefined}
         fillWidth={reverse}
         className={classNames(styles.container, className, {
           [styles.reverse]: reverse,
@@ -101,6 +101,6 @@ const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
   },
 );
 
-Switch.displayName = "Switch";
+Switch.displayName = 'Switch';
 
 export { Switch };
