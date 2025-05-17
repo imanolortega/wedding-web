@@ -1,17 +1,9 @@
-import React, { forwardRef } from 'react'
-import { event } from '@/app/resources/config'
+import React, { forwardRef } from "react";
+import { event } from "@/app/resources/config";
 
-import {
-  Background,
-  Card,
-  Column,
-  Heading,
-  Row,
-  Text,
-  TiltFx,
-} from '@/once-ui/components'
+import { Background, Card, Column, Heading, Row, Text, TiltFx } from "@/once-ui/components";
 
-import { Map } from '@/sections'
+import { Map } from "@/sections";
 
 export interface EventInfo {}
 
@@ -35,9 +27,9 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
           position="absolute"
           grid={{
             display: true,
-            color: 'neutral-alpha-medium',
-            width: '2rem',
-            height: '2rem',
+            color: "neutral-alpha-medium",
+            width: "2rem",
+            height: "2rem",
           }}
         />
         <Background
@@ -49,9 +41,9 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
           position="absolute"
           grid={{
             display: true,
-            color: 'brand-alpha-strong',
-            width: '12',
-            height: '12',
+            color: "brand-alpha-strong",
+            width: "12",
+            height: "12",
           }}
           gradient={{
             display: true,
@@ -61,8 +53,8 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
             tilt: 0,
             x: 0,
             y: 100,
-            colorStart: 'accent-solid-medium',
-            colorEnd: 'static-transparent',
+            colorStart: "accent-solid-medium",
+            colorEnd: "static-transparent",
           }}
         />
         <Column horizontal="center" gap="48" fillWidth position="relative">
@@ -70,11 +62,7 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
             Evento
           </Heading>
           <Row fillWidth overflow="hidden">
-            <Row
-              maxWidth="32"
-              borderTop="neutral-alpha-weak"
-              borderBottom="neutral-medium"
-            />
+            <Row maxWidth="32" borderTop="neutral-alpha-weak" borderBottom="neutral-medium" />
             <Row fillWidth border="neutral-alpha-weak" mobileDirection="column">
               {event.map((item, index) => (
                 <Card
@@ -85,9 +73,7 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
                   background="page"
                   direction="column"
                   borderRight={
-                    index < event.length - 1 || index === 2
-                      ? 'neutral-alpha-weak'
-                      : undefined
+                    index < event.length - 1 || index === 2 ? "neutral-alpha-weak" : undefined
                   }
                 >
                   <Row fillWidth center gap="12">
@@ -95,29 +81,15 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
                       {item.title}
                     </Text>
                   </Row>
-                  <Text
-                    align="center"
-                    variant="body-default-s"
-                    onBackground="neutral-weak"
-                  >
+                  <Text align="center" variant="body-default-s" onBackground="neutral-weak">
                     {item.description}
                   </Text>
                 </Card>
               ))}
             </Row>
-            <Row
-              maxWidth="32"
-              borderTop="neutral-alpha-weak"
-              borderBottom="neutral-medium"
-            />
+            <Row maxWidth="32" borderTop="neutral-alpha-weak" borderBottom="neutral-medium" />
           </Row>
-          <Row
-            position="relative"
-            fillWidth
-            paddingX="l"
-            paddingTop="48"
-            paddingBottom="48"
-          >
+          <Row position="relative" fillWidth paddingX="l" paddingTop="48" paddingBottom="48">
             <Background
               borderTop="brand-alpha-strong"
               mask={{
@@ -127,9 +99,9 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
               position="absolute"
               grid={{
                 display: true,
-                width: '0.25rem',
-                color: 'brand-alpha-strong',
-                height: '0.25rem',
+                width: "0.25rem",
+                color: "brand-alpha-strong",
+                height: "0.25rem",
               }}
             />
             <Column
@@ -147,8 +119,8 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
         </Column>
       </Column>
     </TiltFx>
-  )
-})
+  );
+});
 
-EventInfo.displayName = 'EventInfo'
-export { EventInfo }
+EventInfo.displayName = "EventInfo";
+export { EventInfo };

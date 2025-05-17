@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, { forwardRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useImperativeHandle } from "react";
 import {
   Row,
   Column,
@@ -12,38 +12,38 @@ import {
   Input,
   Select,
   Button,
-} from '@/once-ui/components'
+} from "@/once-ui/components";
 
 export interface AttendanceFormHandle {
-  reset: () => void
+  reset: () => void;
 }
 
 interface AttendanceFormProps {
-  name: string
-  setName: (value: string) => void
-  lastName: string
-  setLastName: (value: string) => void
-  asistQuantity: number
-  setAsistQuantity: (value: number) => void
-  onSelect: (value: string) => void
-  isLoading: boolean
-  setIsLoading: (value: boolean) => void
-  addToast: (args: { variant: 'success' | 'danger'; message: string }) => void
+  name: string;
+  setName: (value: string) => void;
+  lastName: string;
+  setLastName: (value: string) => void;
+  asistQuantity: number;
+  setAsistQuantity: (value: number) => void;
+  onSelect: (value: string) => void;
+  isLoading: boolean;
+  setIsLoading: (value: boolean) => void;
+  addToast: (args: { variant: "success" | "danger"; message: string }) => void;
 }
 
 const selectOptions = [
-  { label: 'Voy Solo', value: '0', description: 'Asisto solo' },
+  { label: "Voy Solo", value: "0", description: "Asisto solo" },
   {
-    label: 'Una persona',
-    value: '1',
-    description: 'Asisto con una persona',
+    label: "Una persona",
+    value: "1",
+    description: "Asisto con una persona",
   },
   {
-    label: 'Dos personas',
-    value: '2',
-    description: 'Asisto con dos personas',
+    label: "Dos personas",
+    value: "2",
+    description: "Asisto con dos personas",
   },
-]
+];
 
 const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
   (
@@ -59,15 +59,15 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
       setIsLoading,
       addToast,
     },
-    ref
+    ref,
   ) => {
     useImperativeHandle(ref, () => ({
       reset: () => {
-        setName('')
-        setLastName('')
-        setAsistQuantity(0)
+        setName("");
+        setLastName("");
+        setAsistQuantity(0);
       },
-    }))
+    }));
 
     return (
       <Row
@@ -79,28 +79,18 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
         overflow="hidden"
       >
         <Row fill hide="m">
-          <SmartImage
-            src="/images/martin-lujan-theboda.jpg"
-            alt="Preview image"
-            sizes="560px"
-          />
+          <SmartImage src="/images/martin-lujan-theboda.jpg" alt="Preview image" sizes="560px" />
         </Row>
-        <Column
-          fillWidth
-          horizontal="center"
-          gap="20"
-          padding="32"
-          position="relative"
-        >
+        <Column fillWidth horizontal="center" gap="20" padding="32" position="relative">
           <Background
             mask={{ x: 100, y: 0, radius: 75 }}
             position="absolute"
             grid={{
               display: true,
               opacity: 50,
-              width: '0.5rem',
-              color: 'neutral-alpha-medium',
-              height: '1rem',
+              width: "0.5rem",
+              color: "neutral-alpha-medium",
+              height: "1rem",
             }}
           />
           <Heading as="h3" variant="display-default-s" align="center">
@@ -110,12 +100,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             Agregá tus datos para confirmar tu asistencia.
           </Text>
           <Row fillWidth paddingY="24">
-            <Row
-              onBackground="neutral-weak"
-              fillWidth
-              gap="24"
-              vertical="center"
-            >
+            <Row onBackground="neutral-weak" fillWidth gap="24" vertical="center">
               <Line />/<Line />
             </Row>
           </Row>
@@ -154,47 +139,46 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             fillWidth
             loading={isLoading}
             onClick={async () => {
-              setIsLoading(true)
+              setIsLoading(true);
               try {
-                const res = await fetch('/api/submit', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                const res = await fetch("/api/submit", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
                     name,
                     lastName,
                     asistentQuantity: asistQuantity,
                   }),
-                })
+                });
 
-                const result = await res.json()
+                const result = await res.json();
 
                 if (result.success) {
                   addToast({
-                    variant: 'success',
+                    variant: "success",
                     message:
-                      '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
-                  })
-                  setName('')
-                  setLastName('')
-                  setAsistQuantity(0)
+                      "¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.",
+                  });
+                  setName("");
+                  setLastName("");
+                  setAsistQuantity(0);
                 } else {
-                  throw new Error('No se pudo enviar')
+                  throw new Error("No se pudo enviar");
                 }
               } catch (err) {
                 addToast({
-                  variant: 'danger',
-                  message:
-                    'Error al enviar la confirmación. Intentá nuevamente.',
-                })
+                  variant: "danger",
+                  message: "Error al enviar la confirmación. Intentá nuevamente.",
+                });
               }
-              setIsLoading(false)
+              setIsLoading(false);
             }}
           />
         </Column>
       </Row>
-    )
-  }
-)
+    );
+  },
+);
 
-AttendanceForm.displayName = 'AttendanceForm'
-export { AttendanceForm }
+AttendanceForm.displayName = "AttendanceForm";
+export { AttendanceForm };

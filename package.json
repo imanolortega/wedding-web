@@ -6,9 +6,8 @@
     "export": "next export",
     "build": "next build",
     "start": "next start",
-    "biome-write": "npx @biomejs/biome format --write .",
-    "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "npx @biomejs/biome format --write .",
+    "lint": "next lint"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.1",

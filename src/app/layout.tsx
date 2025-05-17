@@ -1,19 +1,13 @@
-import '@/once-ui/styles/index.scss'
-import '@/once-ui/tokens/index.scss'
+import "@/once-ui/styles/index.scss";
+import "@/once-ui/tokens/index.scss";
 
-import classNames from 'classnames'
+import classNames from "classnames";
 
-import { baseURL, style, meta, font, effects } from '@/app/resources/config'
-import {
-  Background,
-  Column,
-  Flex,
-  ToastProvider,
-  ThemeProvider,
-} from '@/once-ui/components'
+import { baseURL, style, meta, font, effects } from "@/app/resources/config";
+import { Background, Column, Flex, ToastProvider, ThemeProvider } from "@/once-ui/components";
 
-import { opacity, SpacingToken } from '@/once-ui/types'
-import { Meta, Schema } from '@/once-ui/modules'
+import { opacity, SpacingToken } from "@/once-ui/types";
+import { Meta, Schema } from "@/once-ui/modules";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -25,13 +19,13 @@ export async function generateMetadata() {
     image: meta.home.image,
     robots: meta.home.robots,
     alternates: meta.home.alternates,
-  })
+  });
 }
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <Flex
@@ -53,7 +47,7 @@ export default function RootLayout({
         font.primary.variable,
         font.secondary.variable,
         font.tertiary.variable,
-        font.code.variable
+        font.code.variable,
       )}
     >
       <Schema
@@ -135,5 +129,5 @@ export default function RootLayout({
         </ToastProvider>
       </ThemeProvider>
     </Flex>
-  )
+  );
 }

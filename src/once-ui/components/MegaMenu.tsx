@@ -1,115 +1,110 @@
-'use client'
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
-import { Flex, Row, Column, Text, Icon, ToggleButton } from '.'
-import styles from './MegaMenu.module.scss'
+import React, { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { Flex, Row, Column, Text, Icon, ToggleButton } from ".";
+import styles from "./MegaMenu.module.scss";
 
 export interface MenuLink {
-  label: string
-  href: string
-  icon?: string
-  description?: string
-  selected?: boolean
+  label: string;
+  href: string;
+  icon?: string;
+  description?: string;
+  selected?: boolean;
 }
 
 export interface MenuSection {
-  title?: string
-  links: MenuLink[]
+  title?: string;
+  links: MenuLink[];
 }
 
 export interface MenuGroup {
-  label: string
-  suffixIcon?: string
-  href?: string
-  selected?: boolean
-  sections?: MenuSection[]
+  label: string;
+  suffixIcon?: string;
+  href?: string;
+  selected?: boolean;
+  sections?: MenuSection[];
 }
 
 export interface MegaMenuProps extends React.ComponentProps<typeof Flex> {
-  menuGroups: MenuGroup[]
-  className?: string
+  menuGroups: MenuGroup[];
+  className?: string;
 }
 
-export const MegaMenu: React.FC<MegaMenuProps> = ({
-  menuGroups,
-  className,
-  ...rest
-}) => {
-  const pathname = usePathname()
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+export const MegaMenu: React.FC<MegaMenuProps> = ({ menuGroups, className, ...rest }) => {
+  const pathname = usePathname();
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({
     left: 0,
     width: 0,
-  })
-  const [isFirstAppearance, setIsFirstAppearance] = useState(true)
+  });
+  const [isFirstAppearance, setIsFirstAppearance] = useState(true);
 
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const buttonRefs = useRef<Record<string, HTMLDivElement | null>>({})
-  const contentRefs = useRef<Record<string, HTMLDivElement | null>>({})
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const contentRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     if (activeDropdown && buttonRefs.current[activeDropdown]) {
-      const buttonElement = buttonRefs.current[activeDropdown]
+      const buttonElement = buttonRefs.current[activeDropdown];
       if (buttonElement) {
-        const rect = buttonElement.getBoundingClientRect()
-        const parentRect =
-          buttonElement.parentElement?.getBoundingClientRect() || { left: 0 }
+        const rect = buttonElement.getBoundingClientRect();
+        const parentRect = buttonElement.parentElement?.getBoundingClientRect() || { left: 0 };
 
         // Set initial position
         setDropdownPosition({
           left: rect.left - parentRect.left,
           width: 300, // Default width that will be updated
-        })
+        });
 
         // Measure content after render
         requestAnimationFrame(() => {
-          const contentElement = contentRefs.current[activeDropdown]
+          const contentElement = contentRefs.current[activeDropdown];
           if (contentElement) {
-            const contentWidth = contentElement.scrollWidth
+            const contentWidth = contentElement.scrollWidth;
             setDropdownPosition((prev) => ({
               ...prev,
               width: contentWidth + 40, // Add padding
-            }))
+            }));
           }
-        })
+        });
       }
     } else {
       // Reset first appearance flag when dropdown is closed
-      setIsFirstAppearance(true)
+      setIsFirstAppearance(true);
     }
-  }, [activeDropdown])
+  }, [activeDropdown]);
 
   // Reset animation flag after animation completes
   useEffect(() => {
     if (activeDropdown !== null) {
       const timer = setTimeout(() => {
-        setIsFirstAppearance(false)
-      }, 300) // Match animation duration
+        setIsFirstAppearance(false);
+      }, 300); // Match animation duration
 
-      return () => clearTimeout(timer)
+      return () => clearTimeout(timer);
     }
-  }, [activeDropdown])
+  }, [activeDropdown]);
 
   // Close dropdown when pathname changes (navigation occurs)
   useEffect(() => {
-    setActiveDropdown(null)
-  }, [pathname])
+    setActiveDropdown(null);
+  }, [pathname]);
 
   // Check if a menu item should be selected based on the current path
   const isSelected = (href?: string) => {
-    if (!href || !pathname) return false
-    return pathname.startsWith(href)
-  }
+    if (!href || !pathname) return false;
+    return pathname.startsWith(href);
+  };
 
   // Filter groups to only show those with sections in the dropdown
-  const dropdownGroups = menuGroups.filter((group) => group.sections)
+  const dropdownGroups = menuGroups.filter((group) => group.sections);
 
   // Add click handler to close dropdown when clicking on links
   const handleLinkClick = (href: string) => {
-    setActiveDropdown(null)
+    setActiveDropdown(null);
     // Let the default navigation happen
-  }
+  };
 
   return (
     <Flex gap="4" flex={1} className={className} {...rest}>
@@ -117,14 +112,14 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
         <Row
           key={`menu-group-${index}`}
           ref={(el) => {
-            buttonRefs.current[group.label] = el
+            buttonRefs.current[group.label] = el;
           }}
           onMouseEnter={() => group.sections && setActiveDropdown(group.label)}
           onMouseLeave={(e) => {
             // Check if we're not hovering over the dropdown
-            const dropdownElement = dropdownRef.current
+            const dropdownElement = dropdownRef.current;
             if (dropdownElement) {
-              const rect = dropdownElement.getBoundingClientRect()
+              const rect = dropdownElement.getBoundingClientRect();
               if (
                 e.clientX >= rect.left &&
                 e.clientX <= rect.right &&
@@ -132,21 +127,17 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                 e.clientY <= rect.bottom
               ) {
                 // We're hovering over the dropdown, don't hide it
-                return
+                return;
               }
             }
             // Only hide if activeDropdown is this group
             if (activeDropdown === group.label) {
-              setActiveDropdown(null)
+              setActiveDropdown(null);
             }
           }}
         >
           <ToggleButton
-            selected={
-              group.selected !== undefined
-                ? group.selected
-                : isSelected(group.href)
-            }
+            selected={group.selected !== undefined ? group.selected : isSelected(group.href)}
             href={group.href}
           >
             {group.label}
@@ -165,19 +156,19 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
           pointerEvents="auto"
           opacity={100}
           top="32"
-          className={isFirstAppearance ? styles.dropdown : ''}
+          className={isFirstAppearance ? styles.dropdown : ""}
           style={{
             left: `${dropdownPosition.left}px`,
             width: `${dropdownPosition.width}px`,
-            transition: 'left 0.3s ease, width 0.3s ease',
-            visibility: 'visible',
+            transition: "left 0.3s ease, width 0.3s ease",
+            visibility: "visible",
           }}
           onMouseEnter={() => {
             // Keep the current active dropdown when hovering over it
           }}
           onMouseLeave={() => {
             // Hide dropdown when mouse leaves it
-            setActiveDropdown(null)
+            setActiveDropdown(null);
           }}
         >
           <Row
@@ -196,15 +187,11 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                     key={`dropdown-content-${groupIndex}`}
                     gap="16"
                     ref={(el) => {
-                      contentRefs.current[group.label] = el
+                      contentRefs.current[group.label] = el;
                     }}
                   >
                     {group.sections.map((section, sectionIndex) => (
-                      <Column
-                        key={`section-${sectionIndex}`}
-                        minWidth={10}
-                        gap="4"
-                      >
+                      <Column key={`section-${sectionIndex}`} minWidth={10} gap="4">
                         {section.title && (
                           <Text
                             marginLeft="16"
@@ -237,15 +224,10 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                                   />
                                 )}
                                 <Column gap="4">
-                                  <Text
-                                    onBackground="neutral-strong"
-                                    variant="label-strong-s"
-                                  >
+                                  <Text onBackground="neutral-strong" variant="label-strong-s">
                                     {link.label}
                                   </Text>
-                                  <Text onBackground="neutral-weak">
-                                    {link.description}
-                                  </Text>
+                                  <Text onBackground="neutral-weak">{link.description}</Text>
                                 </Column>
                               </Row>
                             ) : (
@@ -256,13 +238,13 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
                       </Column>
                     ))}
                   </Row>
-                )
+                ),
             )}
           </Row>
         </Row>
       )}
     </Flex>
-  )
-}
+  );
+};
 
-MegaMenu.displayName = 'MegaMenu'
+MegaMenu.displayName = "MegaMenu";

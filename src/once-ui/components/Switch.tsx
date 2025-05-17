@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import React, { forwardRef } from 'react'
-import classNames from 'classnames'
+import React, { forwardRef } from "react";
+import classNames from "classnames";
 
-import { Flex, InteractiveDetails, InteractiveDetailsProps, Spinner } from '.'
-import styles from './Switch.module.scss'
-import commonStyles from './SharedInteractiveStyles.module.scss'
+import { Flex, InteractiveDetails, InteractiveDetailsProps, Spinner } from ".";
+import styles from "./Switch.module.scss";
+import commonStyles from "./SharedInteractiveStyles.module.scss";
 
 interface SwitchProps
-  extends Omit<InteractiveDetailsProps, 'onClick'>,
+  extends Omit<InteractiveDetailsProps, "onClick">,
     React.InputHTMLAttributes<HTMLInputElement> {
-  style?: React.CSSProperties
-  className?: string
-  isChecked: boolean
-  loading?: boolean
-  name?: string
-  value?: string
-  disabled?: boolean
-  reverse?: boolean
-  ariaLabel?: string
-  onToggle: () => void
+  style?: React.CSSProperties;
+  className?: string;
+  isChecked: boolean;
+  loading?: boolean;
+  name?: string;
+  value?: string;
+  disabled?: boolean;
+  reverse?: boolean;
+  ariaLabel?: string;
+  onToggle: () => void;
 }
 
 const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
@@ -30,32 +30,32 @@ const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
       reverse = false,
       loading = false,
       onToggle,
-      ariaLabel = 'Toggle switch',
+      ariaLabel = "Toggle switch",
       disabled,
       name,
       value,
       ...props
     },
-    ref
+    ref,
   ) => {
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!disabled && (event.key === 'Enter' || event.key === ' ')) {
-        event.preventDefault()
-        onToggle()
+      if (!disabled && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        onToggle();
       }
-    }
+    };
 
     const handleClick = () => {
       if (!disabled) {
-        onToggle()
+        onToggle();
       }
-    }
+    };
 
     return (
       <Flex
         gap="16"
         vertical="center"
-        horizontal={reverse ? 'space-between' : undefined}
+        horizontal={reverse ? "space-between" : undefined}
         fillWidth={reverse}
         className={classNames(styles.container, className, {
           [styles.reverse]: reverse,
@@ -97,10 +97,10 @@ const Switch: React.FC<SwitchProps> = forwardRef<HTMLInputElement, SwitchProps>(
         </div>
         {props.label && <InteractiveDetails {...props} onClick={() => {}} />}
       </Flex>
-    )
-  }
-)
+    );
+  },
+);
 
-Switch.displayName = 'Switch'
+Switch.displayName = "Switch";
 
-export { Switch }
+export { Switch };
