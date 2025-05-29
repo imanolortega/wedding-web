@@ -69,6 +69,71 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
       },
     }));
 
+    const handleOnClick = async ({
+      name,
+      lastName,
+      asistQuantity,
+      setIsLoading,
+      addToast,
+      setName,
+      setLastName,
+      setAsistQuantity,
+    }: {
+      name: string;
+      lastName: string;
+      asistQuantity: number;
+      setIsLoading: (value: boolean) => void;
+      addToast: (args: {
+        variant: 'success' | 'danger';
+        message: string;
+      }) => void;
+      setName: (value: string) => void;
+      setLastName: (value: string) => void;
+      setAsistQuantity: (value: number) => void;
+    }) => {
+      if (!name.trim() || !lastName.trim()) {
+        addToast({
+          variant: 'danger',
+          message: 'Por favor completá tu nombre y apellido antes de enviar.',
+        });
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const res = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            lastName,
+            asistentQuantity: asistQuantity,
+          }),
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          addToast({
+            variant: 'success',
+            message:
+              '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
+          });
+          setName('');
+          setLastName('');
+          setAsistQuantity(0);
+        } else {
+          throw new Error('No se pudo enviar');
+        }
+      } catch (err) {
+        addToast({
+          variant: 'danger',
+          message: 'Error al enviar la confirmación. Intentá nuevamente.',
+        });
+      }
+      setIsLoading(false);
+    };
+
     return (
       <Row
         marginY="32"
@@ -138,41 +203,18 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             arrowIcon
             fillWidth
             loading={isLoading}
-            onClick={async () => {
-              setIsLoading(true);
-              try {
-                const res = await fetch('/api/submit', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    name,
-                    lastName,
-                    asistentQuantity: asistQuantity,
-                  }),
-                });
-
-                const result = await res.json();
-
-                if (result.success) {
-                  addToast({
-                    variant: 'success',
-                    message:
-                      '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
-                  });
-                  setName('');
-                  setLastName('');
-                  setAsistQuantity(0);
-                } else {
-                  throw new Error('No se pudo enviar');
-                }
-              } catch (err) {
-                addToast({
-                  variant: 'danger',
-                  message: 'Error al enviar la confirmación. Intentá nuevamente.',
-                });
-              }
-              setIsLoading(false);
-            }}
+            onClick={() =>
+              handleOnClick({
+                name,
+                lastName,
+                asistQuantity,
+                setIsLoading,
+                addToast,
+                setName,
+                setLastName,
+                setAsistQuantity,
+              })
+            }
           />
         </Column>
       </Row>

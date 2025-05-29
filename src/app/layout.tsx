@@ -1,13 +1,13 @@
-import "@/once-ui/styles/index.scss";
-import "@/once-ui/tokens/index.scss";
+import '@/once-ui/styles/index.scss';
+import '@/once-ui/tokens/index.scss';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import { baseURL, style, meta, font, effects } from "@/app/resources/config";
-import { Background, Column, Flex, ToastProvider, ThemeProvider } from "@/once-ui/components";
+import { baseURL, style, meta, font, effects } from '@/app/resources/config';
+import { Background, Column, Flex, ToastProvider, ThemeProvider } from '@/once-ui/components';
 
-import { opacity, SpacingToken } from "@/once-ui/types";
-import { Meta, Schema } from "@/once-ui/modules";
+import { opacity, SpacingToken } from '@/once-ui/types';
+import { Meta, Schema } from '@/once-ui/modules';
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -59,24 +59,9 @@ export default function RootLayout({
       />
       <head>
         <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: <It's not dynamic nor a security issue.>
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <Uso controlado, sin contenido dinámico.>
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const theme = localStorage.getItem('theme') || 'light';
-                  const root = document.documentElement;
-                  if (theme === 'system') {
-                    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-                  } else {
-                    root.setAttribute('data-theme', theme);
-                  }
-                } catch (e) {
-                  document.documentElement.setAttribute('data-theme', 'dark');
-                }
-              })();
-            `,
+            __html: `document.documentElement.setAttribute('data-theme', 'light');`,
           }}
         />
       </head>
