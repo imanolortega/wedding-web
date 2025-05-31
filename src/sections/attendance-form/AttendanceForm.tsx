@@ -12,6 +12,7 @@ import {
   Input,
   Select,
   Button,
+  Checkbox,
 } from '@/once-ui/components'
 
 export interface AttendanceFormHandle {
@@ -54,15 +55,15 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
       setLastName,
       asistQuantity,
       setAsistQuantity,
-      onSelect,
       isLoading,
       setIsLoading,
       addToast,
     },
     ref,
   ) => {
-    const [companionOne, setCompanionOne] = useState('')
-    const [companionTwo, setCompanionTwo] = useState('')
+    const [companionOne, setCompanionOne] = useState<string>('')
+    const [companionTwo, setCompanionTwo] = useState<string>('')
+    const [specialFood, setSpecialFood] = useState<string[]>([])
 
     useImperativeHandle(ref, () => ({
       reset: () => {
@@ -250,6 +251,56 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
                 onChange={(e) => setCompanionTwo(e.target.value)}
               />
             )}
+
+            <Column align="center" fillWidth gap="1" paddingTop="m" paddingBottom="s">
+              <Text variant="label-default-m">¿Tenés alguna necesidad alimentaria?</Text>
+              <Row style={{ display: 'flex' }} align="center" gap="s" paddingTop="m">
+                <Checkbox
+                  id="sin-necesidades"
+                  label="No"
+                  checked={specialFood.includes('No')}
+                  onChange={(e) => {
+                    const checked = e.target.checked
+                    setSpecialFood((prev) =>
+                      checked ? [...prev, 'No'] : prev.filter((v) => v !== 'No'),
+                    )
+                  }}
+                />
+                <Checkbox
+                  id="sin-tacc"
+                  label="Sin TACC"
+                  checked={specialFood.includes('Sin TACC')}
+                  onChange={(e) => {
+                    const checked = e.target.checked
+                    setSpecialFood((prev) =>
+                      checked ? [...prev, 'Sin TACC'] : prev.filter((v) => v !== 'Sin TACC'),
+                    )
+                  }}
+                />
+                <Checkbox
+                  id="vegetariano"
+                  label="Vegetariano"
+                  checked={specialFood.includes('Vegetariano')}
+                  onChange={(e) => {
+                    const checked = e.target.checked
+                    setSpecialFood((prev) =>
+                      checked ? [...prev, 'Vegetariano'] : prev.filter((v) => v !== 'Vegetariano'),
+                    )
+                  }}
+                />
+                <Checkbox
+                  id="vegano"
+                  label="Vegano"
+                  checked={specialFood.includes('Vegano')}
+                  onChange={(e) => {
+                    const checked = e.target.checked
+                    setSpecialFood((prev) =>
+                      checked ? [...prev, 'Vegano'] : prev.filter((v) => v !== 'Vegano'),
+                    )
+                  }}
+                />
+              </Row>
+            </Column>
           </Column>
 
           <Button
