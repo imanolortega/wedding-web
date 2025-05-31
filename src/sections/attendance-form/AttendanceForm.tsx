@@ -63,7 +63,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
   ) => {
     const [companionOne, setCompanionOne] = useState<string>('')
     const [companionTwo, setCompanionTwo] = useState<string>('')
-    const [specialFood, setSpecialFood] = useState<string[]>([])
+    const [specialFood, setSpecialFood] = useState<string[]>(['No'])
 
     useImperativeHandle(ref, () => ({
       reset: () => {
@@ -162,6 +162,24 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
       setIsLoading(false)
     }
 
+    const isChecked = (option: string) =>
+      specialFood.length === 1 && specialFood[0] === 'No'
+        ? option === 'No'
+        : specialFood.includes(option)
+
+    const toggleOption = (option: string, checked: boolean) => {
+      setSpecialFood((prev) => {
+        if (option === 'No') {
+          return checked ? ['No'] : []
+        }
+
+        const filtered = prev.filter((v) => v !== 'No')
+        const next = checked ? [...filtered, option] : filtered.filter((v) => v !== option)
+
+        return next.length === 0 ? ['No'] : next
+      })
+    }
+
     return (
       <Row
         marginY="32"
@@ -256,48 +274,28 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
               <Text variant="label-default-m">¿Tenés alguna necesidad alimentaria?</Text>
               <Row style={{ display: 'flex' }} align="center" gap="s" paddingTop="m">
                 <Checkbox
-                  id="sin-necesidades"
+                  id="no"
                   label="No"
-                  checked={specialFood.includes('No')}
-                  onChange={(e) => {
-                    const checked = e.target.checked
-                    setSpecialFood((prev) =>
-                      checked ? [...prev, 'No'] : prev.filter((v) => v !== 'No'),
-                    )
-                  }}
+                  checked={isChecked('No')}
+                  onChange={(e) => toggleOption('No', e.target.checked)}
                 />
                 <Checkbox
                   id="sin-tacc"
                   label="Sin TACC"
-                  checked={specialFood.includes('Sin TACC')}
-                  onChange={(e) => {
-                    const checked = e.target.checked
-                    setSpecialFood((prev) =>
-                      checked ? [...prev, 'Sin TACC'] : prev.filter((v) => v !== 'Sin TACC'),
-                    )
-                  }}
+                  checked={isChecked('Sin TACC')}
+                  onChange={(e) => toggleOption('Sin TACC', e.target.checked)}
                 />
                 <Checkbox
                   id="vegetariano"
                   label="Vegetariano"
-                  checked={specialFood.includes('Vegetariano')}
-                  onChange={(e) => {
-                    const checked = e.target.checked
-                    setSpecialFood((prev) =>
-                      checked ? [...prev, 'Vegetariano'] : prev.filter((v) => v !== 'Vegetariano'),
-                    )
-                  }}
+                  checked={isChecked('Vegetariano')}
+                  onChange={(e) => toggleOption('Vegetariano', e.target.checked)}
                 />
                 <Checkbox
                   id="vegano"
                   label="Vegano"
-                  checked={specialFood.includes('Vegano')}
-                  onChange={(e) => {
-                    const checked = e.target.checked
-                    setSpecialFood((prev) =>
-                      checked ? [...prev, 'Vegano'] : prev.filter((v) => v !== 'Vegano'),
-                    )
-                  }}
+                  checked={isChecked('Vegano')}
+                  onChange={(e) => toggleOption('Vegano', e.target.checked)}
                 />
               </Row>
             </Column>
