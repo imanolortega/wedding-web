@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import React, { CSSProperties, forwardRef } from 'react';
-import classNames from 'classnames';
+import React, { CSSProperties, forwardRef } from 'react'
+import classNames from 'classnames'
 
 import {
   GridProps,
@@ -11,8 +11,8 @@ import {
   CommonProps,
   DisplayProps,
   ConditionalProps,
-} from '../interfaces';
-import { SpacingToken, ColorScheme, ColorWeight } from '../types';
+} from '../interfaces'
+import { SpacingToken, ColorScheme, ColorWeight } from '../types'
 
 interface ComponentProps
   extends GridProps,
@@ -108,32 +108,32 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(
     ref,
   ) => {
     const generateDynamicClass = (type: string, value: string | '-1' | undefined) => {
-      if (!value) return undefined;
+      if (!value) return undefined
 
       if (value === 'transparent') {
-        return `transparent-border`;
+        return `transparent-border`
       }
 
       if (value === 'surface' || value === 'page' || value === 'transparent') {
-        return `${value}-${type}`;
+        return `${value}-${type}`
       }
 
-      const parts = value.split('-');
+      const parts = value.split('-')
       if (parts.includes('alpha')) {
-        const [scheme, , weight] = parts;
-        return `${scheme}-${type}-alpha-${weight}`;
+        const [scheme, , weight] = parts
+        return `${scheme}-${type}-alpha-${weight}`
       }
 
-      const [scheme, weight] = value.split('-') as [ColorScheme, ColorWeight];
-      return `${scheme}-${type}-${weight}`;
-    };
+      const [scheme, weight] = value.split('-') as [ColorScheme, ColorWeight]
+      return `${scheme}-${type}-${weight}`
+    }
 
     const parseDimension = (
       value: number | SpacingToken | undefined,
       type: 'width' | 'height',
     ): string | undefined => {
-      if (value === undefined) return undefined;
-      if (typeof value === 'number') return `${value}rem`;
+      if (value === undefined) return undefined
+      if (typeof value === 'number') return `${value}rem`
       if (
         [
           '0',
@@ -156,13 +156,13 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(
           '160',
         ].includes(value)
       ) {
-        return `var(--static-space-${value})`;
+        return `var(--static-space-${value})`
       }
       if (['xs', 's', 'm', 'l', 'xl'].includes(value)) {
-        return `var(--responsive-${type}-${value})`;
+        return `var(--responsive-${type}-${value})`
       }
-      return undefined;
-    };
+      return undefined
+    }
 
     const classes = classNames(
       inline ? 'display-inline-grid' : 'display-grid',
@@ -235,7 +235,7 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(
       dark && 'dark-grid',
       light && 'light-grid',
       className,
-    );
+    )
 
     const combinedStyle: CSSProperties = {
       maxWidth: parseDimension(maxWidth, 'width'),
@@ -247,17 +247,17 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(
       aspectRatio: aspectRatio,
       textAlign: align,
       ...style,
-    };
+    }
 
     return (
       <Component ref={ref} className={classes} style={combinedStyle} {...rest}>
         {children}
       </Component>
-    );
+    )
   },
-);
+)
 
-Grid.displayName = 'Grid';
+Grid.displayName = 'Grid'
 
-export { Grid };
-export type { GridProps };
+export { Grid }
+export type { GridProps }

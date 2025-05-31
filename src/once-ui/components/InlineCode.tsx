@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import React, { forwardRef, ReactNode } from 'react';
-import styles from './InlineCode.module.scss';
-import { Flex } from './Flex';
+import React, { forwardRef, ReactNode } from 'react'
+import styles from './InlineCode.module.scss'
+import { Flex } from './Flex'
 
 interface InlineCodeProps extends React.ComponentProps<typeof Flex> {
-  children: ReactNode;
+  children: ReactNode
 }
 
 const InlineCode = forwardRef<HTMLDivElement, InlineCodeProps>(({ children, ...rest }, ref) => {
@@ -27,9 +27,9 @@ const InlineCode = forwardRef<HTMLDivElement, InlineCodeProps>(({ children, ...r
     >
       {children}
     </Flex>
-  );
-});
+  )
+})
 
-InlineCode.displayName = 'InlineCode';
+InlineCode.displayName = 'InlineCode'
 
-export { InlineCode };
+export { InlineCode }

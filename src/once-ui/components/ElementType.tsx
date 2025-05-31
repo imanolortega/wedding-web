@@ -1,23 +1,23 @@
-import Link from 'next/link';
-import React, { ReactNode, forwardRef } from 'react';
-import { Flex } from './Flex';
+import Link from 'next/link'
+import React, { ReactNode, forwardRef } from 'react'
+import { Flex } from './Flex'
 
 interface ElementTypeProps {
-  href?: string;
-  onClick?: () => void;
-  onLinkClick?: () => void;
-  children: ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  [key: string]: any;
+  href?: string
+  onClick?: () => void
+  onLinkClick?: () => void
+  children: ReactNode
+  className?: string
+  style?: React.CSSProperties
+  [key: string]: any
 }
 
-const isExternalLink = (url: string) => /^https?:\/\//.test(url);
+const isExternalLink = (url: string) => /^https?:\/\//.test(url)
 
 const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
   ({ href, type, onClick, onLinkClick, children, className, style, ...props }, ref) => {
     if (href) {
-      const isExternal = isExternalLink(href);
+      const isExternal = isExternalLink(href)
       if (isExternal) {
         return (
           <a
@@ -32,7 +32,7 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
           >
             {children}
           </a>
-        );
+        )
       }
       return (
         <Link
@@ -45,7 +45,7 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
         >
           {children}
         </Link>
-      );
+      )
     }
 
     if (onClick || type === 'submit' || type === 'button') {
@@ -59,7 +59,7 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
         >
           {children}
         </button>
-      );
+      )
     }
 
     return (
@@ -71,9 +71,9 @@ const ElementType = forwardRef<HTMLElement, ElementTypeProps>(
       >
         {children}
       </Flex>
-    );
+    )
   },
-);
+)
 
-ElementType.displayName = 'ElementType';
-export { ElementType };
+ElementType.displayName = 'ElementType'
+export { ElementType }

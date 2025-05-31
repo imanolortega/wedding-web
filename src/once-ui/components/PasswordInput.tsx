@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import React, { useState, forwardRef } from 'react';
-import { Input, InputProps, IconButton } from '.';
+import React, { useState, forwardRef } from 'react'
+import { Input, InputProps, IconButton } from '.'
 
 export const PasswordInput = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <Input
@@ -14,7 +14,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>((props, re
       hasSuffix={
         <IconButton
           onClick={() => {
-            setShowPassword(!showPassword);
+            setShowPassword(!showPassword)
           }}
           variant="ghost"
           icon={showPassword ? 'eyeOff' : 'eye'}
@@ -23,7 +23,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>((props, re
         />
       }
     />
-  );
-});
+  )
+})
 
-PasswordInput.displayName = 'PasswordInput';
+PasswordInput.displayName = 'PasswordInput'

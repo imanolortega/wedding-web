@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { Column, InlineCode, Text, SmartImage } from '@/once-ui/components';
+import React, { forwardRef } from 'react'
+import { Column, InlineCode, Text, SmartImage } from '@/once-ui/components'
 
 export interface HeroHandle {}
 
@@ -22,8 +22,8 @@ const Hero = forwardRef<HeroHandle>((_, ref) => {
         />
       </Column>
     </Column>
-  );
-});
+  )
+})
 
-Hero.displayName = 'Hero';
-export { Hero };
+Hero.displayName = 'Hero'
+export { Hero }

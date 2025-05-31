@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import React, { forwardRef } from 'react';
-import { Text, Flex, IconButton, IconButtonProps } from '.';
+import React, { forwardRef } from 'react'
+import { Text, Flex, IconButton, IconButtonProps } from '.'
 
 interface InteractiveDetailsProps {
-  label?: React.ReactNode;
-  description?: React.ReactNode;
-  iconButtonProps?: IconButtonProps;
-  onClick: () => void;
-  className?: string;
-  id?: string;
+  label?: React.ReactNode
+  description?: React.ReactNode
+  iconButtonProps?: IconButtonProps
+  onClick: () => void
+  className?: string
+  id?: string
 }
 
 const InteractiveDetails: React.FC<InteractiveDetailsProps> = forwardRef<
@@ -34,10 +34,10 @@ const InteractiveDetails: React.FC<InteractiveDetailsProps> = forwardRef<
         </Text>
       )}
     </Flex>
-  );
-});
+  )
+})
 
-InteractiveDetails.displayName = 'InteractiveDetails';
+InteractiveDetails.displayName = 'InteractiveDetails'
 
-export { InteractiveDetails };
-export type { InteractiveDetailsProps };
+export { InteractiveDetails }
+export type { InteractiveDetailsProps }

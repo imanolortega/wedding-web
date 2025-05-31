@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import React, { ElementType, ComponentPropsWithoutRef } from 'react';
-import classNames from 'classnames';
+import React, { ElementType, ComponentPropsWithoutRef } from 'react'
+import classNames from 'classnames'
 
-import { TextProps, CommonProps, SpacingProps } from '../interfaces';
-import { ColorScheme, ColorWeight, TextVariant, SpacingToken } from '../types';
+import { TextProps, CommonProps, SpacingProps } from '../interfaces'
+import { ColorScheme, ColorWeight, TextVariant, SpacingToken } from '../types'
 
 type HeadingProps<T extends ElementType> = TextProps<T> &
   CommonProps &
   SpacingProps &
-  ComponentPropsWithoutRef<T>;
+  ComponentPropsWithoutRef<T>
 
 const Heading = <T extends ElementType = 'h1'>({
   as,
@@ -39,40 +39,40 @@ const Heading = <T extends ElementType = 'h1'>({
   className,
   ...props
 }: HeadingProps<T>) => {
-  const Component = as || 'h1';
+  const Component = as || 'h1'
 
   if (variant && (size || weight)) {
-    console.warn("When 'variant' is set, 'size' and 'weight' are ignored.");
+    console.warn("When 'variant' is set, 'size' and 'weight' are ignored.")
   }
 
   if (onBackground && onSolid) {
     console.warn(
       "You cannot use both 'onBackground' and 'onSolid' props simultaneously. Only one will be applied.",
-    );
+    )
   }
 
   const getVariantClasses = (variant: TextVariant) => {
-    const [fontType, weight, size] = variant.split('-');
-    return [`font-${fontType}`, `font-${weight}`, `font-${size}`];
-  };
+    const [fontType, weight, size] = variant.split('-')
+    return [`font-${fontType}`, `font-${weight}`, `font-${size}`]
+  }
 
-  const sizeClass = size ? `font-${size}` : 'font-m';
-  const weightClass = weight ? `font-${weight}` : 'font-strong';
+  const sizeClass = size ? `font-${size}` : 'font-m'
+  const weightClass = weight ? `font-${weight}` : 'font-strong'
 
-  const classes = variant ? getVariantClasses(variant) : [sizeClass, weightClass];
+  const classes = variant ? getVariantClasses(variant) : [sizeClass, weightClass]
 
-  let colorClass = 'neutral-on-background-strong';
+  let colorClass = 'neutral-on-background-strong'
   if (onBackground) {
-    const [scheme, weight] = onBackground.split('-') as [ColorScheme, ColorWeight];
-    colorClass = `${scheme}-on-background-${weight}`;
+    const [scheme, weight] = onBackground.split('-') as [ColorScheme, ColorWeight]
+    colorClass = `${scheme}-on-background-${weight}`
   } else if (onSolid) {
-    const [scheme, weight] = onSolid.split('-') as [ColorScheme, ColorWeight];
-    colorClass = `${scheme}-on-solid-${weight}`;
+    const [scheme, weight] = onSolid.split('-') as [ColorScheme, ColorWeight]
+    colorClass = `${scheme}-on-solid-${weight}`
   }
 
   const generateClassName = (prefix: string, token: SpacingToken | undefined) => {
-    return token ? `${prefix}-${token}` : undefined;
-  };
+    return token ? `${prefix}-${token}` : undefined
+  }
 
   const combinedClasses = classNames(
     ...classes,
@@ -92,7 +92,7 @@ const Heading = <T extends ElementType = 'h1'>({
     generateClassName('mb', marginBottom),
     generateClassName('mx', marginX),
     generateClassName('my', marginY),
-  );
+  )
 
   return (
     <Component
@@ -106,9 +106,9 @@ const Heading = <T extends ElementType = 'h1'>({
     >
       {children}
     </Component>
-  );
-};
+  )
+}
 
-Heading.displayName = 'Heading';
+Heading.displayName = 'Heading'
 
-export { Heading };
+export { Heading }

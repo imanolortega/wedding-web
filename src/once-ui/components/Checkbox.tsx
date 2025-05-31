@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect, forwardRef } from 'react';
-import classNames from 'classnames';
-import { Flex, Icon, InteractiveDetails, InteractiveDetailsProps } from '.';
-import styles from './SharedInteractiveStyles.module.scss';
+import React, { useState, useEffect, forwardRef } from 'react'
+import classNames from 'classnames'
+import { Flex, Icon, InteractiveDetails, InteractiveDetailsProps } from '.'
+import styles from './SharedInteractiveStyles.module.scss'
 
 interface CheckboxProps
   extends Omit<InteractiveDetailsProps, 'onClick'>,
     React.InputHTMLAttributes<HTMLInputElement> {
-  isChecked?: boolean;
-  isIndeterminate?: boolean;
-  onToggle?: () => void;
+  isChecked?: boolean
+  isIndeterminate?: boolean
+  onToggle?: () => void
 }
 
-const generateId = () => `checkbox-${Math.random().toString(36).substring(2, 9)}`;
+const generateId = () => `checkbox-${Math.random().toString(36).substring(2, 9)}`
 
 const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -28,31 +28,31 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
     },
     ref,
   ) => {
-    const [isChecked, setIsChecked] = useState(controlledIsChecked || false);
-    const [checkboxId] = useState(generateId());
+    const [isChecked, setIsChecked] = useState(controlledIsChecked || false)
+    const [checkboxId] = useState(generateId())
 
     useEffect(() => {
       if (controlledIsChecked !== undefined) {
-        setIsChecked(controlledIsChecked);
+        setIsChecked(controlledIsChecked)
       }
-    }, [controlledIsChecked]);
+    }, [controlledIsChecked])
 
     const toggleItem = () => {
-      if (disabled) return;
+      if (disabled) return
       if (onToggle) {
-        onToggle();
+        onToggle()
       } else {
-        setIsChecked(!isChecked);
+        setIsChecked(!isChecked)
       }
-    };
+    }
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
-      if (disabled) return;
+      if (disabled) return
       if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleItem();
+        event.preventDefault()
+        toggleItem()
       }
-    };
+    }
 
     return (
       <Flex
@@ -121,11 +121,11 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
         </Flex>
         {props.label && <InteractiveDetails id={checkboxId} {...props} onClick={toggleItem} />}
       </Flex>
-    );
+    )
   },
-);
+)
 
-Checkbox.displayName = 'Checkbox';
+Checkbox.displayName = 'Checkbox'
 
-export { Checkbox };
-export type { CheckboxProps };
+export { Checkbox }
+export type { CheckboxProps }

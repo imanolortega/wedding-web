@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, {
   useState,
@@ -8,7 +8,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useCallback,
-} from 'react';
+} from 'react'
 import {
   useFloating,
   shift,
@@ -17,25 +17,25 @@ import {
   size,
   autoUpdate,
   Placement,
-} from '@floating-ui/react-dom';
-import { Flex, Dropdown } from '.';
-import styles from './DropdownWrapper.module.scss';
+} from '@floating-ui/react-dom'
+import { Flex, Dropdown } from '.'
+import styles from './DropdownWrapper.module.scss'
 
 export interface DropdownWrapperProps {
-  fillWidth?: boolean;
-  minWidth?: number;
-  maxWidth?: number;
-  minHeight?: number;
-  floatingPlacement?: Placement;
-  trigger: ReactNode;
-  dropdown: ReactNode;
-  selectedOption?: string;
-  style?: React.CSSProperties;
-  className?: string;
-  onSelect?: (value: string) => void;
-  closeAfterClick?: boolean;
-  isOpen?: boolean;
-  onOpenChange?: (isOpen: boolean) => void;
+  fillWidth?: boolean
+  minWidth?: number
+  maxWidth?: number
+  minHeight?: number
+  floatingPlacement?: Placement
+  trigger: ReactNode
+  dropdown: ReactNode
+  selectedOption?: string
+  style?: React.CSSProperties
+  className?: string
+  onSelect?: (value: string) => void
+  closeAfterClick?: boolean
+  isOpen?: boolean
+  onOpenChange?: (isOpen: boolean) => void
 }
 
 const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
@@ -58,23 +58,23 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
     },
     ref,
   ) => {
-    const wrapperRef = useRef<HTMLDivElement>(null);
-    const dropdownRef = useRef<HTMLDivElement | null>(null);
-    const [mounted, setMounted] = useState(false);
-    const [internalIsOpen, setInternalIsOpen] = useState(false);
+    const wrapperRef = useRef<HTMLDivElement>(null)
+    const dropdownRef = useRef<HTMLDivElement | null>(null)
+    const [mounted, setMounted] = useState(false)
+    const [internalIsOpen, setInternalIsOpen] = useState(false)
 
-    const isControlled = controlledIsOpen !== undefined;
-    const isOpen = isControlled ? controlledIsOpen : internalIsOpen;
+    const isControlled = controlledIsOpen !== undefined
+    const isOpen = isControlled ? controlledIsOpen : internalIsOpen
 
     const handleOpenChange = useCallback(
       (newIsOpen: boolean) => {
         if (!isControlled) {
-          setInternalIsOpen(newIsOpen);
+          setInternalIsOpen(newIsOpen)
         }
-        onOpenChange?.(newIsOpen);
+        onOpenChange?.(newIsOpen)
       },
       [onOpenChange, isControlled],
-    );
+    )
 
     const { x, y, strategy, refs, update } = useFloating({
       placement: floatingPlacement,
@@ -91,67 +91,67 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
               maxWidth: maxWidth ? `${maxWidth}rem` : `${availableWidth}px`,
               minHeight: `${Math.min(minHeight || 0)}px`,
               maxHeight: `${availableHeight}px`,
-            });
+            })
           },
         }),
       ],
       whileElementsMounted: autoUpdate,
-    });
+    })
 
-    useImperativeHandle(ref, () => wrapperRef.current as HTMLDivElement);
+    useImperativeHandle(ref, () => wrapperRef.current as HTMLDivElement)
 
     useEffect(() => {
       if (wrapperRef.current) {
-        refs.setReference(wrapperRef.current);
+        refs.setReference(wrapperRef.current)
       }
-    }, [refs, mounted]);
+    }, [refs, mounted])
 
     useEffect(() => {
       if (!mounted) {
-        setMounted(true);
+        setMounted(true)
       }
-    }, [mounted]);
+    }, [mounted])
 
     useEffect(() => {
       if (isOpen && mounted) {
         requestAnimationFrame(() => {
           if (dropdownRef.current) {
-            refs.setFloating(dropdownRef.current);
-            update();
+            refs.setFloating(dropdownRef.current)
+            update()
           }
-        });
+        })
       }
-    }, [isOpen, mounted, refs, update]);
+    }, [isOpen, mounted, refs, update])
 
     const handleClickOutside = useCallback(
       (event: MouseEvent) => {
         if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
-          handleOpenChange(false);
+          handleOpenChange(false)
         }
       },
       [handleOpenChange, wrapperRef],
-    );
+    )
 
     const handleFocusOut = useCallback(
       (event: FocusEvent) => {
         if (wrapperRef.current && !wrapperRef.current.contains(event.relatedTarget as Node)) {
-          handleOpenChange(false);
+          handleOpenChange(false)
         }
       },
       [handleOpenChange, wrapperRef],
-    );
+    )
 
     useEffect(() => {
-      const currentWrapperRef = wrapperRef.current;
+      const currentWrapperRef = wrapperRef.current
 
-      document.addEventListener('mousedown', handleClickOutside);
-      currentWrapperRef?.addEventListener('focusout', handleFocusOut);
+      document.addEventListener('mousedown', handleClickOutside)
+      currentWrapperRef?.addEventListener('focusout', handleFocusOut)
 
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        currentWrapperRef?.removeEventListener('focusout', handleFocusOut);
-      };
-    }, [handleClickOutside, handleFocusOut]);
+        document.removeEventListener('mousedown', handleClickOutside)
+        currentWrapperRef?.removeEventListener('focusout', handleFocusOut)
+      }
+    }, [handleClickOutside, handleFocusOut])
 
     return (
       <Flex
@@ -170,13 +170,13 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
         ref={wrapperRef}
         onClick={() => {
           if (closeAfterClick) {
-            handleOpenChange(!isOpen);
+            handleOpenChange(!isOpen)
           }
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            handleOpenChange(!isOpen);
+            e.preventDefault()
+            handleOpenChange(!isOpen)
           }
         }}
         tabIndex={-1}
@@ -209,9 +209,9 @@ const DropdownWrapper = forwardRef<HTMLDivElement, DropdownWrapperProps>(
           </Flex>
         )}
       </Flex>
-    );
+    )
   },
-);
+)
 
-DropdownWrapper.displayName = 'DropdownWrapper';
-export { DropdownWrapper };
+DropdownWrapper.displayName = 'DropdownWrapper'
+export { DropdownWrapper }

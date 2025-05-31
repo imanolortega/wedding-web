@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import classNames from 'classnames';
-import styles from './Logo.module.scss';
-import { SpacingToken } from '../types';
-import { Flex } from '.';
+import React, { useEffect } from 'react'
+import Link from 'next/link'
+import classNames from 'classnames'
+import styles from './Logo.module.scss'
+import { SpacingToken } from '../types'
+import { Flex } from '.'
 
 const sizeMap: Record<string, SpacingToken> = {
   xs: '20',
@@ -13,17 +13,17 @@ const sizeMap: Record<string, SpacingToken> = {
   m: '32',
   l: '40',
   xl: '48',
-};
+}
 
 interface LogoProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  className?: string;
-  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
-  style?: React.CSSProperties;
-  wordmark?: boolean;
-  icon?: boolean;
-  iconSrc?: string;
-  wordmarkSrc?: string;
-  href?: string;
+  className?: string
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl'
+  style?: React.CSSProperties
+  wordmark?: boolean
+  icon?: boolean
+  iconSrc?: string
+  wordmarkSrc?: string
+  href?: string
 }
 
 const Logo: React.FC<LogoProps> = ({
@@ -41,9 +41,9 @@ const Logo: React.FC<LogoProps> = ({
     if (!icon && !wordmark) {
       console.warn(
         "Both 'icon' and 'wordmark' props are set to false. The logo will not render any content.",
-      );
+      )
     }
-  }, [icon, wordmark]);
+  }, [icon, wordmark])
 
   const content = (
     <>
@@ -86,7 +86,7 @@ const Logo: React.FC<LogoProps> = ({
         />
       )}
     </>
-  );
+  )
 
   return href ? (
     <Link
@@ -108,8 +108,8 @@ const Logo: React.FC<LogoProps> = ({
     >
       {content}
     </Flex>
-  );
-};
+  )
+}
 
-Logo.displayName = 'Logo';
-export { Logo };
+Logo.displayName = 'Logo'
+export { Logo }

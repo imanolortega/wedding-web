@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import React, { forwardRef, ReactNode } from 'react';
-import classNames from 'classnames';
-import { ElementType } from './ElementType';
-import { Flex, Icon } from '.';
-import styles from './ToggleButton.module.scss';
-import { IconName } from '../icons';
+import React, { forwardRef, ReactNode } from 'react'
+import classNames from 'classnames'
+import { ElementType } from './ElementType'
+import { Flex, Icon } from '.'
+import styles from './ToggleButton.module.scss'
+import { IconName } from '../icons'
 
 interface CommonProps {
-  label?: ReactNode;
-  selected?: boolean;
-  variant?: 'ghost' | 'outline';
-  size?: 's' | 'm' | 'l';
+  label?: ReactNode
+  selected?: boolean
+  variant?: 'ghost' | 'outline'
+  size?: 's' | 'm' | 'l'
   radius?:
     | 'none'
     | 'top'
@@ -21,20 +21,20 @@ interface CommonProps {
     | 'top-left'
     | 'top-right'
     | 'bottom-right'
-    | 'bottom-left';
-  justifyContent?: 'start' | 'center' | 'end' | 'space-between';
-  fillWidth?: boolean;
-  weight?: 'default' | 'strong';
-  truncate?: boolean;
-  prefixIcon?: IconName;
-  suffixIcon?: IconName;
-  className?: string;
-  style?: React.CSSProperties;
-  children?: ReactNode;
-  href?: string;
+    | 'bottom-left'
+  justifyContent?: 'start' | 'center' | 'end' | 'space-between'
+  fillWidth?: boolean
+  weight?: 'default' | 'strong'
+  truncate?: boolean
+  prefixIcon?: IconName
+  suffixIcon?: IconName
+  className?: string
+  style?: React.CSSProperties
+  children?: ReactNode
+  href?: string
 }
 
-export type ToggleButtonProps = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type ToggleButtonProps = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
   (
@@ -101,9 +101,9 @@ const ToggleButton = forwardRef<HTMLElement, ToggleButtonProps>(
         )}
         {suffixIcon && <Icon name={suffixIcon} size={size === 'l' ? 's' : 'xs'} />}
       </ElementType>
-    );
+    )
   },
-);
+)
 
-ToggleButton.displayName = 'ToggleButton';
-export { ToggleButton };
+ToggleButton.displayName = 'ToggleButton'
+export { ToggleButton }

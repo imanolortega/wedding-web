@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import React, {
   useState,
@@ -7,19 +7,19 @@ import React, {
   InputHTMLAttributes,
   useCallback,
   ReactNode,
-} from 'react';
-import classNames from 'classnames';
-import { Flex, Text } from '.';
-import styles from './Input.module.scss';
-import useDebounce from '../hooks/useDebounce';
+} from 'react'
+import classNames from 'classnames'
+import { Flex, Text } from '.'
+import styles from './Input.module.scss'
+import useDebounce from '../hooks/useDebounce'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  id: string;
-  label: string;
-  height?: 's' | 'm';
-  error?: boolean;
-  errorMessage?: ReactNode;
-  description?: ReactNode;
+  id: string
+  label: string
+  height?: 's' | 'm'
+  error?: boolean
+  errorMessage?: ReactNode
+  description?: ReactNode
   radius?:
     | 'none'
     | 'top'
@@ -29,13 +29,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     | 'top-left'
     | 'top-right'
     | 'bottom-right'
-    | 'bottom-left';
-  className?: string;
-  style?: React.CSSProperties;
-  hasPrefix?: ReactNode;
-  hasSuffix?: ReactNode;
-  labelAsPlaceholder?: boolean;
-  validate?: (value: ReactNode) => ReactNode | null;
+    | 'bottom-left'
+  className?: string
+  style?: React.CSSProperties
+  hasPrefix?: ReactNode
+  hasSuffix?: ReactNode
+  labelAsPlaceholder?: boolean
+  validate?: (value: ReactNode) => ReactNode | null
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -61,53 +61,53 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isFilled, setIsFilled] = useState(!!props.value);
-    const [validationError, setValidationError] = useState<ReactNode | null>(null);
-    const debouncedValue = useDebounce(props.value, 1000);
+    const [isFocused, setIsFocused] = useState(false)
+    const [isFilled, setIsFilled] = useState(!!props.value)
+    const [validationError, setValidationError] = useState<ReactNode | null>(null)
+    const debouncedValue = useDebounce(props.value, 1000)
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-      setIsFocused(true);
-      if (onFocus) onFocus(event);
-    };
+      setIsFocused(true)
+      if (onFocus) onFocus(event)
+    }
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-      setIsFocused(false);
+      setIsFocused(false)
       if (event.target.value) {
-        setIsFilled(true);
+        setIsFilled(true)
       } else {
-        setIsFilled(false);
+        setIsFilled(false)
       }
-      if (onBlur) onBlur(event);
-    };
+      if (onBlur) onBlur(event)
+    }
 
     useEffect(() => {
-      setIsFilled(!!props.value);
-    }, [props.value]);
+      setIsFilled(!!props.value)
+    }, [props.value])
 
     const validateInput = useCallback(() => {
       if (!debouncedValue) {
-        setValidationError(null);
-        return;
+        setValidationError(null)
+        return
       }
 
       if (validate) {
-        const error = validate(debouncedValue);
+        const error = validate(debouncedValue)
         if (error) {
-          setValidationError(error);
+          setValidationError(error)
         } else {
-          setValidationError(errorMessage || null);
+          setValidationError(errorMessage || null)
         }
       } else {
-        setValidationError(null);
+        setValidationError(null)
       }
-    }, [debouncedValue, validate, errorMessage]);
+    }, [debouncedValue, validate, errorMessage])
 
     useEffect(() => {
-      validateInput();
-    }, [debouncedValue, validateInput]);
+      validateInput()
+    }, [debouncedValue, validateInput])
 
-    const displayError = validationError || errorMessage;
+    const displayError = validationError || errorMessage
 
     const inputClassNames = classNames(styles.input, 'font-body', 'font-default', 'font-m', {
       [styles.filled]: isFilled,
@@ -117,7 +117,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       [styles.labelAsPlaceholder]: labelAsPlaceholder,
       [styles.hasChildren]: children,
       [styles.error]: displayError && debouncedValue !== '',
-    });
+    })
 
     return (
       <Flex
@@ -204,11 +204,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </Flex>
         )}
       </Flex>
-    );
+    )
   },
-);
+)
 
-Input.displayName = 'Input';
+Input.displayName = 'Input'
 
-export { Input };
-export type { InputProps };
+export { Input }
+export type { InputProps }

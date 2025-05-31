@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import React, { forwardRef } from 'react'
+import classNames from 'classnames'
 
-import { Flex, Text, Skeleton, Tag, TagProps, Avatar, AvatarProps } from '.';
+import { Flex, Text, Skeleton, Tag, TagProps, Avatar, AvatarProps } from '.'
 
 interface UserProps {
-  name?: string;
-  children?: React.ReactNode;
-  subline?: React.ReactNode;
-  tag?: string;
-  tagProps?: TagProps;
-  loading?: boolean;
-  avatarProps?: AvatarProps;
-  className?: string;
+  name?: string
+  children?: React.ReactNode
+  subline?: React.ReactNode
+  tag?: string
+  tagProps?: TagProps
+  loading?: boolean
+  avatarProps?: AvatarProps
+  className?: string
 }
 
 const User = forwardRef<HTMLDivElement, UserProps>(
@@ -21,8 +21,8 @@ const User = forwardRef<HTMLDivElement, UserProps>(
     { name, children, subline, tagProps = {}, loading = false, avatarProps = {}, className },
     ref,
   ) => {
-    const { src, value, empty, ...restAvatarProps } = avatarProps;
-    const isEmpty = empty || (!src && !value);
+    const { src, value, empty, ...restAvatarProps } = avatarProps
+    const isEmpty = empty || (!src && !value)
 
     return (
       <Flex ref={ref} vertical="center" gap="8" className={classNames(className)}>
@@ -65,11 +65,11 @@ const User = forwardRef<HTMLDivElement, UserProps>(
           </Flex>
         )}
       </Flex>
-    );
+    )
   },
-);
+)
 
-User.displayName = 'User';
+User.displayName = 'User'
 
-export { User };
-export type { UserProps };
+export { User }
+export type { UserProps }

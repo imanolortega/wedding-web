@@ -1,8 +1,8 @@
-import { wedding } from '@/app/resources/config';
-import { Background, Card, Column, Row, Text } from '@/once-ui/components';
-import React, { forwardRef } from 'react';
+import { wedding } from '@/app/resources/config'
+import { Background, Card, Column, Row, Text } from '@/once-ui/components'
+import React, { forwardRef } from 'react'
 
-import { Map } from '@/sections';
+import { Map } from '@/sections'
 
 export interface WeddingInfo {}
 
@@ -90,7 +90,7 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
         </Column>
       </Row>
     </>
-  );
-});
-WeddingInfo.displayName = 'WeddingInfo';
-export { WeddingInfo };
+  )
+})
+WeddingInfo.displayName = 'WeddingInfo'
+export { WeddingInfo }

@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import React, { CSSProperties, useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+import React, { CSSProperties, useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 
-import { Flex, Skeleton } from '.';
+import { Flex, Skeleton } from '.'
 
 export interface SmartImageProps extends React.ComponentProps<typeof Flex> {
-  aspectRatio?: string;
-  height?: number;
-  alt?: string;
-  isLoading?: boolean;
-  objectFit?: CSSProperties['objectFit'];
-  enlarge?: boolean;
-  src: string;
-  unoptimized?: boolean;
-  sizes?: string;
-  priority?: boolean;
+  aspectRatio?: string
+  height?: number
+  alt?: string
+  isLoading?: boolean
+  objectFit?: CSSProperties['objectFit']
+  enlarge?: boolean
+  src: string
+  unoptimized?: boolean
+  sizes?: string
+  priority?: boolean
 }
 
 const SmartImage: React.FC<SmartImageProps> = ({
@@ -31,59 +31,59 @@ const SmartImage: React.FC<SmartImageProps> = ({
   sizes = '100vw',
   ...rest
 }) => {
-  const [isEnlarged, setIsEnlarged] = useState(false);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const [isEnlarged, setIsEnlarged] = useState(false)
+  const imageRef = useRef<HTMLDivElement>(null)
 
   const handleClick = () => {
     if (enlarge) {
-      setIsEnlarged(!isEnlarged);
+      setIsEnlarged(!isEnlarged)
     }
-  };
+  }
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isEnlarged) {
-        setIsEnlarged(false);
+        setIsEnlarged(false)
       }
-    };
+    }
 
     const handleWheel = (event: WheelEvent) => {
       if (isEnlarged) {
-        setIsEnlarged(false);
+        setIsEnlarged(false)
       }
-    };
+    }
 
-    document.addEventListener('keydown', handleEscape);
-    window.addEventListener('wheel', handleWheel, { passive: true });
+    document.addEventListener('keydown', handleEscape)
+    window.addEventListener('wheel', handleWheel, { passive: true })
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [isEnlarged]);
+      document.removeEventListener('keydown', handleEscape)
+      window.removeEventListener('wheel', handleWheel)
+    }
+  }, [isEnlarged])
 
   useEffect(() => {
     if (isEnlarged) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isEnlarged]);
+      document.body.style.overflow = 'auto'
+    }
+  }, [isEnlarged])
 
   const calculateTransform = () => {
-    if (!imageRef.current) return {};
+    if (!imageRef.current) return {}
 
-    const rect = imageRef.current.getBoundingClientRect();
-    const scaleX = window.innerWidth / rect.width;
-    const scaleY = window.innerHeight / rect.height;
-    const scale = Math.min(scaleX, scaleY) * 0.9;
+    const rect = imageRef.current.getBoundingClientRect()
+    const scaleX = window.innerWidth / rect.width
+    const scaleY = window.innerHeight / rect.height
+    const scale = Math.min(scaleX, scaleY) * 0.9
 
-    const translateX = (window.innerWidth - rect.width) / 2 - rect.left;
-    const translateY = (window.innerHeight - rect.height) / 2 - rect.top;
+    const translateX = (window.innerWidth - rect.width) / 2 - rect.left
+    const translateY = (window.innerHeight - rect.height) / 2 - rect.top
 
     return {
       transform: isEnlarged
@@ -91,26 +91,26 @@ const SmartImage: React.FC<SmartImageProps> = ({
         : 'translate(0, 0) scale(1)',
       transition: 'all 0.3s ease-in-out',
       zIndex: isEnlarged ? 10 : undefined,
-    };
-  };
+    }
+  }
 
   const isYouTubeVideo = (url: string) => {
     const youtubeRegex =
-      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-    return youtubeRegex.test(url);
-  };
+      /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    return youtubeRegex.test(url)
+  }
 
   const getYouTubeEmbedUrl = (url: string) => {
     const match = url.match(
       /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
-    );
+    )
     return match
       ? `https://www.youtube.com/embed/${match[1]}?controls=0&rel=0&modestbranding=1`
-      : '';
-  };
+      : ''
+  }
 
-  const isVideo = src?.endsWith('.mp4');
-  const isYouTube = isYouTubeVideo(src);
+  const isVideo = src?.endsWith('.mp4')
+  const isYouTube = isYouTubeVideo(src)
 
   return (
     <>
@@ -230,9 +230,9 @@ const SmartImage: React.FC<SmartImageProps> = ({
         </Flex>
       )}
     </>
-  );
-};
+  )
+}
 
-SmartImage.displayName = 'SmartImage';
+SmartImage.displayName = 'SmartImage'
 
-export { SmartImage };
+export { SmartImage }

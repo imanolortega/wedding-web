@@ -1,28 +1,28 @@
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = 'https://demo.once-ui.com';
+const baseURL = 'https://demo.once-ui.com'
 
 // Import and set font for each variant
-import { Geist } from 'next/font/google';
-import { Geist_Mono } from 'next/font/google';
+import { Geist } from 'next/font/google'
+import { Geist_Mono } from 'next/font/google'
 
 const primaryFont = Geist({
   variable: '--font-primary',
   subsets: ['latin'],
   display: 'swap',
-});
+})
 
 const monoFont = Geist_Mono({
   variable: '--font-code',
   subsets: ['latin'],
   display: 'swap',
-});
+})
 
 const font = {
   primary: primaryFont,
   secondary: primaryFont,
   tertiary: primaryFont,
   code: monoFont,
-};
+}
 
 // default customization applied to the HTML in the main layout.tsx
 const style = {
@@ -36,7 +36,7 @@ const style = {
   surface: 'filled', // filled | translucent
   transition: 'all', // all | micro | macro
   scaling: '100', // 90 | 95 | 100 | 105 | 110
-};
+}
 
 const effects = {
   mask: {
@@ -77,7 +77,7 @@ const effects = {
     thickness: 1,
     angle: 45,
   },
-};
+}
 
 // metadata for pages
 const meta = {
@@ -92,7 +92,7 @@ const meta = {
     alternates: [{ href: 'https://www.theboda.top', hrefLang: 'en' }],
   },
   // add more routes and reference them in page.tsx
-};
+}
 
 // default schema data
 const schema = {
@@ -101,14 +101,14 @@ const schema = {
   name: 'The Boda',
   description: meta.home.description,
   email: 'example@example.com',
-};
+}
 
 // social links
 const social = {
   twitter: 'https://www.twitter.com/example',
   linkedin: 'https://www.linkedin.com/company/example/',
   discord: 'https://discord.com/invite/example',
-};
+}
 
 const event = [
   {
@@ -126,7 +126,7 @@ const event = [
     title: 'Ubicación',
     description: 'Ruta 9, Yanda, Santiago del Estero',
   },
-];
+]
 
 const wedding = [
   {
@@ -149,6 +149,6 @@ const wedding = [
     title: 'Ubicación',
     description: 'Av. San Patricio, entre Guevara y Yunes. Barrio San Germés.',
   },
-];
+]
 
-export { baseURL, effects, event, font, meta, schema, social, style, wedding };
+export { baseURL, effects, event, font, meta, schema, social, style, wedding }

@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import type React from 'react';
-import { useState } from 'react';
+import type React from 'react'
+import { useState } from 'react'
 
-import { Background, Column, Fade, IconButton, useToast } from '@/once-ui/components';
-import { ScrollToTop } from '@/once-ui/components/ScrollToTop';
+import { Background, Column, Fade, IconButton, useToast } from '@/once-ui/components'
+import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 
-import { AttendanceForm, Footer, Gallery, Header, Hero } from '@/sections';
-import { EventInfo } from '@/sections/event-info/EventInfo';
-import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo';
+import { AttendanceForm, Footer, Gallery, Header, Hero } from '@/sections'
+import { EventInfo } from '@/sections/event-info/EventInfo'
+import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo'
 
 export default function Home() {
-  const { addToast } = useToast();
-  const [asistQuantity, setAsistQuantity] = useState(0);
-  const [lastName, setLastName] = useState('');
-  const [name, setName] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const { addToast } = useToast()
+  const [asistQuantity, setAsistQuantity] = useState(0)
+  const [lastName, setLastName] = useState('')
+  const [name, setName] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSelect = (value: string) => {
-    setAsistQuantity(parseInt(value));
-  };
+    setAsistQuantity(parseInt(value))
+  }
 
   return (
     <Column fillWidth paddingY="80" paddingX="s" horizontal="center" flex={1}>
@@ -122,5 +122,5 @@ export default function Home() {
         <Footer />
       </Column>
     </Column>
-  );
+  )
 }

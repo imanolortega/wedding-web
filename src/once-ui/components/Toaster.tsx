@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import React, { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Flex, Toast } from '.';
-import styles from './Toaster.module.scss';
+import React, { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Flex, Toast } from '.'
+import styles from './Toaster.module.scss'
 
 interface ToasterProps {
   toasts: {
-    id: string;
-    variant: 'success' | 'danger';
-    message: string;
-    action?: React.ReactNode;
-  }[];
-  removeToast: (id: string) => void;
+    id: string
+    variant: 'success' | 'danger'
+    message: string
+    action?: React.ReactNode
+  }[]
+  removeToast: (id: string) => void
 }
 
 const Toaster: React.FC<ToasterProps> = ({ toasts, removeToast }) => {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return createPortal(
     <Flex
@@ -59,8 +59,8 @@ const Toaster: React.FC<ToasterProps> = ({ toasts, removeToast }) => {
       ))}
     </Flex>,
     document.body,
-  );
-};
+  )
+}
 
-Toaster.displayName = 'Toaster';
-export { Toaster };
+Toaster.displayName = 'Toaster'
+export { Toaster }

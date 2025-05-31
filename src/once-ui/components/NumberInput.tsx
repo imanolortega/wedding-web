@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import React, { forwardRef, useState } from 'react';
-import { Input } from '.';
-import { Flex } from '.';
-import { IconButton } from '.';
-import styles from './NumberInput.module.scss';
-import classNames from 'classnames';
+import React, { forwardRef, useState } from 'react'
+import { Input } from '.'
+import { Flex } from '.'
+import { IconButton } from '.'
+import styles from './NumberInput.module.scss'
+import classNames from 'classnames'
 
 interface NumberInputProps
   extends Omit<React.ComponentProps<typeof Input>, 'type' | 'value' | 'onChange'> {
-  value?: number;
-  onChange?: (value: number) => void;
-  min?: number;
-  max?: number;
-  step?: number;
-  padStart?: number;
+  value?: number
+  onChange?: (value: number) => void
+  min?: number
+  max?: number
+  step?: number
+  padStart?: number
 }
 
 const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
@@ -23,41 +23,41 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       padStart && value !== undefined
         ? value.toString().padStart(padStart, '0')
         : (value?.toString() ?? ''),
-    );
+    )
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      setLocalValue(newValue);
+      const newValue = e.target.value
+      setLocalValue(newValue)
 
-      const numValue = parseFloat(newValue);
+      const numValue = parseFloat(newValue)
       if (!isNaN(numValue) && onChange) {
-        onChange(numValue);
+        onChange(numValue)
       }
-    };
+    }
 
     const updateValue = (newValue: number) => {
       const formattedValue = padStart
         ? newValue.toString().padStart(padStart, '0')
-        : newValue.toString();
-      setLocalValue(formattedValue);
-      onChange?.(newValue);
-    };
+        : newValue.toString()
+      setLocalValue(formattedValue)
+      onChange?.(newValue)
+    }
 
     const increment = () => {
-      const currentValue = parseFloat(localValue) || 0;
-      const newValue = currentValue + step;
+      const currentValue = parseFloat(localValue) || 0
+      const newValue = currentValue + step
       if (max === undefined || newValue <= max) {
-        updateValue(newValue);
+        updateValue(newValue)
       }
-    };
+    }
 
     const decrement = () => {
-      const currentValue = parseFloat(localValue) || 0;
-      const newValue = currentValue - step;
+      const currentValue = parseFloat(localValue) || 0
+      const newValue = currentValue - step
       if (min === undefined || newValue >= min) {
-        updateValue(newValue);
+        updateValue(newValue)
       }
-    };
+    }
 
     return (
       <Input
@@ -115,9 +115,9 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         }
         className={styles.numberInput}
       />
-    );
+    )
   },
-);
+)
 
-NumberInput.displayName = 'NumberInput';
-export { NumberInput };
+NumberInput.displayName = 'NumberInput'
+export { NumberInput }

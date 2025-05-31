@@ -1,22 +1,22 @@
-import classNames from 'classnames';
-import { Flex, Text } from '.';
-import styles from './Option.module.scss';
-import { ElementType } from './ElementType';
-import React, { forwardRef } from 'react';
+import classNames from 'classnames'
+import { Flex, Text } from '.'
+import styles from './Option.module.scss'
+import { ElementType } from './ElementType'
+import React, { forwardRef } from 'react'
 
 export interface OptionProps {
-  label: React.ReactNode;
-  href?: string;
-  value: string;
-  hasPrefix?: React.ReactNode;
-  hasSuffix?: React.ReactNode;
-  description?: React.ReactNode;
-  danger?: boolean;
-  selected?: boolean;
-  highlighted?: boolean;
-  tabIndex?: number;
-  onClick?: (value: string) => void;
-  onLinkClick?: () => void;
+  label: React.ReactNode
+  href?: string
+  value: string
+  hasPrefix?: React.ReactNode
+  hasSuffix?: React.ReactNode
+  description?: React.ReactNode
+  danger?: boolean
+  selected?: boolean
+  highlighted?: boolean
+  tabIndex?: number
+  onClick?: (value: string) => void
+  onLinkClick?: () => void
 }
 
 const Option = forwardRef<HTMLDivElement, OptionProps>(
@@ -39,7 +39,7 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
     ref,
   ) => {
     if (href && onClick) {
-      console.warn('Option should not have both `href` and `onClick` props.');
+      console.warn('Option should not have both `href` and `onClick` props.')
     }
 
     return (
@@ -94,9 +94,9 @@ const Option = forwardRef<HTMLDivElement, OptionProps>(
           {hasSuffix && <Flex className={styles.suffix}>{hasSuffix}</Flex>}
         </Flex>
       </ElementType>
-    );
+    )
   },
-);
+)
 
-Option.displayName = 'Option';
-export { Option };
+Option.displayName = 'Option'
+export { Option }

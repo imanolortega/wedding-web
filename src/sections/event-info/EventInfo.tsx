@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react';
-import { event } from '@/app/resources/config';
+import React, { forwardRef } from 'react'
+import { event } from '@/app/resources/config'
 
-import { Background, Card, Column, Heading, Row, Text, TiltFx } from '@/once-ui/components';
+import { Background, Card, Column, Heading, Row, Text, TiltFx } from '@/once-ui/components'
 
-import { Map } from '@/sections';
+import { Map } from '@/sections'
 
 export interface EventInfo {}
 
@@ -119,8 +119,8 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
         </Column>
       </Column>
     </TiltFx>
-  );
-});
+  )
+})
 
-EventInfo.displayName = 'EventInfo';
-export { EventInfo };
+EventInfo.displayName = 'EventInfo'
+export { EventInfo }

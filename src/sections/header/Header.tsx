@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { Row, Logo, Button, IconButton } from '@/once-ui/components';
+import React, { forwardRef } from 'react'
+import { Row, Logo, Button, IconButton } from '@/once-ui/components'
 
 export interface HeaderHandle {}
 
@@ -47,8 +47,8 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         </Row> */}
       </Row>
     </Row>
-  );
-});
+  )
+})
 
-Header.displayName = 'Header';
-export { Header };
+Header.displayName = 'Header'
+export { Header }

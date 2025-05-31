@@ -1,52 +1,52 @@
-'use client';
+'use client'
 
-import { Row } from './Row';
-import { IconButton } from './IconButton';
-import { useState, ReactNode } from 'react';
+import { Row } from './Row'
+import { IconButton } from './IconButton'
+import { useState, ReactNode } from 'react'
 
 type TableProps = {
   data: {
     headers: {
-      content: ReactNode;
-      key: string;
-      sortable?: boolean;
-    }[];
-    rows: ReactNode[][];
-  };
-  onRowClick?: (rowIndex: number) => void;
-};
+      content: ReactNode
+      key: string
+      sortable?: boolean
+    }[]
+    rows: ReactNode[][]
+  }
+  onRowClick?: (rowIndex: number) => void
+}
 
 function Table({ data, onRowClick }: TableProps) {
   const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: 'ascending' | 'descending';
-  } | null>(null);
+    key: string
+    direction: 'ascending' | 'descending'
+  } | null>(null)
 
   const handleSort = (key: string) => {
-    let direction: 'ascending' | 'descending' = 'ascending';
+    let direction: 'ascending' | 'descending' = 'ascending'
 
     if (sortConfig && sortConfig.key === key) {
-      direction = sortConfig.direction === 'ascending' ? 'descending' : 'ascending';
+      direction = sortConfig.direction === 'ascending' ? 'descending' : 'ascending'
     }
 
-    setSortConfig({ key, direction });
-  };
+    setSortConfig({ key, direction })
+  }
 
   const sortedRows = [...data.rows].sort((a, b) => {
-    if (!sortConfig) return 0;
+    if (!sortConfig) return 0
 
-    const headerIndex = data.headers.findIndex((header) => header.key === sortConfig.key);
-    if (headerIndex === -1) return 0;
+    const headerIndex = data.headers.findIndex((header) => header.key === sortConfig.key)
+    if (headerIndex === -1) return 0
 
-    const aValue = String(a[headerIndex]);
-    const bValue = String(b[headerIndex]);
+    const aValue = String(a[headerIndex])
+    const bValue = String(b[headerIndex])
 
     if (sortConfig.direction === 'ascending') {
-      return aValue.localeCompare(bValue);
+      return aValue.localeCompare(bValue)
     } else {
-      return bValue.localeCompare(aValue);
+      return bValue.localeCompare(aValue)
     }
-  });
+  })
 
   const headers = data.headers.map((header, index) => (
     <th
@@ -71,8 +71,8 @@ function Table({ data, onRowClick }: TableProps) {
             size="s"
             variant="ghost"
             onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-              handleSort(header.key);
+              e.stopPropagation()
+              handleSort(header.key)
             }}
             style={{
               opacity: sortConfig?.key === header.key ? 1 : 0.6,
@@ -81,7 +81,7 @@ function Table({ data, onRowClick }: TableProps) {
         )}
       </Row>
     </th>
-  ));
+  ))
 
   const rows = (sortConfig ? sortedRows : data.rows).map((row, index) => (
     <tr
@@ -96,7 +96,7 @@ function Table({ data, onRowClick }: TableProps) {
         </td>
       ))}
     </tr>
-  ));
+  ))
 
   return (
     <Row
@@ -137,7 +137,7 @@ function Table({ data, onRowClick }: TableProps) {
         </tbody>
       </table>
     </Row>
-  );
+  )
 }
 
-export { Table };
+export { Table }

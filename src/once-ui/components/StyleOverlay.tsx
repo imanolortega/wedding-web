@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { forwardRef, useState } from 'react';
-import { IconButton, StylePanel, Flex, Background } from '.';
-import styles from './StyleOverlay.module.scss';
+import { forwardRef, useState } from 'react'
+import { IconButton, StylePanel, Flex, Background } from '.'
+import styles from './StyleOverlay.module.scss'
 
 interface StyleOverlayProps extends React.ComponentProps<typeof Flex> {
-  iconButtonProps?: Partial<React.ComponentProps<typeof IconButton>>;
+  iconButtonProps?: Partial<React.ComponentProps<typeof IconButton>>
 }
 
 const StyleOverlay = forwardRef<HTMLDivElement, StyleOverlayProps>(
   ({ iconButtonProps, ...rest }, ref) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
     const togglePanel = () => {
-      setIsOpen(!isOpen);
-    };
+      setIsOpen(!isOpen)
+    }
 
     return (
       <Flex ref={ref} position="static">
@@ -60,9 +60,9 @@ const StyleOverlay = forwardRef<HTMLDivElement, StyleOverlayProps>(
           </Flex>
         </Flex>
       </Flex>
-    );
+    )
   },
-);
+)
 
-StyleOverlay.displayName = 'StyleOverlay';
-export { StyleOverlay };
+StyleOverlay.displayName = 'StyleOverlay'
+export { StyleOverlay }

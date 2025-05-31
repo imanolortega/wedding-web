@@ -1,59 +1,59 @@
-'use client';
+'use client'
 
-import React, { useEffect, useRef } from 'react';
-import styles from './HoloFx.module.scss';
-import { Flex } from '.';
-import { CSSProperties } from 'react';
-import classNames from 'classnames';
+import React, { useEffect, useRef } from 'react'
+import styles from './HoloFx.module.scss'
+import { Flex } from '.'
+import { CSSProperties } from 'react'
+import classNames from 'classnames'
 
 interface MaskOptions {
-  maskPosition?: string;
+  maskPosition?: string
 }
 
 interface HoloFxProps extends React.ComponentProps<typeof Flex> {
-  children: React.ReactNode;
+  children: React.ReactNode
   shine?: {
-    opacity?: number;
-    filter?: string;
-    blending?: CSSProperties['mixBlendMode'];
-    mask?: MaskOptions;
-  };
+    opacity?: number
+    filter?: string
+    blending?: CSSProperties['mixBlendMode']
+    mask?: MaskOptions
+  }
   burn?: {
-    opacity?: number;
-    filter?: string;
-    blending?: CSSProperties['mixBlendMode'];
-    mask?: MaskOptions;
-  };
+    opacity?: number
+    filter?: string
+    blending?: CSSProperties['mixBlendMode']
+    mask?: MaskOptions
+  }
   texture?: {
-    opacity?: number;
-    filter?: string;
-    blending?: CSSProperties['mixBlendMode'];
-    image?: string;
-    mask?: MaskOptions;
-  };
+    opacity?: number
+    filter?: string
+    blending?: CSSProperties['mixBlendMode']
+    image?: string
+    mask?: MaskOptions
+  }
 }
 
 const formatMask = (maskPosition: string = '100 200'): string => {
-  const [x, y] = maskPosition.split(' ');
-  const formattedX = `${x}%`;
-  const formattedY = `${y ? y : x}%`;
-  return `radial-gradient(ellipse ${formattedX} ${formattedY} at var(--gradient-pos-x, 50%) var(--gradient-pos-y, 50%), black 50%, transparent 100%)`;
-};
+  const [x, y] = maskPosition.split(' ')
+  const formattedX = `${x}%`
+  const formattedY = `${y ? y : x}%`
+  return `radial-gradient(ellipse ${formattedX} ${formattedY} at var(--gradient-pos-x, 50%) var(--gradient-pos-y, 50%), black 50%, transparent 100%)`
+}
 
 const getMaskStyle = (mask?: MaskOptions): string => {
-  return mask?.maskPosition ? formatMask(mask.maskPosition) : formatMask();
-};
+  return mask?.maskPosition ? formatMask(mask.maskPosition) : formatMask()
+}
 
 const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const lastCallRef = useRef<number>(0);
+  const ref = useRef<HTMLDivElement>(null)
+  const lastCallRef = useRef<number>(0)
 
   const shineDefaults = {
     opacity: 30,
     blending: 'color-dodge' as CSSProperties['mixBlendMode'],
     mask: getMaskStyle(shine?.mask),
     ...shine,
-  };
+  }
 
   const burnDefaults = {
     opacity: 30,
@@ -61,7 +61,7 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
     blending: 'color-dodge' as CSSProperties['mixBlendMode'],
     mask: getMaskStyle(burn?.mask),
     ...burn,
-  };
+  }
 
   const textureDefaults = {
     opacity: 10,
@@ -70,37 +70,37 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
       'repeating-linear-gradient(-45deg, var(--static-white) 0, var(--static-white) 1px, transparent 3px, transparent 2px)',
     mask: getMaskStyle(texture?.mask),
     ...texture,
-  };
+  }
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      const now = Date.now();
-      if (now - lastCallRef.current < 16) return;
-      lastCallRef.current = now;
+      const now = Date.now()
+      if (now - lastCallRef.current < 16) return
+      lastCallRef.current = now
 
-      const element = ref.current;
-      if (!element) return;
+      const element = ref.current
+      if (!element) return
 
-      const rect = element.getBoundingClientRect();
-      const offsetX = event.clientX - rect.left;
-      const offsetY = event.clientY - rect.top;
+      const rect = element.getBoundingClientRect()
+      const offsetX = event.clientX - rect.left
+      const offsetY = event.clientY - rect.top
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
 
-      const deltaX = ((offsetX - centerX) / centerX) * 100;
-      const deltaY = ((offsetY - centerY) / centerY) * 100;
+      const deltaX = ((offsetX - centerX) / centerX) * 100
+      const deltaY = ((offsetY - centerY) / centerY) * 100
 
-      element.style.setProperty('--gradient-pos-x', `${deltaX}%`);
-      element.style.setProperty('--gradient-pos-y', `${deltaY}%`);
-    };
+      element.style.setProperty('--gradient-pos-x', `${deltaX}%`)
+      element.style.setProperty('--gradient-pos-y', `${deltaY}%`)
+    }
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove)
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+      document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
 
   return (
     <Flex overflow="hidden" className={styles.holoFx} ref={ref} {...rest}>
@@ -152,8 +152,8 @@ const HoloFx: React.FC<HoloFxProps> = ({ children, shine, burn, texture, ...rest
         }}
       ></Flex>
     </Flex>
-  );
-};
+  )
+}
 
-HoloFx.displayName = 'HoloFx';
-export { HoloFx };
+HoloFx.displayName = 'HoloFx'
+export { HoloFx }

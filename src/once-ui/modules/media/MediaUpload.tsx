@@ -1,28 +1,28 @@
-'use client';
+'use client'
 
-import React, { useRef, useState, forwardRef, useEffect } from 'react';
-import Compressor from 'compressorjs';
-import { Flex, Icon, SmartImage, Spinner, Text } from '../../components';
-import styles from './MediaUpload.module.scss';
+import React, { useRef, useState, forwardRef, useEffect } from 'react'
+import Compressor from 'compressorjs'
+import { Flex, Icon, SmartImage, Spinner, Text } from '../../components'
+import styles from './MediaUpload.module.scss'
 
 interface MediaUploadProps extends React.ComponentProps<typeof Flex> {
-  onFileUpload?: (file: File) => Promise<void>;
-  compress?: boolean;
-  aspectRatio?: string;
-  className?: string;
-  style?: React.CSSProperties;
-  initialPreviewImage?: string | null;
-  emptyState?: React.ReactNode;
-  quality?: number;
-  sizes?: string;
-  children?: React.ReactNode;
-  convertTypes?: string[];
-  resizeMaxWidth?: number;
-  resizeMaxHeight?: number;
-  resizeWidth?: number;
-  resizeHeight?: number;
-  loading?: boolean;
-  accept?: string;
+  onFileUpload?: (file: File) => Promise<void>
+  compress?: boolean
+  aspectRatio?: string
+  className?: string
+  style?: React.CSSProperties
+  initialPreviewImage?: string | null
+  emptyState?: React.ReactNode
+  quality?: number
+  sizes?: string
+  children?: React.ReactNode
+  convertTypes?: string[]
+  resizeMaxWidth?: number
+  resizeMaxHeight?: number
+  resizeWidth?: number
+  resizeHeight?: number
+  loading?: boolean
+  accept?: string
 }
 
 const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
@@ -47,61 +47,61 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
     },
     ref,
   ) => {
-    const [dragActive, setDragActive] = useState(false);
-    const [previewImage, setPreviewImage] = useState<string | null>(initialPreviewImage); // Use prop as initial state
-    const [uploading, setUploading] = useState(false);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const [dragActive, setDragActive] = useState(false)
+    const [previewImage, setPreviewImage] = useState<string | null>(initialPreviewImage) // Use prop as initial state
+    const [uploading, setUploading] = useState(false)
+    const inputRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
       if (initialPreviewImage) {
-        setPreviewImage(initialPreviewImage);
+        setPreviewImage(initialPreviewImage)
       }
-    }, [initialPreviewImage]);
+    }, [initialPreviewImage])
 
     const handleDragOver = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setDragActive(true);
-    };
+      e.preventDefault()
+      e.stopPropagation()
+      setDragActive(true)
+    }
 
     const handleDragLeave = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setDragActive(false);
-    };
+      e.preventDefault()
+      e.stopPropagation()
+      setDragActive(false)
+    }
 
     const handleDrop = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setDragActive(false);
+      e.preventDefault()
+      e.stopPropagation()
+      setDragActive(false)
 
       if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-        handleFiles(e.dataTransfer.files);
+        handleFiles(e.dataTransfer.files)
       }
-    };
+    }
 
     const handleFileSelection = () => {
       if (inputRef.current) {
-        inputRef.current.click();
+        inputRef.current.click()
       }
-    };
+    }
 
     const handleFiles = (files: FileList) => {
-      const file = files[0];
-      if (!file) return;
+      const file = files[0]
+      if (!file) return
 
       if (file.type.startsWith('image/')) {
-        setPreviewImage(URL.createObjectURL(file));
+        setPreviewImage(URL.createObjectURL(file))
 
         if (compress && file.type.startsWith('image/')) {
-          compressImage(file);
+          compressImage(file)
         } else {
-          uploadFile(file);
+          uploadFile(file)
         }
       } else {
-        console.warn('Unsupported file type:', file.type);
+        console.warn('Unsupported file type:', file.type)
       }
-    };
+    }
 
     const compressImage = (file: File) => {
       new Compressor(file, {
@@ -112,22 +112,22 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
         width: resizeWidth,
         height: resizeHeight,
         success(compressedFile) {
-          uploadFile(compressedFile as File);
+          uploadFile(compressedFile as File)
         },
         error(err) {
-          console.error('Compression error:', err);
-          uploadFile(file);
+          console.error('Compression error:', err)
+          uploadFile(file)
         },
-      });
-    };
+      })
+    }
 
     const uploadFile = async (file: File) => {
-      setUploading(true);
+      setUploading(true)
       if (onFileUpload) {
-        await onFileUpload(file);
+        await onFileUpload(file)
       }
-      setUploading(false);
-    };
+      setUploading(false)
+    }
 
     return (
       <Flex
@@ -193,14 +193,14 @@ const MediaUpload = forwardRef<HTMLInputElement, MediaUploadProps>(
           style={{ display: 'none' }}
           onChange={(e) => {
             if (e.target.files) {
-              handleFiles(e.target.files);
+              handleFiles(e.target.files)
             }
           }}
         />
       </Flex>
-    );
+    )
   },
-);
+)
 
-MediaUpload.displayName = 'MediaUpload';
-export { MediaUpload };
+MediaUpload.displayName = 'MediaUpload'
+export { MediaUpload }

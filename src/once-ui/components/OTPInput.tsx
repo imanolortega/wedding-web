@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import React, { useState, useRef, forwardRef, useEffect } from 'react';
-import { Flex, Input, Text } from '.';
-import styles from './OTPInput.module.scss';
+import React, { useState, useRef, forwardRef, useEffect } from 'react'
+import { Flex, Input, Text } from '.'
+import styles from './OTPInput.module.scss'
 
 interface OTPInputProps extends React.HTMLAttributes<HTMLDivElement> {
-  length?: number;
-  onComplete?: (code: string) => void;
-  error?: boolean;
-  errorMessage?: React.ReactNode;
-  disabled?: boolean;
-  autoFocus?: boolean;
+  length?: number
+  onComplete?: (code: string) => void
+  error?: boolean
+  errorMessage?: React.ReactNode
+  disabled?: boolean
+  autoFocus?: boolean
 }
 
 const OTPInput = forwardRef<HTMLDivElement, OTPInputProps>(
@@ -27,67 +27,67 @@ const OTPInput = forwardRef<HTMLDivElement, OTPInputProps>(
     },
     ref,
   ) => {
-    const [values, setValues] = useState<string[]>(Array(length).fill(''));
-    const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
+    const [values, setValues] = useState<string[]>(Array(length).fill(''))
+    const inputsRef = useRef<Array<HTMLInputElement | null>>([])
 
     useEffect(() => {
       if (autoFocus && inputsRef.current[0]) {
-        inputsRef.current[0].focus();
+        inputsRef.current[0].focus()
       }
-    }, [autoFocus]);
+    }, [autoFocus])
 
     const handleChange = (index: number, value: string) => {
-      if (disabled) return;
+      if (disabled) return
 
       if (value === '' || /^[0-9]$/.test(value)) {
-        const newValues = [...values];
-        newValues[index] = value;
-        setValues(newValues);
+        const newValues = [...values]
+        newValues[index] = value
+        setValues(newValues)
 
         if (value && index < length - 1) {
-          inputsRef.current[index + 1]?.focus();
+          inputsRef.current[index + 1]?.focus()
         }
 
         if (newValues.every((val) => val !== '') && onComplete) {
-          onComplete(newValues.join(''));
+          onComplete(newValues.join(''))
         }
       }
-    };
+    }
 
     const handleKeyDown = (index: number, event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (disabled) return;
+      if (disabled) return
 
       if (event.key === 'Backspace') {
-        event.preventDefault();
+        event.preventDefault()
         if (values[index]) {
-          const newValues = [...values];
-          newValues[index] = '';
-          setValues(newValues);
+          const newValues = [...values]
+          newValues[index] = ''
+          setValues(newValues)
         } else if (index > 0) {
-          inputsRef.current[index - 1]?.focus();
-          const newValues = [...values];
-          newValues[index - 1] = '';
-          setValues(newValues);
+          inputsRef.current[index - 1]?.focus()
+          const newValues = [...values]
+          newValues[index - 1] = ''
+          setValues(newValues)
         }
       } else if (event.key === 'ArrowLeft' && index > 0) {
-        event.preventDefault();
-        inputsRef.current[index - 1]?.focus();
+        event.preventDefault()
+        inputsRef.current[index - 1]?.focus()
       } else if (event.key === 'ArrowRight' && index < length - 1) {
-        event.preventDefault();
-        inputsRef.current[index + 1]?.focus();
+        event.preventDefault()
+        inputsRef.current[index + 1]?.focus()
       }
-    };
+    }
 
     const handleContainerClick = () => {
-      if (disabled) return;
+      if (disabled) return
 
-      if (values.every((val) => val !== '')) return;
+      if (values.every((val) => val !== '')) return
 
-      const firstEmptyIndex = values.findIndex((val) => val === '');
+      const firstEmptyIndex = values.findIndex((val) => val === '')
       if (firstEmptyIndex >= 0) {
-        inputsRef.current[firstEmptyIndex]?.focus();
+        inputsRef.current[firstEmptyIndex]?.focus()
       }
-    };
+    }
 
     return (
       <Flex direction="column" gap="8" ref={ref}>
@@ -96,7 +96,7 @@ const OTPInput = forwardRef<HTMLDivElement, OTPInputProps>(
             <Input
               key={index}
               ref={(el) => {
-                inputsRef.current[index] = el;
+                inputsRef.current[index] = el
               }}
               id={`otp-${index}`}
               label=""
@@ -121,11 +121,11 @@ const OTPInput = forwardRef<HTMLDivElement, OTPInputProps>(
           </Flex>
         )}
       </Flex>
-    );
+    )
   },
-);
+)
 
-OTPInput.displayName = 'OTPInput';
+OTPInput.displayName = 'OTPInput'
 
-export { OTPInput };
-export type { OTPInputProps };
+export { OTPInput }
+export type { OTPInputProps }

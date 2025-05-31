@@ -1,6 +1,6 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from 'react'
 
-import { Background, Column, Logo, Row, SmartLink, Text } from '@/once-ui/components';
+import { Background, Column, Logo, Row, SmartLink, Text } from '@/once-ui/components'
 
 export interface Footer {}
 const Footer = forwardRef<Footer>((_, ref) => {
@@ -36,8 +36,8 @@ const Footer = forwardRef<Footer>((_, ref) => {
         </Text>
       </Column>
     </Row>
-  );
-});
+  )
+})
 
-Footer.displayName = 'Footer';
-export { Footer };
+Footer.displayName = 'Footer'
+export { Footer }

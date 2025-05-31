@@ -1,5 +1,5 @@
-import React, { forwardRef } from 'react';
-import { Row, Carousel, Background, Column } from '@/once-ui/components';
+import React, { forwardRef } from 'react'
+import { Row, Carousel, Background, Column } from '@/once-ui/components'
 
 export interface GalleryHandle {}
 
@@ -61,8 +61,8 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
         />
       </Row>
     </Column>
-  );
-});
+  )
+})
 
-Gallery.displayName = 'Gallery';
-export { Gallery };
+Gallery.displayName = 'Gallery'
+export { Gallery }

@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import React, { forwardRef, useImperativeHandle } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import {
   Row,
   Column,
@@ -12,23 +12,23 @@ import {
   Input,
   Select,
   Button,
-} from '@/once-ui/components';
+} from '@/once-ui/components'
 
 export interface AttendanceFormHandle {
-  reset: () => void;
+  reset: () => void
 }
 
 interface AttendanceFormProps {
-  name: string;
-  setName: (value: string) => void;
-  lastName: string;
-  setLastName: (value: string) => void;
-  asistQuantity: number;
-  setAsistQuantity: (value: number) => void;
-  onSelect: (value: string) => void;
-  isLoading: boolean;
-  setIsLoading: (value: boolean) => void;
-  addToast: (args: { variant: 'success' | 'danger'; message: string }) => void;
+  name: string
+  setName: (value: string) => void
+  lastName: string
+  setLastName: (value: string) => void
+  asistQuantity: number
+  setAsistQuantity: (value: number) => void
+  onSelect: (value: string) => void
+  isLoading: boolean
+  setIsLoading: (value: boolean) => void
+  addToast: (args: { variant: 'success' | 'danger'; message: string }) => void
 }
 
 const selectOptions = [
@@ -43,7 +43,7 @@ const selectOptions = [
     value: '2',
     description: 'Asisto con dos personas',
   },
-];
+]
 
 const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
   (
@@ -61,45 +61,68 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
     },
     ref,
   ) => {
+    const [companionOne, setCompanionOne] = useState('')
+    const [companionTwo, setCompanionTwo] = useState('')
+
     useImperativeHandle(ref, () => ({
       reset: () => {
-        setName('');
-        setLastName('');
-        setAsistQuantity(0);
+        setName('')
+        setLastName('')
+        setAsistQuantity(0)
       },
-    }));
+    }))
 
     const handleOnClick = async ({
       name,
       lastName,
       asistQuantity,
+      companionOne,
+      companionTwo,
       setIsLoading,
       addToast,
       setName,
       setLastName,
       setAsistQuantity,
     }: {
-      name: string;
-      lastName: string;
-      asistQuantity: number;
-      setIsLoading: (value: boolean) => void;
+      name: string
+      lastName: string
+      asistQuantity: number
+      companionOne: string
+      companionTwo: string
+      setIsLoading: (value: boolean) => void
       addToast: (args: {
-        variant: 'success' | 'danger';
-        message: string;
-      }) => void;
-      setName: (value: string) => void;
-      setLastName: (value: string) => void;
-      setAsistQuantity: (value: number) => void;
+        variant: 'success' | 'danger'
+        message: string
+      }) => void
+      setName: (value: string) => void
+      setLastName: (value: string) => void
+      setAsistQuantity: (value: number) => void
     }) => {
       if (!name.trim() || !lastName.trim()) {
         addToast({
           variant: 'danger',
           message: 'Por favor completá tu nombre y apellido antes de enviar.',
-        });
-        return;
+        })
+        return
       }
 
-      setIsLoading(true);
+      if (asistQuantity > 1 && !companionOne.trim()) {
+        addToast({
+          variant: 'danger',
+          message: 'Por favor, escribí el nombre del primer acompañante.',
+        })
+        return
+      }
+
+      if (asistQuantity > 2 && !companionTwo.trim()) {
+        addToast({
+          variant: 'danger',
+          message: 'Por favor, escribí el nombre del segundo acompañante.',
+        })
+        return
+      }
+
+      setIsLoading(true)
       try {
         const res = await fetch('/api/submit', {
           method: 'POST',
@@ -108,31 +131,35 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             name,
             lastName,
             asistentQuantity: asistQuantity,
+            companionOne: asistQuantity >= 1 ? companionOne : '',
+            companionTwo: asistQuantity === 2 ? companionTwo : '',
           }),
-        });
+        })
 
-        const result = await res.json();
+        const result = await res.json()
 
         if (result.success) {
           addToast({
             variant: 'success',
             message:
               '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
-          });
-          setName('');
-          setLastName('');
-          setAsistQuantity(0);
+          })
+          setName('')
+          setLastName('')
+          setAsistQuantity(0)
+          setCompanionOne('')
+          setCompanionTwo('')
         } else {
-          throw new Error('No se pudo enviar');
+          throw new Error('No se pudo enviar')
         }
       } catch (err) {
         addToast({
           variant: 'danger',
           message: 'Error al enviar la confirmación. Intentá nuevamente.',
-        });
+        })
       }
-      setIsLoading(false);
-    };
+      setIsLoading(false)
+    }
 
     return (
       <Row
@@ -188,15 +215,43 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Row>
+
             <Select
-              radius="bottom"
+              radius={asistQuantity === 0 ? 'bottom' : 'none'}
               id="select"
-              label="Asistes con alguien?"
+              label="¿Asistís con alguien?"
               options={selectOptions}
               value={asistQuantity.toString()}
-              onSelect={onSelect}
+              onSelect={(value) => {
+                setAsistQuantity(Number(value))
+                setCompanionOne('')
+                setCompanionTwo('')
+              }}
             />
+
+            {asistQuantity >= 1 && (
+              <Input
+                id="companion-one"
+                label="Nombre y apellido del acompañante"
+                labelAsPlaceholder
+                radius={asistQuantity === 1 ? 'bottom' : 'none'}
+                value={companionOne}
+                onChange={(e) => setCompanionOne(e.target.value)}
+              />
+            )}
+
+            {asistQuantity === 2 && (
+              <Input
+                id="companion-two"
+                label="Nombre y apellido del segundo acompañante"
+                labelAsPlaceholder
+                radius="bottom"
+                value={companionTwo}
+                onChange={(e) => setCompanionTwo(e.target.value)}
+              />
+            )}
           </Column>
+
           <Button
             id="send"
             label="Enviar"
@@ -208,6 +263,8 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
                 name,
                 lastName,
                 asistQuantity,
+                companionOne,
+                companionTwo,
                 setIsLoading,
                 addToast,
                 setName,
@@ -218,9 +275,9 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
           />
         </Column>
       </Row>
-    );
+    )
   },
-);
+)
 
-AttendanceForm.displayName = 'AttendanceForm';
-export { AttendanceForm };
+AttendanceForm.displayName = 'AttendanceForm'
+export { AttendanceForm }

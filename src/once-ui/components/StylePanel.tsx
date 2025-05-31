@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { forwardRef, useState, useEffect } from 'react';
-import { Flex, Text, SegmentedControl, IconButton, Scroller, Column } from '.';
+import { forwardRef, useState, useEffect } from 'react'
+import { Flex, Text, SegmentedControl, IconButton, Scroller, Column } from '.'
 
-import styles from './StylePanel.module.scss';
-import classNames from 'classnames';
-import { style } from '@/app/resources/config';
+import styles from './StylePanel.module.scss'
+import classNames from 'classnames'
+import { style } from '@/app/resources/config'
 
 interface StylePanelProps extends React.ComponentProps<typeof Flex> {
-  style?: React.CSSProperties;
-  className?: string;
+  style?: React.CSSProperties
+  className?: string
 }
 
-const shapes = ['conservative', 'playful', 'rounded'];
+const shapes = ['conservative', 'playful', 'rounded']
 
 const colorOptions = {
   brand: [
@@ -46,33 +46,33 @@ const colorOptions = {
     'aqua',
   ],
   neutral: ['sand', 'gray', 'slate'],
-};
+}
 
 const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref) => {
-  const [selectedShape, setSelectedShape] = useState(style.border);
-  const [brandColor, setBrandColor] = useState(style.brand);
-  const [accentColor, setAccentColor] = useState(style.accent);
-  const [neutralColor, setNeutralColor] = useState(style.neutral);
-  const [theme, setTheme] = useState(style.theme);
-  const [solid, setSolid] = useState(style.solid);
-  const [solidStyle, setSolidStyle] = useState(style.solidStyle);
-  const [transition, setTransition] = useState(style.transition);
-  const [scaling, setScaling] = useState(style.scaling);
-  const [surface, setSurface] = useState(style.surface);
+  const [selectedShape, setSelectedShape] = useState(style.border)
+  const [brandColor, setBrandColor] = useState(style.brand)
+  const [accentColor, setAccentColor] = useState(style.accent)
+  const [neutralColor, setNeutralColor] = useState(style.neutral)
+  const [theme, setTheme] = useState(style.theme)
+  const [solid, setSolid] = useState(style.solid)
+  const [solidStyle, setSolidStyle] = useState(style.solidStyle)
+  const [transition, setTransition] = useState(style.transition)
+  const [scaling, setScaling] = useState(style.scaling)
+  const [surface, setSurface] = useState(style.surface)
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.setAttribute('data-border', selectedShape);
-    root.setAttribute('data-brand', brandColor);
-    root.setAttribute('data-accent', accentColor);
-    root.setAttribute('data-neutral', neutralColor);
-    root.setAttribute('data-solid', solid);
-    root.setAttribute('data-solid-style', solidStyle);
-    root.setAttribute('data-theme', theme);
-    root.setAttribute('data-transition', transition);
-    root.setAttribute('data-scaling', scaling);
-    root.setAttribute('data-surface', surface);
-    root.setAttribute('data-transition', transition);
+    const root = document.documentElement
+    root.setAttribute('data-border', selectedShape)
+    root.setAttribute('data-brand', brandColor)
+    root.setAttribute('data-accent', accentColor)
+    root.setAttribute('data-neutral', neutralColor)
+    root.setAttribute('data-solid', solid)
+    root.setAttribute('data-solid-style', solidStyle)
+    root.setAttribute('data-theme', theme)
+    root.setAttribute('data-transition', transition)
+    root.setAttribute('data-scaling', scaling)
+    root.setAttribute('data-surface', surface)
+    root.setAttribute('data-transition', transition)
   }, [
     selectedShape,
     brandColor,
@@ -84,7 +84,7 @@ const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref
     transition,
     surface,
     scaling,
-  ]);
+  ])
 
   return (
     <Column fillWidth gap="16" ref={ref} {...rest}>
@@ -135,7 +135,7 @@ const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref
                   selectedShape === radius ? styles.selected : '',
                 )}
                 onClick={() => {
-                  setSelectedShape(radius);
+                  setSelectedShape(radius)
                 }}
               >
                 <IconButton variant="ghost" size="m">
@@ -175,7 +175,7 @@ const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref
                 vertical="center"
                 className={classNames(styles.select, brandColor === color ? styles.selected : '')}
                 onClick={() => {
-                  setBrandColor(color);
+                  setBrandColor(color)
                 }}
               >
                 <IconButton variant="ghost" size="m">
@@ -207,7 +207,7 @@ const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref
                 vertical="center"
                 className={classNames(styles.select, accentColor === color ? styles.selected : '')}
                 onClick={() => {
-                  setAccentColor(color);
+                  setAccentColor(color)
                 }}
               >
                 <IconButton variant="ghost" size="m">
@@ -238,7 +238,7 @@ const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref
                 vertical="center"
                 className={classNames(styles.select, neutralColor === color ? styles.selected : '')}
                 onClick={() => {
-                  setNeutralColor(color);
+                  setNeutralColor(color)
                 }}
               >
                 <IconButton variant="ghost" size="m">
@@ -502,8 +502,8 @@ const StylePanel = forwardRef<HTMLDivElement, StylePanelProps>(({ ...rest }, ref
         </Flex>
       </Column>
     </Column>
-  );
-});
+  )
+})
 
-StylePanel.displayName = 'StylePanel';
-export { StylePanel };
+StylePanel.displayName = 'StylePanel'
+export { StylePanel }

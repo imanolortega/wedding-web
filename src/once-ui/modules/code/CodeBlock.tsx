@@ -1,45 +1,45 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
+import React, { useState, useEffect, useRef, ReactNode } from 'react'
 
-import './CodeHighlight.css';
-import './LineNumber.css';
-import styles from './CodeBlock.module.scss';
+import './CodeHighlight.css'
+import './LineNumber.css'
+import styles from './CodeBlock.module.scss'
 
-import { Flex, Button, IconButton, Scroller, Row, StyleOverlay } from '../../components';
+import { Flex, Button, IconButton, Scroller, Row, StyleOverlay } from '../../components'
 
-import Prism from 'prismjs';
-import 'prismjs/plugins/line-highlight/prism-line-highlight';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-tsx';
-import classNames from 'classnames';
-import { SpacingToken } from '../../types';
+import Prism from 'prismjs'
+import 'prismjs/plugins/line-highlight/prism-line-highlight'
+import 'prismjs/plugins/line-numbers/prism-line-numbers'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-css'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-tsx'
+import classNames from 'classnames'
+import { SpacingToken } from '../../types'
 
 type CodeInstance = {
-  code: string | { content: string; error: string | null };
-  language: string;
-  label: string;
-};
+  code: string | { content: string; error: string | null }
+  language: string
+  label: string
+}
 
 interface CodeBlockProps extends React.ComponentProps<typeof Flex> {
-  highlight?: string;
-  codeHeight?: number;
-  fillHeight?: boolean;
-  previewPadding?: SpacingToken;
-  codeInstances?: CodeInstance[];
-  codePreview?: ReactNode;
-  copyButton?: boolean;
-  styleButton?: boolean;
-  reloadButton?: boolean;
-  fullscreenButton?: boolean;
-  compact?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-  onInstanceChange?: (index: number) => void;
-  lineNumbers?: boolean;
+  highlight?: string
+  codeHeight?: number
+  fillHeight?: boolean
+  previewPadding?: SpacingToken
+  codeInstances?: CodeInstance[]
+  codePreview?: ReactNode
+  copyButton?: boolean
+  styleButton?: boolean
+  reloadButton?: boolean
+  fullscreenButton?: boolean
+  compact?: boolean
+  className?: string
+  style?: React.CSSProperties
+  onInstanceChange?: (index: number) => void
+  lineNumbers?: boolean
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = ({
@@ -60,67 +60,67 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   onInstanceChange,
   ...rest
 }) => {
-  const codeRef = useRef<HTMLElement>(null);
-  const preRef = useRef<HTMLPreElement>(null);
-  const [selectedInstance, setSelectedInstance] = useState(0);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const codeRef = useRef<HTMLElement>(null)
+  const preRef = useRef<HTMLPreElement>(null)
+  const [selectedInstance, setSelectedInstance] = useState(0)
+  const [isFullscreen, setIsFullscreen] = useState(false)
 
   const { code, language, label } = codeInstances[selectedInstance] || {
     code: '',
     language: '',
     label: 'Select code',
-  };
+  }
 
   useEffect(() => {
     if (codeRef.current && codeInstances.length > 0) {
-      Prism.highlightAll();
+      Prism.highlightAll()
     }
-  }, [code, codeInstances.length]);
+  }, [code, codeInstances.length])
 
   useEffect(() => {
     if (isFullscreen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isFullscreen]);
+      document.body.style.overflow = ''
+    }
+  }, [isFullscreen])
 
-  const [copyIcon, setCopyIcon] = useState<string>('clipboard');
+  const [copyIcon, setCopyIcon] = useState<string>('clipboard')
   const handleCopy = () => {
     if (codeInstances.length > 0 && code) {
       navigator.clipboard
         .writeText(typeof code === 'string' ? code : code.content)
         .then(() => {
-          setCopyIcon('check');
+          setCopyIcon('check')
 
           setTimeout(() => {
-            setCopyIcon('clipboard');
-          }, 5000);
+            setCopyIcon('clipboard')
+          }, 5000)
         })
         .catch((err) => {
-          console.error('Failed to copy code: ', err);
-        });
+          console.error('Failed to copy code: ', err)
+        })
     }
-  };
+  }
 
-  const [refreshKey, setRefreshKey] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0)
   const handleRefresh = () => {
-    setRefreshKey((prev) => prev + 1);
-  };
+    setRefreshKey((prev) => prev + 1)
+  }
 
   const handleContent = (selectedLabel: string) => {
-    const index = codeInstances.findIndex((instance) => instance.label === selectedLabel);
+    const index = codeInstances.findIndex((instance) => instance.label === selectedLabel)
     if (index !== -1) {
-      setSelectedInstance(index);
+      setSelectedInstance(index)
     }
-  };
+  }
 
   const toggleFullscreen = () => {
-    setIsFullscreen((prev) => !prev);
-  };
+    setIsFullscreen((prev) => !prev)
+  }
 
   return (
     <Flex
@@ -160,9 +160,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
                     variant={selectedInstance === index ? 'secondary' : 'tertiary'}
                     label={instance.label}
                     onClick={() => {
-                      setSelectedInstance(index);
-                      onInstanceChange?.(index);
-                      handleContent(instance.label);
+                      setSelectedInstance(index)
+                      onInstanceChange?.(index)
+                      handleContent(instance.label)
                     }}
                   />
                 </Row>
@@ -277,8 +277,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         </Flex>
       )}
     </Flex>
-  );
-};
+  )
+}
 
-CodeBlock.displayName = 'CodeBlock';
-export { CodeBlock };
+CodeBlock.displayName = 'CodeBlock'
+export { CodeBlock }

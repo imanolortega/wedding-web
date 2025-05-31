@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import React, { forwardRef } from 'react';
-import classNames from 'classnames';
-import styles from './StatusIndicator.module.scss';
-import { Flex } from './Flex';
+import React, { forwardRef } from 'react'
+import classNames from 'classnames'
+import styles from './StatusIndicator.module.scss'
+import { Flex } from './Flex'
 
 interface StatusIndicatorProps extends React.ComponentProps<typeof Flex> {
-  size?: 's' | 'm' | 'l';
+  size?: 's' | 'm' | 'l'
   color:
     | 'blue'
     | 'indigo'
@@ -21,10 +21,10 @@ interface StatusIndicatorProps extends React.ComponentProps<typeof Flex> {
     | 'emerald'
     | 'aqua'
     | 'cyan'
-    | 'gray';
-  ariaLabel?: string;
-  className?: string;
-  style?: React.CSSProperties;
+    | 'gray'
+  ariaLabel?: string
+  className?: string
+  style?: React.CSSProperties
 }
 
 const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
@@ -41,10 +41,10 @@ const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
         radius="full"
         {...rest}
       />
-    );
+    )
   },
-);
+)
 
-StatusIndicator.displayName = 'StatusIndicator';
+StatusIndicator.displayName = 'StatusIndicator'
 
-export { StatusIndicator };
+export { StatusIndicator }

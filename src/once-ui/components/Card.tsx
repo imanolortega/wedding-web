@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import React, { forwardRef } from 'react';
-import { Flex } from '.';
-import styles from './Card.module.scss';
-import { ElementType } from './ElementType';
-import classNames from 'classnames';
+import React, { forwardRef } from 'react'
+import { Flex } from '.'
+import styles from './Card.module.scss'
+import { ElementType } from './ElementType'
+import classNames from 'classnames'
 
 interface CardProps extends React.ComponentProps<typeof Flex> {
-  children?: React.ReactNode;
-  href?: string;
-  onClick?: () => void;
+  children?: React.ReactNode
+  href?: string
+  onClick?: () => void
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
@@ -43,9 +43,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           {children}
         </Flex>
       </ElementType>
-    );
+    )
   },
-);
+)
 
-Card.displayName = 'Card';
-export { Card };
+Card.displayName = 'Card'
+export { Card }

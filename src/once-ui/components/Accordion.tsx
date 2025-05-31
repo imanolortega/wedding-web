@@ -1,23 +1,23 @@
-'use client';
+'use client'
 
-import React, { useState, forwardRef, useImperativeHandle, useEffect, useCallback } from 'react';
-import { Flex, Icon, Text, Column, Grid } from '.';
-import styles from './Accordion.module.scss';
+import React, { useState, forwardRef, useImperativeHandle, useEffect, useCallback } from 'react'
+import { Flex, Icon, Text, Column, Grid } from '.'
+import styles from './Accordion.module.scss'
 
 export interface AccordionHandle extends HTMLDivElement {
-  toggle: () => void;
-  open: () => void;
-  close: () => void;
+  toggle: () => void
+  open: () => void
+  close: () => void
 }
 
 interface AccordionProps extends Omit<React.ComponentProps<typeof Flex>, 'title'> {
-  title: React.ReactNode;
-  children: React.ReactNode;
-  icon?: string;
-  iconRotation?: number;
-  size?: 's' | 'm' | 'l';
-  radius?: 'xs' | 's' | 'm' | 'l' | 'full';
-  open?: boolean;
+  title: React.ReactNode
+  children: React.ReactNode
+  icon?: string
+  iconRotation?: number
+  size?: 's' | 'm' | 'l'
+  radius?: 'xs' | 's' | 'm' | 'l' | 'full'
+  open?: boolean
 }
 
 const Accordion = forwardRef<AccordionHandle, AccordionProps>(
@@ -34,15 +34,15 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
     },
     ref,
   ) => {
-    const [isOpen, setIsOpen] = useState(open);
+    const [isOpen, setIsOpen] = useState(open)
 
     useEffect(() => {
-      setIsOpen(open);
-    }, [open]);
+      setIsOpen(open)
+    }, [open])
 
     const toggleAccordion = useCallback(() => {
-      setIsOpen((prev) => !prev);
-    }, []);
+      setIsOpen((prev) => !prev)
+    }, [])
 
     useImperativeHandle(
       ref,
@@ -51,12 +51,12 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           toggle: toggleAccordion,
           open: () => setIsOpen(true),
           close: () => setIsOpen(false),
-        };
+        }
 
-        return Object.assign(document.createElement('div'), methods) as unknown as AccordionHandle;
+        return Object.assign(document.createElement('div'), methods) as unknown as AccordionHandle
       },
       [toggleAccordion],
-    );
+    )
 
     return (
       <Column fillWidth className={styles.border}>
@@ -72,8 +72,8 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           onClick={toggleAccordion}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              toggleAccordion();
+              e.preventDefault()
+              toggleAccordion()
             }
           }}
           aria-expanded={isOpen}
@@ -110,9 +110,9 @@ const Accordion = forwardRef<AccordionHandle, AccordionProps>(
           </Flex>
         </Grid>
       </Column>
-    );
+    )
   },
-);
+)
 
-Accordion.displayName = 'Accordion';
-export { Accordion };
+Accordion.displayName = 'Accordion'
+export { Accordion }

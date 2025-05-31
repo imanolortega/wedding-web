@@ -1,54 +1,54 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect, forwardRef } from 'react';
-import classNames from 'classnames';
-import { Flex, InteractiveDetails, InteractiveDetailsProps } from '.';
-import styles from './SharedInteractiveStyles.module.scss';
+import React, { useState, useEffect, forwardRef } from 'react'
+import classNames from 'classnames'
+import { Flex, InteractiveDetails, InteractiveDetailsProps } from '.'
+import styles from './SharedInteractiveStyles.module.scss'
 
 interface RadioButtonProps
   extends Omit<InteractiveDetailsProps, 'onClick'>,
     React.InputHTMLAttributes<HTMLInputElement> {
-  style?: React.CSSProperties;
-  className?: string;
-  isChecked?: boolean;
-  name?: string;
-  value?: string;
-  disabled?: boolean;
-  onToggle?: () => void;
+  style?: React.CSSProperties
+  className?: string
+  isChecked?: boolean
+  name?: string
+  value?: string
+  disabled?: boolean
+  onToggle?: () => void
 }
 
-const generateId = () => `radio-${Math.random().toString(36).substring(2, 9)}`;
+const generateId = () => `radio-${Math.random().toString(36).substring(2, 9)}`
 
 const RadioButton: React.FC<RadioButtonProps> = forwardRef<HTMLInputElement, RadioButtonProps>(
   (
     { style, className, isChecked: controlledIsChecked, name, value, onToggle, disabled, ...props },
     ref,
   ) => {
-    const [isChecked, setIsChecked] = useState(controlledIsChecked || false);
-    const [radioId] = useState(generateId());
+    const [isChecked, setIsChecked] = useState(controlledIsChecked || false)
+    const [radioId] = useState(generateId())
 
     useEffect(() => {
       if (controlledIsChecked !== undefined) {
-        setIsChecked(controlledIsChecked);
+        setIsChecked(controlledIsChecked)
       }
-    }, [controlledIsChecked]);
+    }, [controlledIsChecked])
 
     const toggleItem = () => {
-      if (disabled) return;
+      if (disabled) return
       if (onToggle) {
-        onToggle();
+        onToggle()
       } else {
-        setIsChecked(!isChecked);
+        setIsChecked(!isChecked)
       }
-    };
+    }
 
     const handleKeyDown = (event: React.KeyboardEvent) => {
-      if (disabled) return;
+      if (disabled) return
       if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleItem();
+        event.preventDefault()
+        toggleItem()
       }
-    };
+    }
 
     return (
       <Flex
@@ -102,11 +102,11 @@ const RadioButton: React.FC<RadioButtonProps> = forwardRef<HTMLInputElement, Rad
         </Flex>
         {props.label && <InteractiveDetails id={radioId} {...props} onClick={toggleItem} />}
       </Flex>
-    );
+    )
   },
-);
+)
 
-RadioButton.displayName = 'RadioButton';
+RadioButton.displayName = 'RadioButton'
 
-export { RadioButton };
-export type { RadioButtonProps };
+export { RadioButton }
+export type { RadioButtonProps }

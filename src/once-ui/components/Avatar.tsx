@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from 'react'
 
-import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from '.';
-import styles from './Avatar.module.scss';
+import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from '.'
+import styles from './Avatar.module.scss'
 
 interface AvatarProps extends React.ComponentProps<typeof Flex> {
-  size?: 'xs' | 's' | 'm' | 'l' | 'xl' | number;
-  value?: string;
-  src?: string;
-  loading?: boolean;
-  empty?: boolean;
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl' | number
+  value?: string
+  src?: string
+  loading?: boolean
+  empty?: boolean
   statusIndicator?: {
-    color: 'green' | 'yellow' | 'red' | 'gray';
-  };
-  style?: React.CSSProperties;
-  className?: string;
+    color: 'green' | 'yellow' | 'red' | 'gray'
+  }
+  style?: React.CSSProperties
+  className?: string
 }
 
 const sizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', number> = {
@@ -24,7 +24,7 @@ const sizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', number> = {
   m: 32,
   l: 48,
   xl: 160,
-};
+}
 
 const statusIndicatorSizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', 's' | 'm' | 'l'> = {
   xs: 's',
@@ -32,14 +32,14 @@ const statusIndicatorSizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', 's' | 'm
   m: 'm',
   l: 'm',
   xl: 'l',
-};
+}
 
 const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
     { size = 'm', value, src, loading, empty, statusIndicator, className, style = {}, ...rest },
     ref,
   ) => {
-    const sizeInRem = typeof size === 'number' ? `${size}rem` : undefined;
+    const sizeInRem = typeof size === 'number' ? `${size}rem` : undefined
     const sizeStyle = sizeInRem
       ? {
           width: sizeInRem,
@@ -48,11 +48,11 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           minHeight: sizeInRem,
           ...style,
         }
-      : style;
-    const isEmpty = empty || (!src && !value);
+      : style
+    const isEmpty = empty || (!src && !value)
 
     if (value && src) {
-      throw new Error("Avatar cannot have both 'value' and 'src' props.");
+      throw new Error("Avatar cannot have both 'value' and 'src' props.")
     }
 
     if (loading) {
@@ -67,7 +67,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           aria-busy="true"
           aria-label="Loading avatar"
         />
-      );
+      )
     }
 
     const renderContent = () => {
@@ -81,7 +81,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             className={styles.icon}
             aria-label="Empty avatar"
           />
-        );
+        )
       }
 
       if (src) {
@@ -94,7 +94,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             sizes={typeof size === 'string' ? `${sizeMapping[size]}px` : `${size * 16}px`}
             className={styles.image}
           />
-        );
+        )
       }
 
       if (value) {
@@ -108,11 +108,11 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           >
             {value}
           </Text>
-        );
+        )
       }
 
-      return null;
-    };
+      return null
+    }
 
     return (
       <Flex
@@ -138,11 +138,11 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           />
         )}
       </Flex>
-    );
+    )
   },
-);
+)
 
-Avatar.displayName = 'Avatar';
+Avatar.displayName = 'Avatar'
 
-export { Avatar };
-export type { AvatarProps };
+export { Avatar }
+export type { AvatarProps }
