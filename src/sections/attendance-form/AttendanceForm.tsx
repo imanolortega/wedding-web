@@ -272,7 +272,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
 
             <Column align="center" fillWidth gap="1" paddingTop="m" paddingBottom="s">
               <Text variant="label-default-m">¿Tenés alguna necesidad alimentaria?</Text>
-              <Row style={{ display: 'flex' }} align="center" gap="s" paddingTop="m">
+              <Row gap="s" paddingTop="m">
                 <Checkbox
                   id="no"
                   label="No"

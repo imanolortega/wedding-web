@@ -9,7 +9,7 @@ export interface EventInfo {}
 
 const EventInfo = forwardRef<EventInfo>((_, ref) => {
   return (
-    <TiltFx fillWidth paddingX="32" paddingTop="64">
+    <TiltFx hide="m" fillWidth paddingX="32" paddingTop="64">
       <Column
         border="neutral-alpha-weak"
         paddingX="32"

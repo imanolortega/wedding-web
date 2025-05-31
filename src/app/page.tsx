@@ -9,6 +9,7 @@ import { ScrollToTop } from '@/once-ui/components/ScrollToTop'
 import { AttendanceForm, Footer, Gallery, Header, Hero } from '@/sections'
 import { EventInfo } from '@/sections/event-info/EventInfo'
 import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo'
+import { EventInfoMobile } from '@/sections/event-info/EventInfoMobile'
 
 export default function Home() {
   const { addToast } = useToast()
@@ -117,6 +118,7 @@ export default function Home() {
         </Column>
 
         <EventInfo />
+        <EventInfoMobile />
         <WeddingInfo />
 
         <Footer />
