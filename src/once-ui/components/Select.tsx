@@ -177,8 +177,12 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
               [inputStyles.focused]: isFocused,
               className,
             })}
+            id={rest.id}
+            role="combobox"
             aria-haspopup="listbox"
             aria-expanded={isDropdownOpen}
+            aria-controls="select-options"
+            aria-labelledby={rest.id ? `${rest.id}-label` : undefined}
           />
         }
         dropdown={
