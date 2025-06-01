@@ -123,16 +123,13 @@ export default function Home() {
               specialFood={specialFood}
               setSpecialFood={setSpecialFood}
             />
-
             <Gallery />
             <GiftInfo />
           </Column>
         </Column>
-
+        <WeddingInfo />
         <EventInfo />
         <EventInfoMobile />
-        <WeddingInfo />
-
         <Footer />
       </Column>
     </Column>
