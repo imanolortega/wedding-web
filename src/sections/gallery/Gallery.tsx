@@ -36,7 +36,7 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
             height: '0.25rem',
           }}
         />
-        <Row position="relative" textVariant="display-default-m" align="center">
+        <Row position="relative" textVariant="display-default-l" align="center">
           It's wedding time!
         </Row>
       </Row>

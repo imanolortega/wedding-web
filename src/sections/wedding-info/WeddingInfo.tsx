@@ -31,7 +31,7 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
             height: '0.25rem',
           }}
         />
-        <Row position="relative" textVariant="display-default-m" align="center">
+        <Row position="relative" textVariant="display-default-l" align="center">
           Misa
         </Row>
       </Row>
