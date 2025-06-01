@@ -8,15 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { name, lastName, asistentQuantity, companionOne, companionTwo, specialFood } = req.body
 
-    console.log('📨 Datos recibidos del cliente:', {
-      name,
-      lastName,
-      asistentQuantity,
-      companionOne,
-      companionTwo,
-      specialFood,
-    })
-
     const googleScriptUrl = process.env.NEXT_PUBLIC_GOOGLE_DATABASE as string
 
     const response = await fetch(googleScriptUrl, {

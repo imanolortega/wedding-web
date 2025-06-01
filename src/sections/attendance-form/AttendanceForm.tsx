@@ -65,7 +65,6 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
     },
     ref,
   ) => {
-    console.log('Special food:', specialFood)
     useImperativeHandle(ref, () => ({
       reset: () => {
         setName('')
