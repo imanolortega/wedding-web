@@ -74,6 +74,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
         style={style}
       >
         <input
+          id={checkboxId}
           type="checkbox"
           ref={ref}
           checked={isChecked}
@@ -81,7 +82,9 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           onChange={handleToggle}
           className={styles.hidden}
           tabIndex={-1}
+          aria-labelledby={`${checkboxId}-label`}
         />
+
         <Flex
           style={{
             borderRadius: 'min(var(--static-space-4), var(--radius-xs))',
@@ -114,7 +117,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
         </Flex>
         {props.label && (
           <InteractiveDetails
-            id={checkboxId}
+            id={`${checkboxId}-label`}
             label={props.label}
             description={(props as any).description}
             iconButtonProps={(props as any).iconButtonProps}

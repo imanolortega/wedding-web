@@ -29,7 +29,6 @@ const Footer = forwardRef<Footer>((_, ref) => {
         fillWidth
         gap="16"
       >
-        <Logo wordmark={false} size="s" />
         <Text size="m">
           <Text onBackground="neutral-weak">2025 /</Text> Web por{' '}
           <SmartLink href="https://www.instagram.com/imanol.oc/">IOC</SmartLink>
