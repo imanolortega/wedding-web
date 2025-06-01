@@ -10,6 +10,7 @@ import { AttendanceForm, Footer, Gallery, Header, Hero } from '@/sections'
 import { EventInfo } from '@/sections/event-info/EventInfo'
 import { WeddingInfo } from '@/sections/wedding-info/WeddingInfo'
 import { EventInfoMobile } from '@/sections/event-info/EventInfoMobile'
+import { GiftInfo } from '@/sections/gift-info/GiftInfo'
 
 export default function Home() {
   const { addToast } = useToast()
@@ -124,6 +125,7 @@ export default function Home() {
             />
 
             <Gallery />
+            <GiftInfo />
           </Column>
         </Column>
 
