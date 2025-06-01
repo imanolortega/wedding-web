@@ -1,5 +1,5 @@
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = 'https://demo.once-ui.com'
+const baseURL = 'https://www.theboda.top'
 
 // Import and set font for each variant
 import { Geist } from 'next/font/google'
@@ -86,7 +86,7 @@ const meta = {
     title: 'The Boda | Somos Martín y Luján',
     description:
       'Somos Martín y Luján. It’s wedding time. Acompañanos este 6 de septiembre. #ThebodaM&L',
-    image: '/martin-lujan-theboda.jpg',
+    image: '/martin-lujan-slider-three.jpg',
     canonical: 'https://www.theboda.top',
     robots: 'index,follow',
     alternates: [{ href: 'https://www.theboda.top', hrefLang: 'en' }],
