@@ -86,7 +86,7 @@ const meta = {
     title: 'The Boda | Somos Martín y Luján',
     description:
       'Somos Martín y Luján. It’s wedding time. Acompañanos este 6 de septiembre. #ThebodaM&L',
-    image: '/martin-lujan-slider-three.jpg',
+    image: '/images/martin-lujan-slider-three.jpg',
     canonical: 'https://www.theboda.top',
     robots: 'index,follow',
     alternates: [{ href: 'https://www.theboda.top', hrefLang: 'en' }],

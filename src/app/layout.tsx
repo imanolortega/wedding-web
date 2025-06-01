@@ -68,7 +68,7 @@ export default function RootLayout({
         <title>{meta.home.title}</title>
         <meta name="description" content={meta.home.description} />
         <meta name="canonical" content={`${baseURL}${meta.home.path}`} />
-        <meta name="image" property="og:image" content={`${baseURL}/images/${meta.home.image}`} />
+        <meta name="image" property="og:image" content={`${baseURL}${meta.home.image}`} />
         <meta name="og:title" content={meta.home.title} />
         <meta name="og:type" content="website" />
         <meta name="og:site_name" content={meta.home.title} />
@@ -78,7 +78,7 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={meta.home.description} />
         <meta name="twitter:description" content={meta.home.description} />
-        <meta name="twitter:image" content={`${baseURL}/images/${meta.home.image}`} />
+        <meta name="twitter:image" content={`${baseURL}${meta.home.image}`} />
         {/*  */}
       </head>
       <ThemeProvider>
