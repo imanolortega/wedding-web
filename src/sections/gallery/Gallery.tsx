@@ -57,6 +57,14 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
               alt: 'Martín y Luján imagen 3',
               src: '/images/martin-lujan-slider-three.jpg',
             },
+            {
+              alt: 'Martín y Luján imagen 4',
+              src: '/images/martin-lujan-slider-five.jpg',
+            },
+            {
+              alt: 'Martín y Luján imagen 5',
+              src: '/images/martin-lujan-slider-six.jpg',
+            },
           ]}
         />
       </Row>

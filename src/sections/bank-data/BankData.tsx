@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Column, Row, Text, useToast, Card, Heading, Background } from '@/once-ui/components'
+import { useCallback } from 'react'
+import { Column, Row, Text, useToast, Card, Background } from '@/once-ui/components'
 
 interface BankFieldProps {
   label: string
@@ -11,20 +12,20 @@ interface BankFieldProps {
 const BankField: React.FC<BankFieldProps> = ({ label, value }) => {
   const { addToast } = useToast()
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(value)
       addToast({ variant: 'success', message: `${label} copiado` })
     } catch {
       addToast({ variant: 'danger', message: 'No se pudo copiar' })
     }
-  }
+  }, [value, label, addToast])
 
   return (
     <Card
       as="div"
       paddingY="24"
-      paddingX="48"
+      paddingX="56"
       fillWidth
       gap="s"
       background="overlay"
