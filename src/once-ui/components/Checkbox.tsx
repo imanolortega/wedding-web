@@ -86,6 +86,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
         />
 
         <Flex
+          aria-label={checkboxId}
           style={{
             borderRadius: 'min(var(--static-space-4), var(--radius-xs))',
           }}
@@ -95,7 +96,6 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           horizontal="center"
           vertical="center"
           radius="xs"
-          aria-label={props.label}
           aria-checked={isIndeterminate ? 'mixed' : isChecked}
           aria-labelledby={checkboxId}
           onClick={handleToggle}
