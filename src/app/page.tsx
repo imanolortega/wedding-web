@@ -17,6 +17,9 @@ export default function Home() {
   const [lastName, setLastName] = useState('')
   const [name, setName] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [companionOne, setCompanionOne] = useState('')
+  const [companionTwo, setCompanionTwo] = useState('')
+  const [specialFood, setSpecialFood] = useState<string[]>([''])
 
   const onSelect = (value: string) => {
     setAsistQuantity(parseInt(value))
@@ -112,7 +115,14 @@ export default function Home() {
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               addToast={addToast}
+              companionOne={companionOne}
+              setCompanionOne={setCompanionOne}
+              companionTwo={companionTwo}
+              setCompanionTwo={setCompanionTwo}
+              specialFood={specialFood}
+              setSpecialFood={setSpecialFood}
             />
+
             <Gallery />
           </Column>
         </Column>
