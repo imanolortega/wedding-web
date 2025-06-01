@@ -95,6 +95,7 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           horizontal="center"
           vertical="center"
           radius="xs"
+          aria-label={props.label}
           aria-checked={isIndeterminate ? 'mixed' : isChecked}
           aria-labelledby={checkboxId}
           onClick={handleToggle}
