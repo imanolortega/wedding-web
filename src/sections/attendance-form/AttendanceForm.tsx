@@ -236,8 +236,16 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
           </Column>
 
           <Column align="center" fillWidth gap="1" paddingTop="s" paddingBottom="s">
-            <Text variant="label-default-m">¿Tenés alguna necesidad alimentaria?</Text>
-            <Row gap="s" paddingTop="m">
+            <Text variant="label-default-l" paddingBottom="m">
+              ¿Tenés alguna necesidad alimentaria?
+            </Text>
+            <Row
+              gap="s"
+              paddingTop="m"
+              paddingBottom="s"
+              mobileDirection="column"
+              horizontal="center"
+            >
               <Checkbox
                 id="sin-tacc"
                 label="Sin TACC"
