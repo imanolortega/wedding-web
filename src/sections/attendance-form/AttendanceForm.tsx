@@ -1,6 +1,6 @@
 'use client'
 
-import React, { forwardRef, useEffect, useImperativeHandle } from 'react'
+import React, { forwardRef, useImperativeHandle } from 'react'
 import {
   Row,
   Column,
@@ -65,6 +65,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
     },
     ref,
   ) => {
+    console.log('Special food:', specialFood)
     useImperativeHandle(ref, () => ({
       reset: () => {
         setName('')
@@ -72,7 +73,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
         setAsistQuantity(0)
         setCompanionOne('')
         setCompanionTwo('')
-        setSpecialFood(['No'])
+        setSpecialFood([])
       },
     }))
 
@@ -107,7 +108,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
         asistentQuantity: asistQuantity,
         companionOne: asistQuantity >= 1 ? companionOne : '',
         companionTwo: asistQuantity === 2 ? companionTwo : '',
-        specialFood: specialFood.length > 0 ? specialFood : ['No'],
+        specialFood: specialFood.filter((s) => s.trim() !== ''),
       }
 
       setIsLoading(true)
@@ -123,15 +124,14 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
         if (result.success) {
           addToast({
             variant: 'success',
-            message:
-              '¡Gracias por confirmar tu asistencia! Próximamente te vamos a enviar tu invitación.',
+            message: '¡Gracias por confirmar tu asistencia!',
           })
           setName('')
           setLastName('')
           setAsistQuantity(0)
           setCompanionOne('')
           setCompanionTwo('')
-          setSpecialFood(['No'])
+          setSpecialFood([])
         } else {
           throw new Error('No se pudo enviar')
         }
@@ -144,37 +144,14 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
       setIsLoading(false)
     }
 
-    const isChecked = (option: string) =>
-      specialFood.length === 1 && specialFood[0] === 'No'
-        ? option === 'No'
-        : specialFood.includes(option)
+    const isChecked = (option: string) => specialFood.includes(option)
 
     const toggleOption = (option: string, checked: boolean) => {
-      setSpecialFood((prev) => {
-        if (option === 'No') {
-          return checked ? ['No'] : []
-        }
-
-        const withoutNo = prev.filter((v) => v !== 'No')
-        let next = checked ? [...withoutNo, option] : withoutNo.filter((v) => v !== option)
-
-        return next.length === 0 ? ['No'] : next
-      })
+      setSpecialFood((prev) => (checked ? [...prev, option] : prev.filter((v) => v !== option)))
     }
 
-    useEffect(() => {
-      console.log('👀 specialFood actualizado:', specialFood)
-    }, [specialFood])
-
     return (
-      <Row
-        marginY="32"
-        background="overlay"
-        fillWidth
-        radius="xl"
-        border="neutral-alpha-weak"
-        overflow="hidden"
-      >
+      <Row marginY="32" background="overlay" fillWidth radius="xl" border="neutral-alpha-weak">
         <Row fill hide="m">
           <SmartImage src="/images/martin-lujan-theboda.jpg" alt="Preview image" sizes="560px" />
         </Row>
@@ -201,6 +178,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
               <Line />/<Line />
             </Row>
           </Row>
+
           <Column gap="-1" fillWidth>
             <Row fillWidth gap="-1">
               <Input
@@ -255,36 +233,30 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
                 onChange={(e) => setCompanionTwo(e.target.value)}
               />
             )}
+          </Column>
 
-            <Column align="center" fillWidth gap="1" paddingTop="m" paddingBottom="s">
-              <Text variant="label-default-m">¿Tenés alguna necesidad alimentaria?</Text>
-              <Row gap="s" paddingTop="m">
-                <Checkbox
-                  id="no"
-                  label="No"
-                  checked={isChecked('No')}
-                  onChange={(e) => toggleOption('No', e.target.checked)}
-                />
-                <Checkbox
-                  id="sin-tacc"
-                  label="Sin TACC"
-                  checked={isChecked('Sin TACC')}
-                  onChange={(e) => toggleOption('Sin TACC', e.target.checked)}
-                />
-                <Checkbox
-                  id="vegetariano"
-                  label="Vegetariano"
-                  checked={isChecked('Vegetariano')}
-                  onChange={(e) => toggleOption('Vegetariano', e.target.checked)}
-                />
-                <Checkbox
-                  id="vegano"
-                  label="Vegano"
-                  checked={isChecked('Vegano')}
-                  onChange={(e) => toggleOption('Vegano', e.target.checked)}
-                />
-              </Row>
-            </Column>
+          <Column align="center" fillWidth gap="1" paddingTop="s" paddingBottom="s">
+            <Text variant="label-default-m">¿Tenés alguna necesidad alimentaria?</Text>
+            <Row gap="s" paddingTop="m">
+              <Checkbox
+                id="sin-tacc"
+                label="Sin TACC"
+                checked={isChecked('Sin TACC')}
+                onChange={(e) => toggleOption('Sin TACC', e.target.checked)}
+              />
+              <Checkbox
+                id="vegetariano"
+                label="Vegetariano"
+                checked={isChecked('Vegetariano')}
+                onChange={(e) => toggleOption('Vegetariano', e.target.checked)}
+              />
+              <Checkbox
+                id="vegano"
+                label="Vegano"
+                checked={isChecked('Vegano')}
+                onChange={(e) => toggleOption('Vegano', e.target.checked)}
+              />
+            </Row>
           </Column>
 
           <Button

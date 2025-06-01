@@ -10,7 +10,6 @@ interface CheckboxProps
     React.InputHTMLAttributes<HTMLInputElement> {
   isChecked?: boolean
   isIndeterminate?: boolean
-  onToggle?: () => void
 }
 
 const generateId = () => `checkbox-${Math.random().toString(36).substring(2, 9)}`
@@ -22,27 +21,36 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
       className,
       isChecked: controlledIsChecked,
       isIndeterminate = false,
-      onToggle,
       disabled,
+      onChange,
       ...props
     },
     ref,
   ) => {
-    const [isChecked, setIsChecked] = useState(controlledIsChecked || false)
-    const [checkboxId] = useState(generateId())
+    const [internalChecked, setInternalChecked] = useState(controlledIsChecked ?? false)
+    const [id] = useState(generateId())
+    const checkboxId = props.id || id
 
     useEffect(() => {
       if (controlledIsChecked !== undefined) {
-        setIsChecked(controlledIsChecked)
+        setInternalChecked(controlledIsChecked)
       }
     }, [controlledIsChecked])
 
-    const toggleItem = () => {
+    const handleToggle = () => {
       if (disabled) return
-      if (onToggle) {
-        onToggle()
-      } else {
-        setIsChecked(!isChecked)
+
+      const newChecked = !(controlledIsChecked ?? internalChecked)
+
+      if (controlledIsChecked === undefined) {
+        setInternalChecked(newChecked)
+      }
+
+      if (onChange) {
+        const event = {
+          target: { checked: newChecked },
+        } as React.ChangeEvent<HTMLInputElement>
+        onChange(event)
       }
     }
 
@@ -50,9 +58,11 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
       if (disabled) return
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault()
-        toggleItem()
+        handleToggle()
       }
     }
+
+    const isChecked = controlledIsChecked ?? internalChecked
 
     return (
       <Flex
@@ -66,16 +76,9 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
         <input
           type="checkbox"
           ref={ref}
-          aria-checked={
-            isIndeterminate
-              ? 'mixed'
-              : controlledIsChecked !== undefined
-                ? controlledIsChecked
-                : isChecked
-          }
-          checked={controlledIsChecked !== undefined ? controlledIsChecked : isChecked}
-          onChange={toggleItem}
+          checked={isChecked}
           disabled={disabled}
+          onChange={handleToggle}
           className={styles.hidden}
           tabIndex={-1}
         />
@@ -89,37 +92,35 @@ const Checkbox: React.FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxP
           horizontal="center"
           vertical="center"
           radius="xs"
-          aria-checked={
-            isIndeterminate
-              ? 'mixed'
-              : controlledIsChecked !== undefined
-                ? controlledIsChecked
-                : isChecked
-          }
+          aria-checked={isIndeterminate ? 'mixed' : isChecked}
           aria-labelledby={checkboxId}
-          onClick={toggleItem}
+          onClick={handleToggle}
           onKeyDown={handleKeyDown}
           className={classNames(styles.element, {
-            [styles.checked]:
-              controlledIsChecked !== undefined
-                ? controlledIsChecked || isIndeterminate
-                : isChecked,
+            [styles.checked]: isChecked || isIndeterminate,
             [styles.disabled]: disabled,
           })}
         >
-          {(controlledIsChecked !== undefined ? controlledIsChecked : isChecked) &&
-            !isIndeterminate && (
-              <Flex className={styles.icon}>
-                <Icon onSolid="brand-strong" name="check" size="xs" />
-              </Flex>
-            )}
+          {isChecked && !isIndeterminate && (
+            <Flex className={styles.icon}>
+              <Icon onSolid="brand-strong" name="check" size="xs" />
+            </Flex>
+          )}
           {isIndeterminate && (
             <Flex className={styles.icon}>
               <Icon onSolid="brand-strong" name="minus" size="xs" />
             </Flex>
           )}
         </Flex>
-        {props.label && <InteractiveDetails id={checkboxId} {...props} onClick={toggleItem} />}
+        {props.label && (
+          <InteractiveDetails
+            id={checkboxId}
+            label={props.label}
+            description={(props as any).description}
+            iconButtonProps={(props as any).iconButtonProps}
+            onClick={handleToggle}
+          />
+        )}
       </Flex>
     )
   },
