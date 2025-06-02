@@ -1,8 +1,12 @@
 import React, { forwardRef } from 'react'
-import { Row, Carousel, Background, Column, Text, Heading } from '@/once-ui/components'
+import { Row, Carousel, Background, Column, Heading } from '@/once-ui/components'
+import { CountdownTimer } from './countdown/countdown'
+
 export interface GalleryHandle {}
 
 const Gallery = forwardRef<GalleryHandle>((_, ref) => {
+  const weddingDate = new Date('2025-09-06T18:30:00-03:00')
+
   return (
     <Column
       position="relative"
@@ -23,10 +27,7 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
         vertical="end"
       >
         <Background
-          mask={{
-            x: 50,
-            y: 100,
-          }}
+          mask={{ x: 50, y: 100 }}
           position="absolute"
           grid={{
             display: true,
@@ -35,11 +36,12 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
             height: '0.25rem',
           }}
         />
-        <Row position="relative" align="center" onBackground="neutral-strong">
-          <Heading align="center" as="h2" variant="display-default-l">
+        <Column align="center" position="relative" onBackground="neutral-strong">
+          <Heading align="center" as="h2" variant="display-default-l" marginBottom="m">
             It's wedding time!
           </Heading>
-        </Row>
+          <CountdownTimer targetDate={weddingDate} />
+        </Column>
       </Row>
       <Row position="relative" fillWidth paddingX="xl">
         <Carousel
