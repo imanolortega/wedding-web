@@ -246,7 +246,7 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
 
           <Column align="center" fillWidth gap="1" paddingTop="s" paddingBottom="s">
             <Text variant="label-default-l" paddingBottom="m">
-              ¿Tenés alguna necesidad alimentaria?
+              ¿Tienes alguna necesidad alimentaria?
             </Text>
             <Row
               gap="s"
