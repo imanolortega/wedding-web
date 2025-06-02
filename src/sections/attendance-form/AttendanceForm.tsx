@@ -199,12 +199,12 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
             </Row>
 
             <label style={{ display: 'none' }} id="select-label" htmlFor="select">
-              ¿Asistís con alguien?
+              ¿Asistes con alguien?
             </label>
             <Select
               radius={asistQuantity === 0 ? 'bottom' : 'none'}
               id="select"
-              label="¿Asistís con alguien?"
+              label="¿Asistes con alguien?"
               options={selectOptions}
               value={asistQuantity.toString()}
               onSelect={(value) => {
