@@ -12,6 +12,7 @@ const EventInfoMobile = forwardRef<EventInfoMobile>((_, ref) => {
   return (
     <>
       <Row
+        id="eventInfo"
         hide="l"
         show="s"
         position="relative"

@@ -23,7 +23,7 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         </Row>
         <Row gap="12" show="s" horizontal="end">
           <Button href="#wedding" size="m" label="Misa" weight="default" variant="tertiary" />
-          <Button href="#event" size="m" label="Evento" weight="default" variant="tertiary" />
+          <Button href="#eventInfo" size="m" label="Evento" weight="default" variant="tertiary" />
         </Row>
       </Row>
     </Row>
