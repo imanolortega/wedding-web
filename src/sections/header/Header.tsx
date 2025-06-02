@@ -10,41 +10,21 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         data-border="rounded"
         horizontal="space-between"
         maxWidth="l"
-        paddingRight="64"
-        paddingLeft="32"
+        paddingRight="24"
+        paddingLeft="24"
         paddingY="20"
       >
         <Logo icon={false} href="/" size="m" wordmarkSrc={'/images/ml-logo.png'} />
         <Row gap="12" hide="s">
-          <Button
-            href="https://wa.me/5493853122118"
-            prefixIcon="email"
-            size="s"
-            label="Martín"
-            weight="default"
-            variant="tertiary"
-          />
-          <Button
-            href="https://wa.me/5493853122118"
-            prefixIcon="email"
-            size="s"
-            label="Luján"
-            weight="default"
-            variant="tertiary"
-          />
+          <Button href="#form" size="s" label="Invitación" weight="default" variant="tertiary" />
+          <Button href="#wedding" size="s" label="Misa" weight="default" variant="tertiary" />
+          <Button href="#event" size="s" label="Evento" weight="default" variant="tertiary" />
+          <Button href="#data" size="s" label="Datos" weight="default" variant="tertiary" />
         </Row>
-        {/* <Row gap="16" show="s" horizontal="center" paddingRight="24">
-          <IconButton
-            href="https://discord.com/invite/5EyAQ4eNdS"
-            icon="email"
-            variant="tertiary"
-          />
-          <IconButton
-            href="https://github.com/once-ui-system/nextjs-starter"
-            icon="email"
-            variant="tertiary"
-          />
-        </Row> */}
+        <Row gap="12" show="s" horizontal="end">
+          <Button href="#wedding" size="m" label="Misa" weight="default" variant="tertiary" />
+          <Button href="#event" size="m" label="Evento" weight="default" variant="tertiary" />
+        </Row>
       </Row>
     </Row>
   )

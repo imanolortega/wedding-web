@@ -10,6 +10,7 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
   return (
     <>
       <Row
+        id="wedding"
         position="relative"
         fillWidth
         paddingX="32"

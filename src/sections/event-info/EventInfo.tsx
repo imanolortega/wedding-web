@@ -11,6 +11,7 @@ const EventInfo = forwardRef<EventInfo>((_, ref) => {
   return (
     <TiltFx hide="m" fillWidth paddingX="32" paddingTop="64">
       <Column
+        id="event"
         border="neutral-alpha-weak"
         paddingX="32"
         radius="xl"

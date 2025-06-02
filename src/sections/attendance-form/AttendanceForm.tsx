@@ -150,7 +150,14 @@ const AttendanceForm = forwardRef<AttendanceFormHandle, AttendanceFormProps>(
     }
 
     return (
-      <Row marginY="32" background="overlay" fillWidth radius="xl" border="neutral-alpha-weak">
+      <Row
+        id="form"
+        marginY="32"
+        background="overlay"
+        fillWidth
+        radius="xl"
+        border="neutral-alpha-weak"
+      >
         <Row fill hide="m">
           <SmartImage src="/images/martin-lujan-theboda.jpg" alt="Preview image" sizes="560px" />
         </Row>
