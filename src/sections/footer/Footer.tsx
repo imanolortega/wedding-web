@@ -5,9 +5,9 @@ import { Background, Column, Logo, Row, SmartLink, Text } from '@/once-ui/compon
 export interface Footer {}
 const Footer = forwardRef<Footer>((_, ref) => {
   return (
-    <Row position="relative" as="footer" fillWidth paddingX="l" paddingTop="128" paddingBottom="80">
+    <Row position="relative" as="footer" fillWidth paddingX="l" paddingTop="40" paddingBottom="80">
       <Background
-        borderTop="brand-alpha-strong"
+        //borderTop="brand-alpha-strong"
         mask={{
           x: 50,
           y: 0,
@@ -16,7 +16,7 @@ const Footer = forwardRef<Footer>((_, ref) => {
         grid={{
           display: true,
           width: '0.25rem',
-          color: 'brand-alpha-strong',
+          color: 'accent-alpha-strong',
           height: '0.25rem',
         }}
       />

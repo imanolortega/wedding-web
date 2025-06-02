@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <Column fillWidth paddingTop="80" paddingBottom="40" paddingX="s" horizontal="center" flex={1}>
       <ScrollToTop>
-        <IconButton variant="secondary" icon="chevronUp" />
+        <IconButton variant="secondary" icon="chevronUp" size="l" />
       </ScrollToTop>
       <Fade
         zIndex={3}
@@ -124,12 +124,12 @@ export default function Home() {
               setSpecialFood={setSpecialFood}
             />
             <Gallery />
-            <GiftInfo />
           </Column>
         </Column>
         <WeddingInfo />
         <EventInfo />
         <EventInfoMobile />
+        <GiftInfo />
         <Footer />
       </Column>
     </Column>

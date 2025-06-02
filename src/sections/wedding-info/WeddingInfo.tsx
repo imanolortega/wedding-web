@@ -1,5 +1,5 @@
 import { wedding } from '@/app/resources/config'
-import { Background, Card, Column, Row, Text } from '@/once-ui/components'
+import { Background, Card, Column, Heading, Row, Text } from '@/once-ui/components'
 import React, { forwardRef } from 'react'
 
 import { Map } from '@/sections'
@@ -27,12 +27,14 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
           grid={{
             display: true,
             width: '0.25rem',
-            color: 'brand-alpha-strong',
+            color: 'accent-alpha-strong',
             height: '0.25rem',
           }}
         />
         <Row position="relative" textVariant="display-default-l" align="center">
-          Misa
+          <Heading align="center" as="h2" variant="display-default-l">
+            Misa
+          </Heading>
         </Row>
       </Row>
       <Row fillWidth overflow="hidden">
@@ -73,7 +75,7 @@ const WeddingInfo = forwardRef<WeddingInfo>((_, ref) => {
           grid={{
             display: true,
             width: '0.25rem',
-            color: 'brand-alpha-strong',
+            color: 'accent-alpha-strong',
             height: '0.25rem',
           }}
         />

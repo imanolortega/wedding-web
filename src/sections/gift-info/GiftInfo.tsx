@@ -9,7 +9,7 @@ const GiftInfo = forwardRef<GiftInfo>((_, ref) => {
     <Column
       position="relative"
       textVariant="body-default-xs"
-      onBackground="neutral-strong"
+      onBackground="neutral-medium"
       horizontal="center"
       align="center"
       fillWidth

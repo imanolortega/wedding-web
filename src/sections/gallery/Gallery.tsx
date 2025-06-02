@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { Row, Carousel, Background, Column, Text } from '@/once-ui/components'
+import { Row, Carousel, Background, Column, Text, Heading } from '@/once-ui/components'
 export interface GalleryHandle {}
 
 const Gallery = forwardRef<GalleryHandle>((_, ref) => {
@@ -36,9 +36,9 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
           }}
         />
         <Row position="relative" align="center" onBackground="neutral-strong">
-          <Text as="h3" align="center" variant="display-default-l" paddingBottom="l">
+          <Heading align="center" as="h2" variant="display-default-l">
             It's wedding time!
-          </Text>
+          </Heading>
         </Row>
       </Row>
       <Row position="relative" fillWidth paddingX="xl">
