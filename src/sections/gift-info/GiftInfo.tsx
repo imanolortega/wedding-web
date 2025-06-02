@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { Row, Background, Column, Text } from '@/once-ui/components'
+import { Row, Background, Column,Heading, Text } from '@/once-ui/components'
 import { BankData } from '../bank-data/BankData'
 
 export interface GiftInfo {}
@@ -9,7 +9,7 @@ const GiftInfo = forwardRef<GiftInfo>((_, ref) => {
     <Column
       position="relative"
       textVariant="body-default-xs"
-      onBackground="neutral-medium"
+      onBackground="neutral-strong"
       horizontal="center"
       align="center"
       fillWidth
@@ -37,10 +37,11 @@ const GiftInfo = forwardRef<GiftInfo>((_, ref) => {
             height: '0.25rem',
           }}
         />
-        <Text as="h3" align="center" variant="display-default-m" paddingBottom="l">
-          Tu presencia es el mejor regalo
-        </Text>
-        <Text variant="body-default-l" align="center">
+
+        <Heading align="center" as="h2" variant="display-default-m" marginBottom='m'>
+                   Tu presencia es el mejor regalo
+                  </Heading>
+        <Text variant="body-default-l" align="center" marginBottom='l'>
           Pero si nos quieres ayudar con nuestra luna de miel, te dejamos nuestros datos bancarios.
         </Text>
         <BankData />
