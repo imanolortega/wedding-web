@@ -1,7 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Column, Row, Text } from '@/once-ui/components'
+import { LetterFx } from '@/once-ui/components/LetterFx'
+import { useInView } from 'react-intersection-observer'
 
 interface CountdownTimerProps {
   targetDate: Date
@@ -21,6 +23,20 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
     hours: 0,
     minutes: 0,
   })
+
+  const triggerFnsRef = useRef<(() => void)[]>([])
+  const { ref, inView } = useInView({ triggerOnce: true })
+
+  const collectTriggerFn = (fn: () => void) => {
+    triggerFnsRef.current.push(fn)
+  }
+
+  useEffect(() => {
+    if (inView && triggerFnsRef.current.length > 0) {
+      triggerFnsRef.current.forEach((fn) => fn())
+      triggerFnsRef.current = []
+    }
+  }, [inView])
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -58,60 +74,82 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) =>
   const pad = (num: number) => num.toString().padStart(2, '0')
 
   return (
-    <Column horizontal="center" direction="row" paddingTop="s">
+    <Column ref={ref} horizontal="center" direction="row" paddingTop="s">
       {timeLeft.months > 0 ? (
         <Row gap="xs">
           <Column align="center">
-            <Text variant="display-default-s">{pad(timeLeft.months)}</Text>
+            <Text variant="display-default-s">
+              <LetterFx trigger="custom" speed="medium" type="numbers" onTrigger={collectTriggerFn}>
+                {pad(timeLeft.months)}
+              </LetterFx>
+            </Text>
             <Text variant="body-default-m">Meses</Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s" align="center">
+            <Text variant="display-default-s">:</Text>
+            <Text variant="body-default-m" style={{ visibility: 'hidden' }}>
               :
             </Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s">{pad(timeLeft.days)}</Text>
+            <Text variant="display-default-s">
+              <LetterFx trigger="custom" speed="medium" type="numbers" onTrigger={collectTriggerFn}>
+                {pad(timeLeft.days)}
+              </LetterFx>
+            </Text>
             <Text variant="body-default-m">Días</Text>
           </Column>
-
           <Column align="center">
             <Text variant="display-default-s">:</Text>
+            <Text variant="body-default-m" style={{ visibility: 'hidden' }}>
+              :
+            </Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s">{pad(timeLeft.hours)}</Text>
+            <Text variant="display-default-s">
+              <LetterFx trigger="custom" speed="medium" type="numbers" onTrigger={collectTriggerFn}>
+                {pad(timeLeft.hours)}
+              </LetterFx>
+            </Text>
             <Text variant="body-default-m">Horas</Text>
           </Column>
         </Row>
       ) : (
-        <Row gap="s">
+        <Row gap="xs">
           <Column align="center">
-            <Text variant="display-default-s">{pad(timeLeft.days)}</Text>
+            <Text variant="display-default-s">
+              <LetterFx trigger="custom" speed="medium" type="numbers" onTrigger={collectTriggerFn}>
+                {pad(timeLeft.days)}
+              </LetterFx>
+            </Text>
             <Text variant="body-default-m">Días</Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s" align="center">
+            <Text variant="display-default-s">:</Text>
+            <Text variant="body-default-m" style={{ visibility: 'hidden' }}>
               :
             </Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s">{pad(timeLeft.hours)}</Text>
+            <Text variant="display-default-s">
+              <LetterFx trigger="custom" speed="medium" type="numbers" onTrigger={collectTriggerFn}>
+                {pad(timeLeft.hours)}
+              </LetterFx>
+            </Text>
             <Text variant="body-default-m">Horas</Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s" align="center">
+            <Text variant="display-default-s">:</Text>
+            <Text variant="body-default-m" style={{ visibility: 'hidden' }}>
               :
             </Text>
           </Column>
-
           <Column align="center">
-            <Text variant="display-default-s">{pad(timeLeft.minutes)}</Text>
+            <Text variant="display-default-s">
+              <LetterFx trigger="custom" speed="medium" type="numbers" onTrigger={collectTriggerFn}>
+                {pad(timeLeft.minutes)}
+              </LetterFx>
+            </Text>
             <Text variant="body-default-m">Minutos</Text>
           </Column>
         </Row>

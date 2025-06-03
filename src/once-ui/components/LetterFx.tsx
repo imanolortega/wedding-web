@@ -3,7 +3,10 @@
 import React, { useState, useRef, useCallback, useEffect, forwardRef, ReactNode } from 'react'
 import classNames from 'classnames'
 
-const defaultCharset = ['X', '$', '@', 'a', 'H', 'z', 'o', '0', 'y', '#', '?', '*', '0', '1', '+']
+const defaultCharsets = {
+  letters: ['X', '$', '@', 'a', 'H', 'z', 'o', '0', 'y', '#', '?', '*', '0', '1', '+'],
+  numbers: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+}
 
 function getRandomCharacter(charset: string[]): string {
   const randomIndex = Math.floor(Math.random() * charset.length)
@@ -76,6 +79,7 @@ type LetterFxProps = {
   trigger?: 'hover' | 'instant' | 'custom'
   speed?: 'fast' | 'medium' | 'slow'
   charset?: string[]
+  type?: 'letters' | 'numbers'
   onTrigger?: (triggerFn: () => void) => void
   className?: string
   style?: React.CSSProperties
@@ -87,7 +91,8 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
       children,
       trigger = 'hover',
       speed = 'medium',
-      charset = defaultCharset,
+      type = 'letters',
+      charset = defaultCharsets[type],
       onTrigger,
       className,
       style,

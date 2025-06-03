@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import { Row, Carousel, Background, Column, Heading } from '@/once-ui/components'
-import { CountdownTimer } from './countdown/countdown'
+import { CountdownTimer } from './countdown/Countdown'
 
 export interface GalleryHandle {}
 
