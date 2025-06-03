@@ -53,20 +53,25 @@ const Gallery = forwardRef<GalleryHandle>((_, ref) => {
               src: '/images/martin-lujan-slider-one.jpeg',
             },
             {
-              alt: 'Martín y Luján imagen 2',
-              src: '/images/martin-lujan-slider-two.jpg',
+              alt: 'Martín y Luján imagen 5',
+              src: '/images/martin-lujan-slider-six.jpg',
             },
+
             {
               alt: 'Martín y Luján imagen 3',
               src: '/images/martin-lujan-slider-three.jpg',
+            },
+            {
+              alt: 'Martín y Luján imagen 2',
+              src: '/images/martin-lujan-slider-seven.jpg',
             },
             {
               alt: 'Martín y Luján imagen 4',
               src: '/images/martin-lujan-slider-five.jpg',
             },
             {
-              alt: 'Martín y Luján imagen 5',
-              src: '/images/martin-lujan-slider-six.jpg',
+              alt: 'Martín y Luján imagen 2',
+              src: '/images/martin-lujan-slider-two.jpg',
             },
           ]}
         />
