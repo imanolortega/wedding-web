@@ -151,4 +151,28 @@ const wedding = [
   },
 ]
 
-export { baseURL, effects, event, font, meta, schema, social, style, wedding }
+const desktopLinks = [
+  { href: '#form', label: 'Invitación' },
+  { href: '#wedding', label: 'Misa' },
+  { href: '#event', label: 'Evento' },
+  { href: '#data', label: 'Datos' },
+]
+
+const mobileLinks = [
+  { href: '#wedding', label: 'Misa' },
+  { href: '#eventInfo', label: 'Evento' },
+]
+
+export {
+  baseURL,
+  effects,
+  event,
+  font,
+  meta,
+  schema,
+  social,
+  style,
+  wedding,
+  desktopLinks,
+  mobileLinks,
+}

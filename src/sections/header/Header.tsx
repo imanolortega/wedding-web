@@ -1,5 +1,6 @@
-import React, { forwardRef } from 'react'
-import { Row, Logo, Button, IconButton } from '@/once-ui/components'
+import React, { forwardRef } from "react";
+import { Row, Logo, Button } from "@/once-ui/components";
+import { desktopLinks, mobileLinks } from "@/app/resources/config";
 
 export interface HeaderHandle {}
 
@@ -14,21 +15,41 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         paddingLeft="24"
         paddingY="20"
       >
-        <Logo icon={false} href="/" size="m" wordmarkSrc={'/images/ml-logo.png'} />
+        <Logo
+          icon={false}
+          href="/"
+          size="m"
+          wordmarkSrc={"/images/ml-logo.png"}
+        />
         <Row gap="12" hide="s">
-          <Button href="#form" size="s" label="Invitación" weight="default" variant="tertiary" />
-          <Button href="#wedding" size="s" label="Misa" weight="default" variant="tertiary" />
-          <Button href="#event" size="s" label="Evento" weight="default" variant="tertiary" />
-          <Button href="#data" size="s" label="Datos" weight="default" variant="tertiary" />
+          {desktopLinks.map(({ href, label }) => (
+            <Button
+              key={href}
+              href={href}
+              size="s"
+              label={label}
+              weight="default"
+              variant="tertiary"
+            />
+          ))}
         </Row>
+
         <Row gap="12" show="s" horizontal="end">
-          <Button href="#wedding" size="m" label="Misa" weight="default" variant="tertiary" />
-          <Button href="#eventInfo" size="m" label="Evento" weight="default" variant="tertiary" />
+          {mobileLinks.map(({ href, label }) => (
+            <Button
+              key={href}
+              href={href}
+              size="m"
+              label={label}
+              weight="default"
+              variant="tertiary"
+            />
+          ))}
         </Row>
       </Row>
     </Row>
-  )
-})
+  );
+});
 
-Header.displayName = 'Header'
-export { Header }
+Header.displayName = "Header";
+export { Header };
