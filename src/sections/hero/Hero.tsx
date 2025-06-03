@@ -7,7 +7,7 @@ const Hero = forwardRef<HeroHandle>((_, ref) => {
   return (
     <Column fillWidth horizontal="center" gap="32" padding="32" position="relative">
       <InlineCode radius="xl" shadow="m" fit paddingX="16" paddingY="8">
-        <Text onSolid="brand-medium">Somos Martín y Luján, acompañanos en este proceso</Text>
+        <Text onSolid="brand-medium">Somos Martín y Luján, acompañanos en nuestro día</Text>
       </InlineCode>
 
       <Column maxWidth={32}>
