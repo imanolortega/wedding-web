@@ -2,6 +2,7 @@
 
 import { Flex, RevealFx, Scroller, SmartImage } from '.'
 import { useEffect, useState, useRef } from 'react'
+import styles from './Carousel.module.scss'
 
 interface Image {
   src: string
@@ -127,6 +128,7 @@ const Carousel: React.FC<CarouselProps> = ({
             <Scroller fillWidth gap="4" onItemClick={handleControlClick}>
               {images.map((image, index) => (
                 <Flex
+                  className={styles['thumbnail']}
                   key={index}
                   style={{
                     border: activeIndex === index ? '2px solid var(--brand-solid-strong)' : 'none',
@@ -135,13 +137,13 @@ const Carousel: React.FC<CarouselProps> = ({
                   }}
                   cursor="interactive"
                   padding="4"
-                  width="80"
-                  height="80"
+                  width="160"
+                  height="160"
                 >
                   <SmartImage
                     alt={image.alt}
                     aspectRatio="1 / 1"
-                    sizes="120px"
+                    sizes="160px"
                     src={image.src}
                     cursor="interactive"
                     radius="m"

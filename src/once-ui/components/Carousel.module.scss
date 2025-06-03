@@ -1,0 +1,9 @@
+.thumbnail {
+  height: 160px;
+  width: 160px;
+
+  @media (--m) {
+    height: 80px !important;
+    width: 80px !important;
+  }
+}

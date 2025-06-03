@@ -31,7 +31,7 @@ const Footer = forwardRef<Footer>((_, ref) => {
       >
         <Text size="m">
           <Text onBackground="neutral-weak">2025 /</Text> Web por{' '}
-          <SmartLink href="https://www.instagram.com/imanol.oc/">IOC</SmartLink>
+          <SmartLink href="https://imanolortega.dev/">IOC</SmartLink>
         </Text>
       </Column>
     </Row>
