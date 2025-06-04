@@ -1,6 +1,6 @@
-import React, { forwardRef } from "react";
-import { Row, Logo, Button } from "@/once-ui/components";
-import { desktopLinks, mobileLinks } from "@/app/resources/config";
+import React, { forwardRef } from 'react'
+import { Row, Logo, Button } from '@/once-ui/components'
+import { desktopLinks, mobileLinks } from '@/app/resources/config'
 
 export interface HeaderHandle {}
 
@@ -15,12 +15,7 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         paddingLeft="24"
         paddingY="20"
       >
-        <Logo
-          icon={false}
-          href="/"
-          size="m"
-          wordmarkSrc={"/images/ml-logo.png"}
-        />
+        <Logo icon={false} href="/" size="m" wordmarkSrc={'/images/ml-logo.png'} />
         <Row gap="12" hide="s">
           {desktopLinks.map(({ href, label }) => (
             <Button
@@ -48,8 +43,8 @@ const Header = forwardRef<HeaderHandle>((_, ref) => {
         </Row>
       </Row>
     </Row>
-  );
-});
+  )
+})
 
-Header.displayName = "Header";
-export { Header };
+Header.displayName = 'Header'
+export { Header }
