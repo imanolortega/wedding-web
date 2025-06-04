@@ -22,7 +22,7 @@ export default function CustomAnalytics() {
     <>
       <Analytics />
       <SpeedInsights />
-      <GoogleAnalytics gaId="G-WF1W5FQFB1" />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_G_ANALYTICS || ''} />
     </>
   )
 }
